@@ -1,0 +1,370 @@
+/* ============================================================
+   PORTFOLIO PAGE STYLES
+   ============================================================ */
+
+.portfolio-main { padding-top: 60px; }
+
+/* Re-use page-header from about.css - same structure */
+.page-header {
+  padding: var(--sp-24) var(--sp-8) var(--sp-16);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.06;
+  filter: blur(100px);
+  pointer-events: none;
+}
+.page-header-inner { max-width: 1200px; margin: 0 auto; }
+.page-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-4);
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 200;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-4);
+}
+.page-title em { font-style: normal; font-weight: 200; color: var(--gold-light); }
+.page-subtitle { font-size: 1rem; color: var(--text-secondary); }
+
+/* ── Jump Nav ── */
+.jump-nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+}
+.jump-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--sp-8);
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.jump-link {
+  display: block;
+  padding: var(--sp-4) var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.jump-link:hover {
+  color: var(--text-primary);
+  border-color: var(--gold);
+}
+
+/* ── Section wrapper ── */
+.port-section { padding: var(--sp-24) 0; }
+.port-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--sp-8);
+}
+
+.section-intro {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: calc(-1 * var(--sp-4));
+  margin-bottom: var(--sp-8);
+}
+
+/* ── Credentials Grid ── */
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+
+.cred-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  transition: all var(--t-mid) var(--ease);
+}
+.cred-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+
+.cred-img-slot {
+  width: 100%;
+  height: 160px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-3);
+  margin-bottom: var(--sp-2);
+}
+.cred-img-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cred-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.3;
+  background: linear-gradient(135deg, var(--surface-3), var(--navy));
+  letter-spacing: 0.05em;
+}
+
+.cred-title {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.cred-issuer {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.cred-detail {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Project List ── */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.project-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  transition: all var(--t-mid) var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--burgundy), var(--gold));
+  opacity: 0;
+  transition: opacity var(--t-mid);
+}
+
+.project-card:hover {
+  border-color: var(--border-mid);
+  transform: translateX(4px);
+}
+.project-card:hover::before { opacity: 1; }
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.project-year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.project-links {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.project-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-light);
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding-bottom: 1px;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.project-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.placeholder-note {
+  margin-top: var(--sp-6);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .port-inner { padding: 0 var(--sp-4); }
+  .cred-grid { grid-template-columns: 1fr; }
+  .project-card:hover { transform: none; }
+  .project-card:hover::before { opacity: 1; }
+}
+
+/* ── Featured project card with video ── */
+.project-card--featured {
+  border-color: rgba(201,168,76,0.2);
+}
+
+.project-video-slot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-3);
+  margin: var(--sp-2) 0;
+}
+
+.project-video-slot iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+  pointer-events: none;
+}
+
+/* Transparent dark overlay to desaturate/dim the video */
+.project-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.55);
+  mix-blend-mode: color;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Applied skills list inside project card */
+.project-applied-skills {
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  margin-top: var(--sp-2);
+}
+
+.skills-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-3);
+}
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-left: var(--sp-4);
+  border-left: 2px solid var(--border);
+}
+
+.skills-list li {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ── Project detail list ── */
+.project-detail-list {
+  list-style: none;
+  padding-left: var(--sp-4);
+  border-left: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+.project-detail-list li {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding-left: var(--sp-2);
+}
+
+/* ── Project video embed ── */
+.project-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-3);
+  margin-bottom: var(--sp-4);
+  filter: grayscale(0.4);
+}
+.project-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}

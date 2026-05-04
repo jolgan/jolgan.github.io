@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jolene Gan - Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">JG</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="learning.html" class="nav-link">Learning &amp; Development</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--red"></div>
+      <div class="hero-glow hero-glow--gold"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow"><span class="dot"></span> Open to opportunities · London, UK</p>
+      <h1 class="hero-name">Jolene<br /><em>Gan</em></h1>
+      <p class="hero-title">Data Science &amp; Analytics</p>
+      <p class="hero-sub">
+        MSc Data Science in Business · Distinction<br />
+        Regent's University London
+      </p>
+
+      <div class="hero-cta">
+        <a href="portfolio.html" class="btn btn--primary">View Portfolio</a>
+        <a href="learning.html" class="btn btn--ghost">Learning Journey</a>
+      </div>
+    </div>
+
+    <div class="hero-video-slot">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/PfkpN8I4KvY?autoplay=1&mute=1&loop=1&playlist=PfkpN8I4KvY&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+          title="Jolene Gan introduction"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          style="width:100%;height:100%;position:absolute;top:0;left:0;border:none;"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool Stack -->
+  <section class="tools">
+    <p class="tools-label">Tools &amp; Technologies</p>
+    <div class="tools-row">
+      <!-- SVG icon blocks - using text labels styled as chips for now; replace with logo SVGs when available -->
+      <div class="tool-chip">Python</div>
+      <div class="tool-chip">SQL</div>
+      <div class="tool-chip">R</div>
+      <div class="tool-chip">Power BI</div>
+      <div class="tool-chip">Tableau</div>
+      <div class="tool-chip">Excel</div>
+      <div class="tool-chip">SAS JMP</div>
+      <div class="tool-chip">KNIME</div>
+      <div class="tool-chip">SPSS</div>
+      <div class="tool-chip">InDesign</div>
+      <div class="tool-chip">Google Sheets</div>
+    </div>
+  </section>
+
+  <!-- Certificate Carousel -->
+  <section class="certs">
+    <div class="section-header">
+      <h2 class="section-title">Credentials</h2>
+      <a href="portfolio.html#credentials" class="section-link">View all →</a>
+    </div>
+    <div class="cert-carousel">
+      <div class="cert-track" id="certTrack">
+        <!-- Cert cards - populate with real images when available -->
+        <div class="cert-card">
+          <div class="cert-img-placeholder">
+            <img src="media/certs/msc-distinction.jpg" alt="MSc Distinction" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <p class="cert-name">MSc Data Science in Business</p>
+          <p class="cert-issuer">Regent's University London, 2024</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-img-placeholder">
+            <img src="media/certs/sas-jmp.png" alt="SAS Certificate" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <p class="cert-name">SAS Certificate of Achievement</p>
+          <p class="cert-issuer">SAS JMP, Data Analysis</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-img-placeholder">
+            <span>Hand<br/>Shake</span>
+          </div>
+          <p class="cert-name">Reporting and Analytics</p>
+          <p class="cert-issuer">HandShake Academy</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-img-placeholder">
+            <img src="media/certs/ba-communication.png" alt="BA Communication" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <p class="cert-name">BA in Communication</p>
+          <p class="cert-issuer">SUNY University at Buffalo, 2021</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-img-placeholder">
+            <img src="media/certs/diploma-bis.jpg" alt="Diploma BIS" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <p class="cert-name">Diploma in Business Information Systems</p>
+          <p class="cert-issuer">Republic Polytechnic, 2018</p>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-btn--prev" onclick="shiftCarousel(-1)">‹</button>
+      <button class="carousel-btn carousel-btn--next" onclick="shiftCarousel(1)">›</button>
+    </div>
+  </section>
+
+  <!-- Navigation Guide -->
+  <section class="nav-guide">
+    <div class="section-header">
+      <h2 class="section-title">Explore</h2>
+    </div>
+    <div class="nav-cards">
+      <a href="about.html" class="nav-card">
+        <span class="nav-card-num">01</span>
+        <h3 class="nav-card-title">About</h3>
+        <p class="nav-card-desc">The story behind the career change - from food and beverage to data science, and the long game towards precision medicine.</p>
+        <span class="nav-card-arrow">→</span>
+      </a>
+      <a href="portfolio.html" class="nav-card">
+        <span class="nav-card-num">02</span>
+        <h3 class="nav-card-title">Portfolio</h3>
+        <p class="nav-card-desc">Credentials, professional projects, academic work, and independent explorations - a record of applied data practice.</p>
+        <span class="nav-card-arrow">→</span>
+      </a>
+      <a href="learning.html" class="nav-card">
+        <span class="nav-card-num">03</span>
+        <h3 class="nav-card-title">Learning &amp; Development</h3>
+        <p class="nav-card-desc">An honest map of the learning journey - courses plotted by difficulty and domain, events attended, and credentials earned.</p>
+        <span class="nav-card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Strip -->
+  <section class="contact-strip">
+    <p class="contact-label">Get in touch</p>
+    <div class="contact-links">
+      <a href="mailto:jolenegan@outlook.com" class="contact-link">
+        <span class="contact-icon">✉</span> jolenegan@outlook.com
+      </a>
+      <a href="https://www.linkedin.com/in/jolenegan" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-icon">in</span> LinkedIn
+      </a>
+      <a href="https://github.com/jolgan" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-icon">⌥</span> GitHub
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>2025 Jolene Gan. Built with intention.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

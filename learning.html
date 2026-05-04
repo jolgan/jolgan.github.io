@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning &amp; Development - Jolene Gan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/learning.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">JG</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="learning.html" class="nav-link active">Learning &amp; Development</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="learning-main">
+
+    <header class="page-header">
+      <div class="page-header-inner">
+        <p class="page-eyebrow">03 / Learning &amp; Development</p>
+        <h1 class="page-title">The learning<br/><em>map.</em></h1>
+        <p class="page-subtitle">An honest, ongoing record of every course, event, and credential - plotted by domain and difficulty.</p>
+      </div>
+    </header>
+
+    <!-- Jump Nav -->
+    <div class="jump-nav">
+      <div class="jump-nav-inner">
+        <a href="#course-map" class="jump-link">Course Map</a>
+        <a href="#professional-credentials" class="jump-link">Professional Credentials</a>
+        <a href="#course-certs" class="jump-link">Course Certificates</a>
+        <a href="#events-public" class="jump-link">Public Events</a>
+        <a href="#events-private" class="jump-link">Private Invitations</a>
+      </div>
+    </div>
+
+    <!-- Course Map -->
+    <section class="ld-section" id="course-map">
+      <div class="ld-inner">
+        <div class="section-header">
+          <h2 class="section-title">Course Map</h2>
+        </div>
+        <p class="section-intro">
+          Each course is plotted by estimated difficulty (x-axis) and duration (y-axis), grouped by domain.
+          Click any numbered point or list item to jump to the course detail below.
+        </p>
+
+        <!-- Interactive Chart -->
+        <div class="chart-container">
+          <canvas id="courseChart"></canvas>
+          <div class="chart-quadrant-labels">
+            <span class="ql ql--tl">Data Analytics</span>
+            <span class="ql ql--tr">Data Science</span>
+            <span class="ql ql--bl">Foundations</span>
+            <span class="ql ql--br">Data Visualisation</span>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="chart-legend">
+          <span class="legend-item legend-item--analytics">Data Analytics</span>
+          <span class="legend-item legend-item--science">Data Science</span>
+          <span class="legend-item legend-item--foundations">Foundations</span>
+          <span class="legend-item legend-item--viz">Data Visualisation</span>
+        </div>
+
+        <!-- Course List + Detail Cards -->
+        <div class="course-layout">
+          <ol class="course-list" id="courseList">
+            <!-- Populated by JS -->
+          </ol>
+          <div class="course-detail-panel" id="courseDetailPanel">
+            <div class="course-detail-empty">
+              <span>← Select a course to see details</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Professional Credentials -->
+    <section class="ld-section" id="professional-credentials">
+      <div class="ld-inner">
+        <div class="section-header">
+          <h2 class="section-title">Professional Credentials</h2>
+        </div>
+        <p class="section-intro">Certificates and badges issued by recognised organisations, not micro-course completions.</p>
+        <div class="cred-list">
+
+          <div class="cred-list-item">
+            <div class="cred-list-icon">SAS</div>
+            <div class="cred-list-body">
+              <h3 class="cred-list-title">Certificate of Achievement: Data Analysis using SAS JMP</h3>
+              <p class="cred-list-issuer">SAS Academy, issued via Regent's University London, October 2024</p>
+              <p class="cred-list-desc">
+                Proficiency in SAS software for statistical analysis. Covers comparing means,
+                analysis of variance, categorical analysis, correlation and regression,
+                multiple linear regression, and logistic regression.
+              </p>
+            </div>
+            <div class="cred-list-img-slot">
+              <img src="media/certs/sas-jmp.png" alt="SAS Certificate" />
+            </div>
+          </div>
+
+          <div class="cred-list-item">
+            <div class="cred-list-icon">LI</div>
+            <div class="cred-list-body">
+              <h3 class="cred-list-title">Data Science by KNIME</h3>
+              <p class="cred-list-issuer">Accredited by KNIME, facilitated on LinkedIn Learning</p>
+              <p class="cred-list-desc">
+                Six-course path: Data Science Fundamentals, Low Code/No-Code Data Literacy with KNIME,
+                Introduction to AI, Machine Learning and AI Foundations (Classification Modelling),
+                Generative AI and Large Language Models, and Non-Technical Skills of Effective Data Scientists.
+              </p>
+              <a href="https://www.linkedin.com/learning/certificates/9d10cbce329562fa4f41478e99b315825c41d5904aea985d7117ba32a8db7c69?trk=share_certificate" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+            </div>
+            <div class="cred-list-img-slot">
+              <img src="media/certs/knime-data-science.png" alt="KNIME Data Science certificate" />
+            </div>
+          </div>
+
+          <div class="cred-list-item">
+            <div class="cred-list-icon">LI</div>
+            <div class="cred-list-body">
+              <h3 class="cred-list-title">Adobe InDesign for Data Presentation</h3>
+              <p class="cred-list-issuer">Accredited by Adobe, facilitated on LinkedIn Learning</p>
+              <p class="cred-list-desc">
+                Creating, adjusting and formatting data tables in InDesign. Data presentation for print and
+                digital publishing. Document, page and spread management for analytics dashboards.
+                Working with text frames, graphics, and customising the InDesign workspace.
+              </p>
+              <a href="https://www.linkedin.com/learning/certificates/4f179b6acc3344203669b167aa37fbb321ae5cc9b426bf738f0189dcb36ce6a2?trk=share_certificate" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+            </div>
+            <div class="cred-list-img-slot">
+              <img src="media/certs/adobe-indesign.png" alt="Adobe InDesign certificate" />
+            </div>
+          </div>
+
+          <div class="cred-list-item">
+            <div class="cred-list-icon">HS</div>
+            <div class="cred-list-body">
+              <h3 class="cred-list-title">Reporting and Analytics</h3>
+              <p class="cred-list-issuer">HandShake Academy</p>
+              <p class="cred-list-desc">
+                Completed during internship involvement with HandShake. Covers leveraging analytics for
+                dashboard creation, scheduling reports for automated data delivery, and report customisation.
+              </p>
+              <a href="http://verify.skilljar.com/c/2ux8cc4akqwb" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+            </div>
+            <div class="cred-list-img-slot">
+              <img src="media/certs/handshake.png" alt="HandShake certificate" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Course Certificates -->
+    <section class="ld-section" id="course-certs">
+      <div class="ld-inner">
+        <div class="section-header">
+          <h2 class="section-title">Course Certificates</h2>
+        </div>
+        <p class="section-intro">Completion certificates from app-based and online micro-courses (Sololearn, Mimo, and similar platforms).</p>
+        <div class="course-cert-list">
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-ml-beginners.jpg" alt="ML for Beginners cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">Basics of AI, Machine Learning and Large Language Models</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/certificates/CC-D9H4TIIH" target="_blank" rel="noopener" class="cred-link">ML for Beginners certificate</a>
+                  <a href="https://www.sololearn.com/certificates/CC-NVDLRVXB" target="_blank" rel="noopener" class="cred-link">Introduction to LLMs certificate</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Rules-based AI (logical rules), machine learning (data patterns)</li>
+              <li>Discriminative AI, generative AI, deep learning and neural networks</li>
+              <li>Supervised learning (labelled data), unsupervised learning (unlabelled data)</li>
+              <li>Regression, classification, and clustering for prediction and grouping</li>
+              <li>NLP, image recognition, and making complex predictions with large training datasets</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-visualise-data.jpg" alt="Visualise Your Data cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">Data Visualisation Fundamentals</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/certificates/CC-JBSEYJ4V" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Generating charts (histograms, bar charts, lines/dots) with AI assistance</li>
+              <li>Visual encoders: position, size, shapes, and colour</li>
+              <li>Data storytelling: connecting context, visuals, narrative, and the problem statement</li>
+              <li>Audience and tone considerations (executive vs social media)</li>
+              <li>Using AI for faster data story crafting</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-analytics-ai.jpg" alt="Data Analytics with AI cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">Artificial Intelligence for Data Analytics</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/certificates/CC-P3KFNBZ5" target="_blank" rel="noopener" class="cred-link">view certificate 1</a>
+                  <a href="https://www.sololearn.com/certificates/CC-KIKB1DBT" target="_blank" rel="noopener" class="cred-link">view certificate 2</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Using AI to uncover insights (conversion rates, written feedback analysis)</li>
+              <li>Big data summary metrics and statistics</li>
+              <li>Relative percentage difference (delta) between means for statistical confidence</li>
+              <li>Calculating significance (p-value), accepting and rejecting hypotheses</li>
+              <li>Calculating spread (variation) and range; handling GenAI risks including hallucinations</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-python-intermediate.jpg" alt="Python Intermediate cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">Python Intermediate</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/en/certificates/CC-SDZO4ALX" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Sets, lists, tuples for mutable and immutable collections, duplicates, and indexing</li>
+              <li>Dictionaries: key-value pairs for data storage</li>
+              <li>Higher-order functions, lambda expressions for compact anonymous functions</li>
+              <li>Object-oriented programming: abstraction, inheritance, polymorphism, encapsulation</li>
+              <li>Data hiding (protected and private attributes), name mangling for class safety</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/mimo-python.png" alt="Mimo Python cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--navy">Mimo</span>
+                <h3 class="course-cert-title">Python and AI Development</h3>
+                <p class="course-cert-note">Two certificates. Additional course content to be added.</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>len(), append(), insert(), pop() for sequence and list operations</li>
+              <li>def for coding functions; dictionaries for associating meaning to values</li>
+              <li>try, except, finally, and else blocks for exception handling</li>
+              <li>self for accessing class variables and methods</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-sql-intermediate.png" alt="SQL Intermediate cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">SQL Intermediate</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/certificates/CC-78XOOOU1" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>SUBSTRING, LOWER/UPPER, CONCAT, REPLACE for text manipulation</li>
+              <li>CASE and WHEN for conditional value assignment</li>
+              <li>AUTO_INCREMENT for unique primary keys; UNIQUE constraint for column distinctness</li>
+              <li>ALTER TABLE / ADD COLUMN for structural table changes</li>
+              <li>UNION vs UNION ALL to combine SELECT results with or without duplicates</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/encode-sql.png" alt="SQL Encode cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--navy">Encode</span>
+                <h3 class="course-cert-title">SQL Fundamentals</h3>
+                <p class="course-cert-note">Hands-on SQL refresher course</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>SELECT DISTINCT, filtering with comparison operators (IN, BETWEEN, AND, OR)</li>
+              <li>ORDER BY ASC/DESC for sorting; GROUP BY with WHERE and HAVING</li>
+              <li>COUNT DISTINCT, SUM, AVG for aggregation; AS for descriptive aliases</li>
+              <li>INNER / RIGHT / LEFT / FULL OUTER JOIN ON for combining tables</li>
+              <li>INSERT INTO, DELETE, FOREIGN KEY and REFERENCES for data and table management</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-ab-testing.jpg" alt="AI Powered A/B Testing cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">AI-Powered A/B Testing</h3>
+                <p class="course-cert-note">Preparatory self-learning for the 2025 UX Design Conference presentation at Regent's University</p>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/certificates/CC-GOROL8E4" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Statistical significance testing for A/B experiments</li>
+              <li>p-values: probability values for determining if results are due to chance</li>
+              <li>5% industry standard threshold for statistical significance</li>
+              <li>Using AI to calculate conversion rates and drive product improvement decisions</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/sololearn-coding-for-data.jpg" alt="Coding for Data cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--green">Sololearn</span>
+                <h3 class="course-cert-title">Python and SQL for Data Analysis</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.sololearn.com/certificates/CC-OARHK0LO" target="_blank" rel="noopener" class="cred-link">view certificate</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Python: data type conversion, debugging, comparison/logical operations</li>
+              <li>For/while loops, conditional statements, slicing and indexing with lists</li>
+              <li>SQL aggregation: SUM(), AVG(), MIN(), MAX(); filtering with WHERE and HAVING</li>
+              <li>ORDER BY, LIMIT, LIKE with % for sorting, limiting, and pattern matching</li>
+              <li>Relational database concepts and SQL debugging</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/coursera-probability.png" alt="Intro to Probability cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--gold">Coursera</span>
+                <h3 class="course-cert-title">An Intuitive Introduction to Probability</h3>
+                <p class="course-cert-note">By University of Zurich. Completed 5 March 2025.</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Classical, empirical, and subjective probabilities for understanding uncertainty and prediction</li>
+              <li>Probability trees, naive Bayes classification, binomials</li>
+              <li>Q-Q (quantile-quantile) plots for distribution comparison</li>
+              <li>Excel: NORM.DIST(), SDEV.P/S, VAR.P/S, RAND(), and NORM.INV() for statistical calculations</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/encode-r.png" alt="R Programming cert" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--navy">Encode</span>
+                <h3 class="course-cert-title">R Programming</h3>
+                <p class="course-cert-note">Data analysis techniques using the R language</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Objects, vectors, functions, strings, and operators in R</li>
+              <li>Packages: tidyverse, dplyr for data manipulation</li>
+              <li>Reading .CSV spreadsheets; data wrangling (filter, transform, aggregate)</li>
+              <li>Data visualisation with graphs in R</li>
+            </ul>
+          </div>
+
+          <div class="course-cert-card">
+            <div class="course-cert-header">
+              <div class="course-cert-img-slot">
+                <img src="media/certs/edx-data-analytics-essentials.png" alt="Data Analytics Essentials badge" />
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--gold">edX / IBM</span>
+                <h3 class="course-cert-title">Data Analytics Essentials</h3>
+                <p class="course-cert-note">Authorised by IBM, facilitated on edX. Completed 4 January 2025 (5-week course).</p>
+                <div class="course-cert-links">
+                  <a href="https://www.edx.org/learn/data-analysis/ibm-data-analytics-basics-for-everyone" target="_blank" rel="noopener" class="cred-link">view course</a>
+                </div>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Data file formats, sources, and languages</li>
+              <li>Relational databases (RDBMS), NoSQL, and ETL processes</li>
+              <li>Data wrangling and data mining techniques</li>
+              <li>Dashboarding, visualisation, and data storytelling</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Public Events -->
+
+    <div class="divider"></div>
+
+    <!-- Public Events -->
+    <section class="ld-section" id="events-public">
+      <div class="ld-inner">
+        <div class="section-header">
+          <h2 class="section-title">Public Events</h2>
+        </div>
+        <p class="section-intro">Open-access industry events, meetups, and conferences attended.</p>
+        <div class="event-list" id="publicEventList">
+          <div class="event-card">
+            <div class="event-img-slot">
+              <img src="media/events/ux-conference-2024.jpg" alt="UX Conference 2024, audience view" />
+            </div>
+            <div class="event-body">
+              <p class="event-date">2024</p>
+              <h3 class="event-title">UX Conference 2024</h3>
+              <p class="event-desc">Attended a UX conference bringing together designers, researchers, and data practitioners. Exposure to industry perspectives on user-centred design and data-driven product thinking.</p>
+            </div>
+          </div>
+          <p class="placeholder-note">Further events and group photos to be added as media is recovered.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Private Events -->
+    <section class="ld-section" id="events-private">
+      <div class="ld-inner">
+        <div class="section-header">
+          <h2 class="section-title">Private Invitations</h2>
+        </div>
+        <p class="section-intro">Exclusive, invitation-only industry events and closed-cohort sessions.</p>
+        <div class="event-list" id="privateEventList">
+          <div class="event-card event-card--placeholder">
+            <div class="event-img-slot">
+              <div class="event-img-placeholder">🔒</div>
+            </div>
+            <div class="event-body">
+              <p class="event-date">Invitation-only events</p>
+              <h3 class="event-title">Details and photos coming soon</h3>
+              <p class="event-desc">This section will be populated with privately invited events and experiences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>2025 Jolene Gan. Built with intention.</p>
+  </footer>
+
+  <script src="js/courses.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
