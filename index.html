@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jolene Gan - Data Scientist</title>
+  <title>Jolene Gan - Data Science and Analytics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -36,12 +36,12 @@
     </div>
 
     <div class="hero-content">
-      <p class="hero-eyebrow"><span class="dot"></span> Open to opportunities · London, UK</p>
+      <p class="hero-eyebrow"><span class="dot"></span> Open to opportunities &nbsp;·&nbsp; London, UK</p>
       <h1 class="hero-name">Jolene<br /><em>Gan</em></h1>
       <p class="hero-title">Data Science &amp; Analytics</p>
       <p class="hero-sub">
-        MSc Data Science in Business · Distinction<br />
-        Regent's University London
+        Data Presentation Specialist at Legal 500<br />
+        MSc Data Science in Business (Distinction) · Regent's University London
       </p>
 
       <div class="hero-cta">
@@ -52,14 +52,13 @@
 
     <div class="hero-video-slot">
       <div class="video-frame">
-        <iframe
-          src="https://www.youtube.com/embed/PfkpN8I4KvY?autoplay=1&mute=1&loop=1&playlist=PfkpN8I4KvY&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-          title="Jolene Gan introduction"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-          style="width:100%;height:100%;position:absolute;top:0;left:0;border:none;"
-        ></iframe>
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/Introductory%20video.mp4"
+        ></video>
       </div>
     </div>
   </section>
@@ -68,68 +67,115 @@
   <section class="tools">
     <p class="tools-label">Tools &amp; Technologies</p>
     <div class="tools-row">
-      <!-- SVG icon blocks - using text labels styled as chips for now; replace with logo SVGs when available -->
-      <div class="tool-chip">Python</div>
-      <div class="tool-chip">SQL</div>
-      <div class="tool-chip">R</div>
       <div class="tool-chip">Power BI</div>
-      <div class="tool-chip">Tableau</div>
       <div class="tool-chip">Excel</div>
+      <div class="tool-chip">Google Sheets</div>
+      <div class="tool-chip">Tableau</div>
+      <div class="tool-chip">SQL</div>
+      <div class="tool-chip">Python</div>
       <div class="tool-chip">SAS JMP</div>
       <div class="tool-chip">KNIME</div>
       <div class="tool-chip">SPSS</div>
+      <div class="tool-chip">R</div>
       <div class="tool-chip">InDesign</div>
-      <div class="tool-chip">Google Sheets</div>
     </div>
   </section>
 
-  <!-- Certificate Carousel -->
+  <!-- Certificate Carousel - auto-scrolling marquee -->
   <section class="certs">
     <div class="section-header">
       <h2 class="section-title">Credentials</h2>
       <a href="portfolio.html#credentials" class="section-link">View all →</a>
     </div>
-    <div class="cert-carousel">
-      <div class="cert-track" id="certTrack">
-        <!-- Cert cards - populate with real images when available -->
+    <div class="marquee-wrapper">
+      <div class="marquee-track" id="marqueeTrack">
+        <!-- Set A -->
         <div class="cert-card">
-          <div class="cert-img-placeholder">
-            <img src="media/certs/msc-distinction.jpg" alt="MSc Distinction" style="width:100%;height:100%;object-fit:cover;" />
+          <div class="cert-img-slot">
+            <img src="media/certs/msc-distinction.jpg" alt="MSc Data Science in Business certificate" />
           </div>
           <p class="cert-name">MSc Data Science in Business</p>
           <p class="cert-issuer">Regent's University London, 2024</p>
         </div>
         <div class="cert-card">
-          <div class="cert-img-placeholder">
-            <img src="media/certs/sas-jmp.png" alt="SAS Certificate" style="width:100%;height:100%;object-fit:cover;" />
+          <div class="cert-img-slot">
+            <img src="media/certs/sas-jmp.png" alt="SAS Certificate of Achievement" />
           </div>
           <p class="cert-name">SAS Certificate of Achievement</p>
-          <p class="cert-issuer">SAS JMP, Data Analysis</p>
+          <p class="cert-issuer">SAS Academy, 2024</p>
         </div>
         <div class="cert-card">
-          <div class="cert-img-placeholder">
-            <span>Hand<br/>Shake</span>
+          <div class="cert-img-slot">
+            <img src="media/certs/knime-data-science.png" alt="KNIME Data Science certificate" />
           </div>
-          <p class="cert-name">Reporting and Analytics</p>
-          <p class="cert-issuer">HandShake Academy</p>
+          <p class="cert-name">Data Science by KNIME</p>
+          <p class="cert-issuer">KNIME via LinkedIn Learning</p>
         </div>
         <div class="cert-card">
-          <div class="cert-img-placeholder">
-            <img src="media/certs/ba-communication.png" alt="BA Communication" style="width:100%;height:100%;object-fit:cover;" />
+          <div class="cert-img-slot">
+            <img src="media/certs/adobe-indesign.png" alt="Adobe InDesign certificate" />
+          </div>
+          <p class="cert-name">Adobe InDesign for Data Presentation</p>
+          <p class="cert-issuer">Adobe via LinkedIn Learning</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-img-slot">
+            <img src="media/certs/ba-communication.png" alt="BA in Communication" />
           </div>
           <p class="cert-name">BA in Communication</p>
           <p class="cert-issuer">SUNY University at Buffalo, 2021</p>
         </div>
         <div class="cert-card">
-          <div class="cert-img-placeholder">
-            <img src="media/certs/diploma-bis.jpg" alt="Diploma BIS" style="width:100%;height:100%;object-fit:cover;" />
+          <div class="cert-img-slot">
+            <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems" />
+          </div>
+          <p class="cert-name">Diploma in Business Information Systems</p>
+          <p class="cert-issuer">Republic Polytechnic, 2018</p>
+        </div>
+        <!-- Set B - duplicate for seamless loop -->
+        <div class="cert-card" aria-hidden="true">
+          <div class="cert-img-slot">
+            <img src="media/certs/msc-distinction.jpg" alt="" />
+          </div>
+          <p class="cert-name">MSc Data Science in Business</p>
+          <p class="cert-issuer">Regent's University London, 2024</p>
+        </div>
+        <div class="cert-card" aria-hidden="true">
+          <div class="cert-img-slot">
+            <img src="media/certs/sas-jmp.png" alt="" />
+          </div>
+          <p class="cert-name">SAS Certificate of Achievement</p>
+          <p class="cert-issuer">SAS Academy, 2024</p>
+        </div>
+        <div class="cert-card" aria-hidden="true">
+          <div class="cert-img-slot">
+            <img src="media/certs/knime-data-science.png" alt="" />
+          </div>
+          <p class="cert-name">Data Science by KNIME</p>
+          <p class="cert-issuer">KNIME via LinkedIn Learning</p>
+        </div>
+        <div class="cert-card" aria-hidden="true">
+          <div class="cert-img-slot">
+            <img src="media/certs/adobe-indesign.png" alt="" />
+          </div>
+          <p class="cert-name">Adobe InDesign for Data Presentation</p>
+          <p class="cert-issuer">Adobe via LinkedIn Learning</p>
+        </div>
+        <div class="cert-card" aria-hidden="true">
+          <div class="cert-img-slot">
+            <img src="media/certs/ba-communication.png" alt="" />
+          </div>
+          <p class="cert-name">BA in Communication</p>
+          <p class="cert-issuer">SUNY University at Buffalo, 2021</p>
+        </div>
+        <div class="cert-card" aria-hidden="true">
+          <div class="cert-img-slot">
+            <img src="media/certs/diploma-bis.jpg" alt="" />
           </div>
           <p class="cert-name">Diploma in Business Information Systems</p>
           <p class="cert-issuer">Republic Polytechnic, 2018</p>
         </div>
       </div>
-      <button class="carousel-btn carousel-btn--prev" onclick="shiftCarousel(-1)">‹</button>
-      <button class="carousel-btn carousel-btn--next" onclick="shiftCarousel(1)">›</button>
     </div>
   </section>
 
@@ -168,18 +214,29 @@
         <span class="contact-icon">✉</span> jolenegan@outlook.com
       </a>
       <a href="https://www.linkedin.com/in/jolenegan" target="_blank" rel="noopener" class="contact-link">
-        <span class="contact-icon">in</span> LinkedIn
+        <span class="contact-icon">
+          <!-- LinkedIn icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </span> LinkedIn
       </a>
       <a href="https://github.com/jolgan" target="_blank" rel="noopener" class="contact-link">
-        <span class="contact-icon">⌥</span> GitHub
+        <span class="contact-icon">
+          <!-- GitHub cat logo (Octocat mark) -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </span> GitHub
       </a>
     </div>
   </section>
 
   <footer class="footer">
-    <p>2025 Jolene Gan. Built with intention.</p>
+    <p>© 2026 Jolene Gan. Built with intention.</p>
   </footer>
 
+  <button id="returnToTop" aria-label="Return to top">↑</button>
   <script src="js/main.js"></script>
 </body>
 </html>
