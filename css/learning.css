@@ -643,27 +643,24 @@
   font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 400;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: var(--r-sm);
   white-space: nowrap;
   pointer-events: none;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.15s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
+/* Arrow pointing downward toward the dot */
 .chart-tooltip::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: var(--surface-3);
-  border-right: 1px solid var(--gold);
-  border-bottom: 1px solid var(--gold);
-  transform: translateX(-50%) rotate(45deg);
+  border: 5px solid transparent;
+  border-top-color: var(--gold);
 }
 
 /* ── Multi-photo event card ── */
