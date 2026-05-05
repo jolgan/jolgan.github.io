@@ -1,7 +1,8 @@
 /* ============================================================
    COURSE DATA & INTERACTIVE CHART
-   All 16 courses from the Gartner-style chart, with positions
-   mapped as closely as possible to the original.
+   Clickable numbered dots with tooltip callouts.
+   Clicking a dot OR a list item highlights both and
+   opens the detail panel.
    ============================================================ */
 
 const COURSES = [
@@ -9,71 +10,71 @@ const COURSES = [
     id: 1,
     name: "SAS for Data Analysis",
     category: "data-science",
-    platform: "SAS",
-    difficulty: 8,   // x: 1-10
-    duration: 8,     // y: 1-10
-    desc: "In-depth data analysis course using SAS software, covering statistical methods and data manipulation techniques. Completed as part of MSc SAS accreditation.",
+    platform: "SAS Academy",
+    difficulty: 8,
+    duration: 8,
+    desc: "In-depth data analysis using SAS software. Completed as part of the MSc SAS Academy accreditation at Regent's University London.",
     skills: ["SAS", "Statistical Analysis", "Data Mining"],
   },
   {
     id: 2,
     name: "Reporting and Analytics",
     category: "analytics",
-    platform: "Online course",
+    platform: "HandShake Academy",
     difficulty: 3,
     duration: 3,
-    desc: "Foundational course covering principles of reporting and analytics, including structuring data narratives and producing meaningful summaries.",
-    skills: ["Reporting", "Analytics", "Data Storytelling"],
+    desc: "Principles of reporting and analytics including dashboard creation, automated report scheduling, and report customisation. Completed during internship involvement with HandShake.",
+    skills: ["Reporting", "Analytics", "Dashboarding"],
   },
   {
     id: 3,
     name: "Data Science by KNIME",
     category: "data-science",
-    platform: "KNIME",
+    platform: "KNIME via LinkedIn Learning",
     difficulty: 8,
     duration: 7,
-    desc: "Hands-on data science course using the KNIME Analytics Platform - a visual, no-code/low-code tool for building data pipelines and ML workflows.",
-    skills: ["KNIME", "Data Pipelines", "Machine Learning"],
+    desc: "Six-course professional learning path accredited by KNIME. Covers data science fundamentals, low code/no-code data literacy, AI, classification modelling, generative AI, and non-technical skills of effective data scientists.",
+    skills: ["KNIME", "Data Pipelines", "Machine Learning", "Generative AI"],
   },
   {
     id: 4,
     name: "Adobe InDesign",
     category: "visualisation",
-    platform: "Adobe / Online",
+    platform: "Adobe via LinkedIn Learning",
     difficulty: 7,
     duration: 2,
-    desc: "Professional desktop publishing and layout design course. Directly applied at Legal 500 for data report production via InDesign Data Merge pipelines.",
+    desc: "Professional data presentation and layout design for print and digital publishing. Directly applied at Legal 500 for data report production via InDesign Data Merge pipelines.",
     skills: ["InDesign", "Layout Design", "Data Merge", "Print Production"],
   },
   {
     id: 5,
     name: "Intro to AI, ML & LLMs",
     category: "data-science",
-    platform: "Online course",
+    platform: "Sololearn",
     difficulty: 6,
     duration: 4,
-    desc: "Introductory overview of artificial intelligence, machine learning concepts, and large language models - covering theory, use cases, and limitations.",
+    desc: "Introductory overview of artificial intelligence, machine learning concepts, and large language models. Covers theory, use cases, and practical limitations.",
     skills: ["AI", "Machine Learning", "LLMs"],
   },
   {
     id: 6,
     name: "Data Visualisation Basics",
     category: "visualisation",
-    platform: "Mimo",
+    platform: "Sololearn",
     difficulty: 5,
     duration: 2,
-    desc: "Foundations of data visualisation: chart selection, visual encoding principles, and communicating data clearly to non-technical audiences.",
-    skills: ["Data Visualisation", "Chart Design", "Communication"],
+    desc: "Foundations of data visualisation: chart selection, visual encoding principles, and communicating data clearly to non-technical audiences using AI-assisted tools.",
+    skills: ["Data Visualisation", "Chart Design", "Data Storytelling"],
   },
   {
     id: 7,
     name: "Analytics with AI",
     category: "analytics",
-    platform: "Online course",
+    platform: "Sololearn",
     difficulty: 6,
     duration: 5,
-    desc: "Explores how AI tools and techniques can augment traditional analytics workflows - including AI-assisted insight generation and automation.",
-    skills: ["AI", "Analytics", "Automation"],
+    desc: "How AI tools and techniques augment traditional analytics workflows, including AI-assisted insight generation, significance testing, and automation.",
+    skills: ["AI", "Analytics", "A/B Testing", "Statistics"],
   },
   {
     id: 8,
@@ -82,8 +83,8 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 5,
     duration: 5,
-    desc: "Intermediate Python programming: object-oriented concepts, data structures, file handling, and an introduction to data-relevant libraries.",
-    skills: ["Python", "OOP", "Data Structures"],
+    desc: "Intermediate Python: object-oriented programming, data structures, higher-order functions, lambda expressions, and data hiding for secure code.",
+    skills: ["Python", "OOP", "Data Structures", "Functions"],
   },
   {
     id: 9,
@@ -92,8 +93,8 @@ const COURSES = [
     platform: "Mimo",
     difficulty: 8,
     duration: 8,
-    desc: "Applied course covering Python for AI development - including working with ML libraries, APIs, and building AI-powered scripts.",
-    skills: ["Python", "AI Development", "ML Libraries"],
+    desc: "Applied Python for AI development covering Python essentials, functional and object-oriented programming paradigms, building scripts, working with modules and APIs, and working with LLMs.",
+    skills: ["Python", "AI Development", "APIs", "LLMs"],
   },
   {
     id: 10,
@@ -102,68 +103,68 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 6,
     duration: 8,
-    desc: "Intermediate SQL: complex joins, subqueries, window functions, query optimisation, and working with relational databases.",
-    skills: ["SQL", "Database Queries", "Window Functions"],
+    desc: "Intermediate SQL: text manipulation functions, CASE/WHEN logic, AUTO_INCREMENT, UNION vs UNION ALL, and SQL constraints for data integrity.",
+    skills: ["SQL", "Database Design", "Data Manipulation"],
   },
   {
     id: 11,
     name: "SQL",
     category: "analytics",
-    platform: "Sololearn",
+    platform: "Encode",
     difficulty: 3,
     duration: 7,
-    desc: "Foundation SQL course covering CRUD operations, filtering, aggregation, and basic relational database concepts.",
-    skills: ["SQL", "Databases", "Query Writing"],
+    desc: "Hands-on SQL fundamentals: SELECT, filtering, aggregation, JOINs, INSERT, DELETE, and foreign key relationships. Practical refresher course.",
+    skills: ["SQL", "Databases", "Query Writing", "JOINs"],
   },
   {
     id: 12,
     name: "AI-Powered A/B Testing",
     category: "analytics",
-    platform: "Online course",
+    platform: "Sololearn",
     difficulty: 6,
     duration: 6,
-    desc: "Covers experimental design, statistical significance, and how AI tools can accelerate and improve A/B testing workflows.",
-    skills: ["A/B Testing", "Statistics", "AI Tools", "Experimentation"],
+    desc: "Statistical significance testing for A/B experiments. p-values, the 5% industry standard threshold, and using AI to calculate conversion rates and drive product decisions. Completed as preparatory self-learning for the 2025 UX Design Conference.",
+    skills: ["A/B Testing", "Statistics", "p-values", "AI Tools"],
   },
   {
     id: 13,
     name: "Coding for Data",
     category: "analytics",
-    platform: "Online course",
+    platform: "Sololearn",
     difficulty: 6,
     duration: 7,
-    desc: "Introduces coding specifically in the context of data tasks - Python scripting, data wrangling, and basic automation for analysts.",
-    skills: ["Python", "Data Wrangling", "Automation"],
+    desc: "Python and SQL for data analysis: data type conversion, loops, conditionals, list operations, SQL aggregation, filtering, sorting, and relational database concepts.",
+    skills: ["Python", "SQL", "Data Analysis", "Debugging"],
   },
   {
     id: 14,
     name: "Intro to Probability",
     category: "data-science",
-    platform: "Online course",
+    platform: "University of Zurich via Coursera",
     difficulty: 7,
     duration: 6,
-    desc: "Mathematical foundations of probability theory - essential underpinning for machine learning, statistical inference, and data science.",
-    skills: ["Probability", "Statistics", "Mathematics"],
+    desc: "Mathematical foundations of probability. Classical, empirical, and subjective probabilities, probability trees, naive Bayes, binomials, Q-Q plots, and Excel statistical functions.",
+    skills: ["Probability", "Statistics", "Bayes", "Excel"],
   },
   {
     id: 15,
     name: "R (Programming)",
     category: "data-science",
-    platform: "Online course",
+    platform: "Encode",
     difficulty: 9,
     duration: 4,
-    desc: "Introduction to R programming for statistical computing and data analysis - covering data frames, visualisation with ggplot2, and statistical modelling.",
-    skills: ["R", "Statistical Computing", "ggplot2"],
+    desc: "Data analysis techniques using R: objects, vectors, packages (tidyverse, dplyr), reading CSVs, data wrangling, and data visualisation with graphs.",
+    skills: ["R", "tidyverse", "dplyr", "Data Wrangling"],
   },
   {
     id: 16,
     name: "Data Analytics Essentials",
     category: "analytics",
-    platform: "Online course",
+    platform: "IBM via edX",
     difficulty: 4,
     duration: 6,
-    desc: "Foundational course covering the core data analytics workflow: data collection, cleaning, analysis, and communication of findings.",
-    skills: ["Data Analytics", "Data Cleaning", "Communication"],
+    desc: "Foundational data analytics: data file formats, relational databases, NoSQL, ETL, data wrangling, dashboarding, visualisation, and storytelling. Authorised by IBM.",
+    skills: ["Data Analytics", "ETL", "Databases", "Visualisation"],
   },
 ];
 
@@ -181,8 +182,12 @@ const CATEGORY_TAG_CLASS = {
   "visualisation": "tag--gold",
 };
 
-/* ── Draw Chart ── */
-function drawChart(courses, activeId = null) {
+/* ── Tooltip state ── */
+let tooltip = null;
+let activeId = null;
+
+/* ── Draw chart ── */
+function drawChart(courses, hoverId = null) {
   const canvas = document.getElementById('courseChart');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -196,29 +201,16 @@ function drawChart(courses, activeId = null) {
   const W = rect.width;
   const H = rect.height;
 
-  // Background
   ctx.fillStyle = 'rgba(26,25,23,0.6)';
   ctx.fillRect(0, 0, W, H);
 
-  // Quadrant divider lines
-  ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+  /* Quadrant dividers */
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
   ctx.lineWidth = 1;
   ctx.setLineDash([4, 4]);
-  ctx.beginPath();
-  ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2);
-  ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
   ctx.setLineDash([]);
-
-  // Axes
-  ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, H); ctx.lineTo(W, H); // x axis
-  ctx.moveTo(0, 0); ctx.lineTo(0, H); // y axis
-  ctx.stroke();
 
   const PAD = 16;
   const mapX = d => PAD + ((d - 1) / 9) * (W - PAD * 2);
@@ -227,38 +219,35 @@ function drawChart(courses, activeId = null) {
   courses.forEach(c => {
     const x = mapX(c.difficulty);
     const y = mapY(c.duration);
-    const isActive = c.id === activeId;
-    const color = CATEGORY_COLORS[c.category] || '#888';
-    const radius = isActive ? 14 : 12;
+    const isActive  = c.id === activeId;
+    const isHovered = c.id === hoverId;
+    const col = CATEGORY_COLORS[c.category] || '#888';
+    const r = (isActive || isHovered) ? 14 : 11;
 
-    // Glow
-    if (isActive) {
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 18;
+    if (isActive || isHovered) {
+      ctx.shadowColor = col;
+      ctx.shadowBlur  = 16;
     }
 
-    // Circle fill
     ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2);
-    ctx.fillStyle = isActive ? color : color + '80';
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = (isActive || isHovered) ? col : col + '70';
     ctx.fill();
-    ctx.strokeStyle = color;
-    ctx.lineWidth = isActive ? 2 : 1;
+    ctx.strokeStyle = col;
+    ctx.lineWidth   = (isActive || isHovered) ? 2 : 1;
     ctx.stroke();
-
     ctx.shadowBlur = 0;
 
-    // Number label
     ctx.fillStyle = '#f0ede8';
-    ctx.font = `${isActive ? 600 : 400} 9px 'DM Mono', monospace`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+    ctx.font = `${(isActive || isHovered) ? '600' : '400'} 8.5px 'DM Mono', monospace`;
+    ctx.textAlign     = 'center';
+    ctx.textBaseline  = 'middle';
     ctx.fillText(c.id, x, y);
   });
 }
 
-/* ── Render course list ── */
-function renderCourseList(courses, activeId = null) {
+/* ── Course list ── */
+function renderCourseList(courses) {
   const list = document.getElementById('courseList');
   if (!list) return;
   list.innerHTML = '';
@@ -266,11 +255,10 @@ function renderCourseList(courses, activeId = null) {
     const li = document.createElement('li');
     li.className = 'course-list-item' + (c.id === activeId ? ' active' : '');
     li.setAttribute('data-id', c.id);
-
-    const color = CATEGORY_COLORS[c.category] || '#888';
+    const col = CATEGORY_COLORS[c.category] || '#888';
     li.innerHTML = `
       <span class="course-num">${c.id}.</span>
-      <span class="course-dot" style="background:${color};box-shadow:0 0 5px ${color}80"></span>
+      <span class="course-dot" style="background:${col};box-shadow:0 0 5px ${col}80"></span>
       <span class="course-name">${c.name}</span>
     `;
     li.addEventListener('click', () => selectCourse(c.id));
@@ -278,55 +266,77 @@ function renderCourseList(courses, activeId = null) {
   });
 }
 
-/* ── Render detail panel ── */
+/* ── Detail panel ── */
 function renderDetail(course) {
   const panel = document.getElementById('courseDetailPanel');
   if (!panel) return;
   if (!course) {
-    panel.innerHTML = `<div class="course-detail-empty"><span>← Select a course to see details</span></div>`;
+    panel.innerHTML = `<div class="course-detail-empty"><span>select a course to see details</span></div>`;
     return;
   }
   const tagClass = CATEGORY_TAG_CLASS[course.category] || 'tag--navy';
-  const categoryLabel = course.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const catLabel = course.category.replace('-', ' ');
   const skillTags = (course.skills || []).map(s => `<span class="tag tag--navy">${s}</span>`).join('');
 
   panel.innerHTML = `
     <div class="course-detail-content">
-      <span class="tag ${tagClass} cd-category">${categoryLabel}</span>
+      <span class="tag ${tagClass} cd-category">${catLabel}</span>
       <h3 class="cd-title">${course.name}</h3>
       <p class="cd-platform">${course.platform}</p>
       <p class="cd-desc">${course.desc}</p>
       <div class="project-tags">${skillTags}</div>
       <div class="cd-meta">
-        <span class="cd-meta-item"><strong>Difficulty</strong> ${course.difficulty}/10</span>
-        <span class="cd-meta-item"><strong>Duration (relative)</strong> ${course.duration}/10</span>
+        <span class="cd-meta-item"><strong>difficulty</strong> ${course.difficulty}/10</span>
+        <span class="cd-meta-item"><strong>duration (relative)</strong> ${course.duration}/10</span>
       </div>
     </div>
   `;
 }
 
+/* ── Tooltip ── */
+function showTooltip(course, canvasX, canvasY, canvasRect) {
+  hideTooltip();
+  const t = document.createElement('div');
+  t.id = 'chart-tooltip';
+  t.className = 'chart-tooltip';
+  t.textContent = course.name;
+
+  const container = document.getElementById('courseChart').parentElement;
+  container.style.position = 'relative';
+  container.appendChild(t);
+
+  /* Position above the dot */
+  const scaleX = canvasRect.width  / (parseFloat(document.getElementById('courseChart').style.width)  || canvasRect.width);
+  t.style.left   = (canvasX - t.offsetWidth / 2) + 'px';
+  t.style.top    = (canvasY - 32) + 'px';
+  t.style.opacity = '1';
+  tooltip = t;
+}
+
+function hideTooltip() {
+  if (tooltip) { tooltip.remove(); tooltip = null; }
+}
+
 /* ── Select course ── */
-let activeId = null;
 function selectCourse(id) {
-  activeId = activeId === id ? null : id;
+  activeId = (activeId === id) ? null : id;
   const course = activeId ? COURSES.find(c => c.id === activeId) : null;
-  renderCourseList(COURSES, activeId);
+  renderCourseList(COURSES);
   renderDetail(course);
   resizeAndDraw();
 
-  // scroll detail panel into view on mobile
   if (window.innerWidth < 900 && course) {
     document.getElementById('courseDetailPanel')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
 
-/* ── Click on canvas ── */
-function handleChartClick(e) {
+/* ── Canvas mouse events ── */
+function getHitCourse(e) {
   const canvas = document.getElementById('courseChart');
-  if (!canvas) return;
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
+  if (!canvas) return null;
+  const rect  = canvas.getBoundingClientRect();
+  const mx    = e.clientX - rect.left;
+  const my    = e.clientY - rect.top;
   const W = rect.width, H = rect.height;
   const PAD = 16;
   const mapX = d => PAD + ((d - 1) / 9) * (W - PAD * 2);
@@ -334,24 +344,57 @@ function handleChartClick(e) {
 
   let hit = null;
   COURSES.forEach(c => {
-    const cx = mapX(c.difficulty);
-    const cy = mapY(c.duration);
-    const dist = Math.hypot(mouseX - cx, mouseY - cy);
-    if (dist < 14) hit = c.id;
+    if (Math.hypot(mx - mapX(c.difficulty), my - mapY(c.duration)) < 14) hit = c;
   });
-  if (hit !== null) selectCourse(hit);
+  return { hit, mx, my, rect };
 }
 
-/* ── Resize & redraw ── */
+let hoverCourse = null;
+
+function handleChartMouseMove(e) {
+  const { hit, mx, my, rect } = getHitCourse(e);
+  const canvas = document.getElementById('courseChart');
+
+  if (hit) {
+    canvas.style.cursor = 'pointer';
+    if (!tooltip || tooltip.textContent !== hit.name) {
+      drawChart(COURSES, hit.id);
+      showTooltip(hit, mx, my, rect);
+      hoverCourse = hit;
+    }
+  } else {
+    canvas.style.cursor = 'default';
+    if (hoverCourse) {
+      hoverCourse = null;
+      hideTooltip();
+      drawChart(COURSES, null);
+    }
+  }
+}
+
+function handleChartClick(e) {
+  const { hit } = getHitCourse(e);
+  if (hit) {
+    hideTooltip();
+    selectCourse(hit.id);
+  }
+}
+
+function handleChartMouseLeave() {
+  hoverCourse = null;
+  hideTooltip();
+  drawChart(COURSES, null);
+}
+
+/* ── Resize and redraw ── */
 function resizeAndDraw() {
   const canvas = document.getElementById('courseChart');
   if (!canvas) return;
-  // Force layout recalc
   canvas.style.width = '100%';
   canvas.style.height = '';
-  const w = canvas.parentElement.clientWidth - 100;
+  const w = canvas.parentElement.clientWidth - 80;
   canvas.style.height = w + 'px';
-  drawChart(COURSES, activeId);
+  drawChart(COURSES, null);
 }
 
 /* ── Init ── */
@@ -359,13 +402,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('courseChart');
   if (!canvas) return;
 
-  renderCourseList(COURSES, null);
+  renderCourseList(COURSES);
   renderDetail(null);
 
-  // Initial size
   setTimeout(() => {
     resizeAndDraw();
-    canvas.addEventListener('click', handleChartClick);
+    canvas.addEventListener('click',      handleChartClick);
+    canvas.addEventListener('mousemove',  handleChartMouseMove);
+    canvas.addEventListener('mouseleave', handleChartMouseLeave);
   }, 100);
 
   window.addEventListener('resize', () => {
