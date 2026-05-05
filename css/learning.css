@@ -585,3 +585,232 @@
   color: var(--gold);
   border-color: var(--gold);
 }
+
+/* ── Event card with video ── */
+.event-card--video {
+  grid-template-columns: 1fr;
+  flex-direction: column;
+}
+
+.event-video-slot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--surface-3);
+}
+
+.event-video-slot video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.3);
+}
+
+.event-card--video .event-body {
+  padding: var(--sp-6);
+}
+
+.event-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-3);
+}
+
+.event-bullets li {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: var(--sp-4);
+  border-left: 2px solid var(--border);
+}
+
+.event-bullets li strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ── Chart tooltip callout ── */
+.chart-tooltip {
+  position: absolute;
+  background: var(--surface-3);
+  border: 1px solid var(--gold);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.chart-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--surface-3);
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ── Multi-photo event card ── */
+.event-card--multi-photo {
+  grid-template-columns: 1fr;
+  flex-direction: column;
+}
+
+.event-multi-photos {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.event-photo-main {
+  overflow: hidden;
+}
+.event-photo-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-photo-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+.event-photo-side img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .event-multi-photos {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .event-photo-side {
+    flex-direction: row;
+    height: 100px;
+  }
+}
+
+/* ── Featured event card (speaker entry) ── */
+.event-card--featured {
+  grid-template-columns: 1fr;
+  flex-direction: column;
+  border-color: var(--border-mid);
+}
+.event-card--featured:hover {
+  border-color: var(--gold);
+}
+
+.event-featured-media {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2px;
+  height: 260px;
+  overflow: hidden;
+}
+
+.event-featured-hero {
+  overflow: hidden;
+}
+.event-featured-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  overflow: hidden;
+}
+.event-featured-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-featured-video {
+  position: relative;
+  overflow: hidden;
+}
+.event-featured-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Inline event video (small, within event-body) ── */
+.event-video-inline {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 16/9;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-top: var(--sp-4);
+  background: var(--surface-3);
+}
+.event-video-inline video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Event links ── */
+.event-links {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-top: var(--sp-4);
+}
+.event-link {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-light);
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding-bottom: 1px;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.event-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+@media (max-width: 600px) {
+  .event-featured-media {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .event-featured-hero { height: 200px; }
+  .event-featured-grid {
+    height: 160px;
+  }
+}
