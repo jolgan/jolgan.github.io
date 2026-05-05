@@ -291,3 +291,39 @@ h1, h2, h3, h4 {
   .nav-link { font-size: 1.2rem; }
   .nav-toggle { display: flex; }
 }
+
+/* ── Return to top button ── */
+#returnToTop {
+  position: fixed;
+  bottom: var(--sp-8);
+  right: var(--sp-8);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--t-mid) var(--ease),
+              transform var(--t-mid) var(--ease),
+              background var(--t-fast),
+              border-color var(--t-fast);
+  pointer-events: none;
+}
+#returnToTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#returnToTop:hover {
+  background: var(--burgundy);
+  border-color: var(--burgundy-light);
+  color: var(--text-primary);
+}
