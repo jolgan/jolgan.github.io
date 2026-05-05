@@ -294,22 +294,38 @@ function renderDetail(course) {
 }
 
 /* ── Tooltip ── */
-function showTooltip(course, canvasX, canvasY, canvasRect) {
+function showTooltip(course, canvasX, canvasY) {
   hideTooltip();
-  const t = document.createElement('div');
-  t.id = 'chart-tooltip';
-  t.className = 'chart-tooltip';
-  t.textContent = course.name;
-
-  const container = document.getElementById('courseChart').parentElement;
+  const canvas    = document.getElementById('courseChart');
+  const container = canvas.parentElement;
   container.style.position = 'relative';
+
+  const t = document.createElement('div');
+  t.id        = 'chart-tooltip';
+  t.className = 'chart-tooltip';
+  t.textContent = course.name + ' — click for details';
+
+  /* Append off-screen first to measure width */
+  t.style.visibility = 'hidden';
   container.appendChild(t);
 
-  /* Position above the dot */
-  const scaleX = canvasRect.width  / (parseFloat(document.getElementById('courseChart').style.width)  || canvasRect.width);
-  t.style.left   = (canvasX - t.offsetWidth / 2) + 'px';
-  t.style.top    = (canvasY - 32) + 'px';
-  t.style.opacity = '1';
+  /* canvasX/canvasY are relative to the canvas element.
+     We need them relative to the container. */
+  const canvasOffsetLeft = canvas.offsetLeft;
+  const canvasOffsetTop  = canvas.offsetTop;
+
+  const tipW = t.offsetWidth;
+  let left = canvasOffsetLeft + canvasX - tipW / 2;
+  let top  = canvasOffsetTop  + canvasY - t.offsetHeight - 14;
+
+  /* Keep tooltip within container bounds */
+  const containerW = container.offsetWidth;
+  left = Math.max(4, Math.min(left, containerW - tipW - 4));
+
+  t.style.left       = left + 'px';
+  t.style.top        = top  + 'px';
+  t.style.visibility = 'visible';
+  t.style.opacity    = '1';
   tooltip = t;
 }
 
@@ -357,9 +373,9 @@ function handleChartMouseMove(e) {
 
   if (hit) {
     canvas.style.cursor = 'pointer';
-    if (!tooltip || tooltip.textContent !== hit.name) {
+    if (!tooltip || !tooltip.textContent.startsWith(hit.name)) {
       drawChart(COURSES, hit.id);
-      showTooltip(hit, mx, my, rect);
+      showTooltip(hit, mx, my);
       hoverCourse = hit;
     }
   } else {
