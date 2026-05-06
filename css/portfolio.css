@@ -382,7 +382,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-8);
-  align-items: stretch;    /* media column matches text column height */
+  align-items: start;
 }
 
 /* Year right-justified in split card meta row */
@@ -410,10 +410,7 @@
   /* Text column drives the row height; media column stretches to match */
 }
 
-/* Media column stretches to fill the row height set by text */
-.project-split-media {
-  align-self: stretch;
-}
+
 
 .project-split-media {
   position: sticky;
@@ -891,17 +888,13 @@
   border-radius: var(--r-md);
   overflow: hidden;
   background: var(--surface-3);
-  position: relative;
-  /* No fixed aspect-ratio: height matches the text column via grid align-items:stretch */
-  min-height: 200px;
+  /* Let the video determine the height naturally */
 }
 .project-split-media--video-only video {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Clean up the now-unused AP5/AP4/AP2 carousel overrides */
