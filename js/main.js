@@ -121,14 +121,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ── Expandable credential images ── */
-function toggleCredImg(el) {
-  const slot = el.classList.contains('cred-img-slot') ? el : el;
-  const isExpanded = slot.classList.toggle('expanded');
-  const hint = slot.nextElementSibling;
-  if (hint && hint.classList.contains('cred-expand-hint')) {
-    hint.textContent = isExpanded ? 'click to collapse ↕' : 'click to expand ↕';
-  }
+function toggleCredImg(wrapper) {
+  const img = wrapper.querySelector('img');
+  if (!img) return;
+
+  const isExpanded = wrapper.classList.toggle('expanded');
+
   if (isExpanded) {
-    setTimeout(() => slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    /* Measure natural image height at full card width */
+    const cardWidth = wrapper.offsetWidth;
+    const ratio = img.naturalHeight / img.naturalWidth;
+    const targetH = Math.round(cardWidth * ratio);
+    wrapper.style.setProperty('--expanded-h', targetH + 'px');
+    /* Scroll so the card stays visible */
+    setTimeout(() => {
+      wrapper.closest('.cred-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 80);
+  } else {
+    wrapper.style.removeProperty('--expanded-h');
   }
 }
