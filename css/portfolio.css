@@ -646,13 +646,13 @@
 
 
 /* ── Vertical project marquee (scrolls top to bottom, seamless loop) ── */
-/* 7 items × (180px height + 3px gap) = 1281px per set.
-   translateY(-1281px) moves exactly one set, then resets invisibly. */
+/* Items are natural height. Set A and Set B are identical,
+   so animating to -50% always lands exactly at the start of Set B,
+   giving a perfect seamless loop regardless of item heights. */
 .project-marquee--vertical {
   overflow: hidden;
   border-radius: var(--r-md);
-  /* Height = exactly 3 items tall so it fills the card without overflowing */
-  height: 549px;        /* (180 + 3) × 3 = 549px */
+  max-height: 560px;    /* cap height so it doesn't push cards too tall */
   mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
 }
@@ -660,24 +660,24 @@
 .project-marquee-track--vertical {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: var(--sp-2);
   width: 100%;
-  animation: projectMarqueeVertical 30s linear infinite;
+  animation: projectMarqueeVertical 28s linear infinite;
 }
 
 .project-marquee-track--vertical:hover {
   animation-play-state: paused;
 }
 
-/* One set = 7 items × (180px + 3px gap) minus last gap = 1260px + 21px gaps = 1281px */
+/* -50% works because track = Set A + Set B (equal halves) */
 @keyframes projectMarqueeVertical {
   0%   { transform: translateY(0); }
-  100% { transform: translateY(-1281px); }
+  100% { transform: translateY(-50%); }
 }
 
 .project-marquee--vertical .project-marquee-item {
   width: 100%;
-  height: 180px;
+  height: auto;           /* natural height - no cropping */
   flex-shrink: 0;
   border-radius: var(--r-sm);
   overflow: hidden;
@@ -686,30 +686,32 @@
 
 .project-marquee--vertical .project-marquee-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;           /* full image visible */
+  object-fit: contain;
   display: block;
+  background: var(--surface-3);
 }
 
 .project-marquee--vertical .project-marquee-item--video {
   width: 100%;
-  height: 180px;
+  height: auto;
   position: relative;
+  aspect-ratio: 16/9;     /* video at natural 16:9 proportion */
 }
 
 .project-marquee--vertical .project-marquee-item--video video {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;    /* no zoom/crop on video */
+  display: block;
+  background: #000;
 }
 
-/* Match split media column height to carousel */
+/* Split media column - let height be driven by content */
 .project-split-media:has(.project-marquee--vertical) {
-  height: 549px;
   aspect-ratio: unset;
   min-height: unset;
+  height: auto;
 }
 /* ── Tall media column: screenshot + video, equal halves ── */
 .project-split-media--tall {
@@ -767,18 +769,12 @@
   height: 363px;
 }
 
-/* ── Per-entry vertical marquee animation timings ── */
-/* AP6: 3 items (2 images + 1 video) × (180+3) = 549px per set */
-.project-marquee-track--ap6 {
-  animation-name: projectMarqueeAP6;
-  animation-duration: 20s;
-}
-@keyframes projectMarqueeAP6 {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-549px); }
-}
+/* ── Per-entry overrides ── */
 
-/* AP5, AP4, AP2: single video loops itself, no scroll needed */
+/* AP6: 3 items, keep scrolling */
+.project-marquee-track--ap6 { animation-duration: 20s; }
+
+/* AP5, AP4, AP2: single video - static, no carousel needed */
 .project-marquee-track--ap5,
 .project-marquee-track--ap4,
 .project-marquee-track--ap2 {
@@ -787,25 +783,16 @@
 .project-card--split:has(.project-marquee-track--ap5) .project-marquee--vertical,
 .project-card--split:has(.project-marquee-track--ap4) .project-marquee--vertical,
 .project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
-  height: 363px;
+  max-height: none;
   mask-image: none;
   -webkit-mask-image: none;
 }
-.project-marquee-track--ap5 .project-marquee-item--video,
-.project-marquee-track--ap4 .project-marquee-item--video,
-.project-marquee-track--ap2 .project-marquee-item--video {
-  height: 363px;
-}
 
-/* AP3: report video (180px) + devices slot (220px) + gaps = 403px per set */
-.project-marquee-track--ap3 {
-  animation-name: projectMarqueeAP3;
-  animation-duration: 22s;
-}
-@keyframes projectMarqueeAP3 {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-403px); }
-}
+/* AP3: report + device mockups */
+.project-marquee-track--ap3 { animation-duration: 22s; }
+
+/* AP1: photo + 2 videos */
+.project-marquee-track--ap1 { animation-duration: 24s; }
 
 /* Devices slot inside marquee */
 .project-marquee-item--devices {
@@ -891,4 +878,25 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* ── Static video-only split media (no carousel) ── */
+.project-split-media--video-only {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-3);
+}
+.project-split-media--video-only video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+/* Clean up the now-unused AP5/AP4/AP2 carousel overrides */
+.project-card--split:has(.project-marquee-track--ap5) .project-marquee--vertical,
+.project-card--split:has(.project-marquee-track--ap4) .project-marquee--vertical,
+.project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
+  display: none; /* these were replaced with static video-only in HTML */
 }
