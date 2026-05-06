@@ -41,7 +41,6 @@
       <div class="jump-nav-inner">
         <a href="#credentials" class="jump-link">Credentials</a>
         <a href="#professional" class="jump-link">Professional</a>
-        <a href="#internship" class="jump-link">Internship</a>
         <a href="#academic" class="jump-link">Academic</a>
         <a href="#independent" class="jump-link">Independent</a>
       </div>
@@ -103,7 +102,7 @@
             </p>
           </div><div class="cred-card">
             <span class="tag tag--green">Professional Certificate</span>
-            <div class="cred-img-wrapper">
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
                 <img src="media/certs/knime-data-science.png" alt="Data Science by KNIME certificate" />
                 <div class="cred-img-overlay"></div>
               </div>
@@ -165,7 +164,7 @@
               </ul>
             </div>
             <div class="project-split-media">
-              <span class="project-year-overlay">2025</span>
+              <p class="project-year-above">2025</p>
               <video autoplay muted loop playsinline
                 src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIII.%20OfS%20NSS%202025%20Dashboard.mp4">
               </video>
@@ -212,7 +211,7 @@
               </ul>
             </div>
             <div class="project-split-media project-split-media--stacked">
-              <span class="project-year-overlay">2024</span>
+              <p class="project-year-above">2024</p>
               <div class="project-split-screenshot">
                 <img src="media/projects/student-placements-dashboard.png"
                      alt="Student Experience Approvals Dashboard, Regent's University London" />
@@ -280,20 +279,6 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Internship Projects -->
-    <section class="port-section" id="internship">
-      <div class="port-inner">
-        <div class="section-header">
-          <h2 class="section-title">Internship</h2>
-        </div>
-        <p class="section-intro">Projects completed during the MSc Data Science in Business internship programme at Regent's University London.</p>
-        <div class="project-list">
 
           <!-- Project I: REPT Consultancy (carousel, 7 media items) -->
           <div class="project-card project-card--split">
@@ -336,30 +321,30 @@
               <!-- Images PPIA through PPIF to be added when uploaded -->
               <div class="project-marquee">
                 <div class="project-marquee-track">
-                  <!-- Set A - placeholders until PPI images are uploaded -->
-                  <div class="project-marquee-item project-marquee-item--placeholder">REPT dashboard screenshot (coming soon)</div>
+                  <!-- Set A: 5 images + 2 videos -->
+                  <div class="project-marquee-item"><img src="media/projects/ppi-a-team-activity.jpg" alt="First team meeting with REPT department, group activity" /></div>
                   <div class="project-marquee-item project-marquee-item--video">
-                    <video autoplay muted loop playsinline
-                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIF.%20REPT%20DEPT%20Consultancy%20Project%20Presentation%20Slides.mp4">
-                    </video>
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIF.%20REPT%20DEPT%20Consultancy%20Project%20Presentation%20Slides.mp4"></video>
                   </div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-b-full-classroom.jpg" alt="REPT first team meeting, full classroom view" /></div>
                   <div class="project-marquee-item project-marquee-item--video">
-                    <video autoplay muted loop playsinline
-                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIG.%20REPT%20Analytics%20Dashboard%20Screenshot%20Left%20to%20right.mp4">
-                    </video>
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIG.%20REPT%20Analytics%20Dashboard%20Screenshot%20Left%20to%20right.mp4"></video>
                   </div>
-                  <!-- Set B -->
-                  <div class="project-marquee-item project-marquee-item--placeholder" aria-hidden="true"></div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-c-group-entrance.jpg" alt="REPT team group photo at Regent's main entrance" /></div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-d-team-activity-2.jpg" alt="Jolene with REPT team during first meeting activity" /></div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-e-staff-conference.jpg" alt="Jolene with REPT team during Regent's Staff Conference 2024" /></div>
+                  <!-- Set B - seamless loop duplicates -->
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-a-team-activity.jpg" alt="" /></div>
                   <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
-                    <video autoplay muted loop playsinline
-                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIF.%20REPT%20DEPT%20Consultancy%20Project%20Presentation%20Slides.mp4">
-                    </video>
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIF.%20REPT%20DEPT%20Consultancy%20Project%20Presentation%20Slides.mp4"></video>
                   </div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-b-full-classroom.jpg" alt="" /></div>
                   <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
-                    <video autoplay muted loop playsinline
-                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIG.%20REPT%20Analytics%20Dashboard%20Screenshot%20Left%20to%20right.mp4">
-                    </video>
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIG.%20REPT%20Analytics%20Dashboard%20Screenshot%20Left%20to%20right.mp4"></video>
                   </div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-c-group-entrance.jpg" alt="" /></div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-d-team-activity-2.jpg" alt="" /></div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-e-staff-conference.jpg" alt="" /></div>
                 </div>
               </div>
             </div>
