@@ -119,3 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+
+/* ── Expandable credential images ── */
+function toggleCredImg(el) {
+  const slot = el.classList.contains('cred-img-slot') ? el : el;
+  const isExpanded = slot.classList.toggle('expanded');
+  const hint = slot.nextElementSibling;
+  if (hint && hint.classList.contains('cred-expand-hint')) {
+    hint.textContent = isExpanded ? 'click to collapse ↕' : 'click to expand ↕';
+  }
+  if (isExpanded) {
+    setTimeout(() => slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
