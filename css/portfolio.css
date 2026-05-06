@@ -492,23 +492,14 @@
   display: none;
 }
 
-/* ── Year overlay on split media (top-right of video) ── */
-.project-split-media {
-  position: relative;
-}
-
-.project-year-overlay {
-  position: absolute;
-  top: var(--sp-3);
-  right: var(--sp-3);
+/* ── Year label above split media, right-aligned to match entry header ── */
+.project-year-above {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--text-muted);
   letter-spacing: 0.06em;
-  z-index: 2;
-  background: rgba(10,9,8,0.6);
-  padding: 2px 6px;
-  border-radius: var(--r-sm);
+  text-align: right;
+  margin-bottom: var(--sp-2);
 }
 
 /* ── Stacked media: screenshot above, video below ── */
