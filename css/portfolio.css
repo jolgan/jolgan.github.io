@@ -550,3 +550,89 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* ── Project internship duration badge ── */
+.project-duration-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-light);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  padding: 3px 10px;
+  border-radius: var(--r-sm);
+  margin-bottom: var(--sp-2);
+}
+
+/* ── Project media marquee (in split layout right column) ── */
+.project-marquee {
+  overflow: hidden;
+  border-radius: var(--r-md);
+  height: 100%;
+  min-height: 280px;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.project-marquee-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 3px;
+  height: 100%;
+  min-height: 280px;
+  width: max-content;
+  animation: eventMarqueeScroll 22s linear infinite;
+}
+
+.project-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.project-marquee-item {
+  flex: 0 0 auto;
+  width: 320px;
+  height: 280px;
+  overflow: hidden;
+  background: var(--surface-3);
+  border-radius: var(--r-sm);
+  position: relative;
+}
+
+.project-marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-marquee-item--video {
+  width: 380px;
+}
+
+.project-marquee-item--video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-marquee-item--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  background: linear-gradient(135deg, var(--surface-3), var(--navy));
+  text-align: center;
+  padding: var(--sp-4);
+}
+
+/* Make split card's right column use full height for marquee */
+.project-split-media:has(.project-marquee) {
+  min-height: 280px;
+  aspect-ratio: unset;
+}
