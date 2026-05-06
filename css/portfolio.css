@@ -491,3 +491,62 @@
 .cred-img-wrapper.expanded .cred-img-overlay {
   display: none;
 }
+
+/* ── Year overlay on split media (top-right of video) ── */
+.project-split-media {
+  position: relative;
+}
+
+.project-year-overlay {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  z-index: 2;
+  background: rgba(10,9,8,0.6);
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+}
+
+/* ── Stacked media: screenshot above, video below ── */
+.project-split-media--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.project-split-screenshot {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-3);
+  flex: 0 0 auto;
+}
+
+.project-split-screenshot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 200px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.project-split-video {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-3);
+  aspect-ratio: 16/9;
+  position: relative;
+  flex: 1;
+}
+
+.project-split-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
