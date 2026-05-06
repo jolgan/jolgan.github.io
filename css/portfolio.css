@@ -492,46 +492,40 @@
   display: none;
 }
 
-/* ── Year label above split media, right-aligned to match entry header ── */
-.project-year-above {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  text-align: right;
-  margin-bottom: var(--sp-2);
-}
 
-/* ── Stacked media: screenshot above, video below ── */
+
+/* ── Stacked media: screenshot above, video below - fills column height ── */
 .project-split-media--stacked {
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
+  height: 100%;
+  min-height: 400px;
 }
 
 .project-split-screenshot {
   border-radius: var(--r-md);
   overflow: hidden;
   background: var(--surface-3);
-  flex: 0 0 auto;
+  flex: 1;                      /* take equal share of height */
+  min-height: 180px;
 }
 
 .project-split-screenshot img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  max-height: 200px;
   object-fit: cover;
-  object-position: top;
+  object-position: top left;    /* show top of dashboard first */
 }
 
 .project-split-video {
   border-radius: var(--r-md);
   overflow: hidden;
   background: var(--surface-3);
-  aspect-ratio: 16/9;
+  flex: 1;                      /* take equal share of height */
+  min-height: 160px;
   position: relative;
-  flex: 1;
 }
 
 .project-split-video video {
@@ -556,35 +550,39 @@
   margin-bottom: var(--sp-2);
 }
 
-/* ── Project media marquee (in split layout right column) ── */
+/* ── Project media marquee (vertical scroll, top to bottom) ── */
 .project-marquee {
   overflow: hidden;
   border-radius: var(--r-md);
-  height: 100%;
-  min-height: 280px;
-  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  width: 100%;
+  height: 520px;
+  /* Fade top and bottom edges */
+  mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
 }
 
 .project-marquee-track {
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 3px;
-  height: 100%;
-  min-height: 280px;
-  width: max-content;
-  animation: eventMarqueeScroll 22s linear infinite;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  height: max-content;
+  animation: projectMarqueeScroll 28s linear infinite;
 }
 
 .project-marquee-track:hover {
   animation-play-state: paused;
 }
 
+@keyframes projectMarqueeScroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
 .project-marquee-item {
   flex: 0 0 auto;
-  width: 320px;
-  height: 280px;
+  width: 100%;
+  height: 240px;
   overflow: hidden;
   background: var(--surface-3);
   border-radius: var(--r-sm);
@@ -599,7 +597,7 @@
 }
 
 .project-marquee-item--video {
-  width: 380px;
+  height: 200px;
 }
 
 .project-marquee-item--video video {
@@ -622,8 +620,89 @@
   padding: var(--sp-4);
 }
 
-/* Make split card's right column use full height for marquee */
+/* Split card right column: unset aspect-ratio so marquee controls height */
 .project-split-media:has(.project-marquee) {
-  min-height: 280px;
   aspect-ratio: unset;
+  height: auto;
+}
+
+
+/* ── Vertical project marquee (scrolls top to bottom) ── */
+.project-marquee--vertical {
+  overflow: hidden;
+  border-radius: var(--r-md);
+  height: 100%;
+  min-height: 380px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.project-marquee-track--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  height: max-content;
+  animation: projectMarqueeVertical 28s linear infinite;
+}
+
+.project-marquee-track--vertical:hover {
+  animation-play-state: paused;
+}
+
+@keyframes projectMarqueeVertical {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.project-marquee--vertical .project-marquee-item {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.project-marquee--vertical .project-marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-marquee--vertical .project-marquee-item--video {
+  width: 100%;
+  height: 200px;
+}
+
+/* Override :has() selector for marquee height when vertical */
+.project-split-media:has(.project-marquee--vertical) {
+  min-height: 380px;
+  aspect-ratio: unset;
+}
+/* ── Tall media column: screenshot + video filling full column height ── */
+.project-split-media--tall {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  height: 100%;
+  min-height: 340px;
+}
+
+.project-media-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-md);
+  flex: 1 1 55%;
+  object-fit: contain;
+  background: var(--surface-3);
+  min-height: 0;
+}
+
+.project-media-video {
+  width: 100%;
+  flex: 1 1 42%;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+  object-fit: cover;
+  display: block;
+  min-height: 0;
 }
