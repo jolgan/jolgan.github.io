@@ -56,10 +56,10 @@
 
           <div class="cred-card cred-card--academic">
             <span class="tag tag--gold">Academic</span>
-            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
-              <img src="media/certs/msc-distinction.jpg" alt="MSc Data Science in Business certificate" />
-            </div>
-            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/msc-distinction.jpg" alt="MSc Data Science in Business certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
             <h3 class="cred-title">MSc Data Science in Business</h3>
             <p class="cred-issuer">Regent's University London, 2024</p>
             <p class="cred-detail">Awarded with distinction. SAS Academy accredited. Invited author, Data Science for Predictive UX Design (forthcoming, 2026).</p>
@@ -67,10 +67,10 @@
 
           <div class="cred-card cred-card--academic">
             <span class="tag tag--gold">Academic</span>
-            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
-              <img src="media/certs/ba-communication.png" alt="BA in Communication certificate" />
-            </div>
-            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/ba-communication.png" alt="BA in Communication certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
             <h3 class="cred-title">BA in Communication</h3>
             <p class="cred-issuer">SUNY University at Buffalo, 2021</p>
             <p class="cred-detail">Relevant coursework: Statistics for Social Sciences, Risk Communication.</p>
@@ -78,10 +78,10 @@
 
           <div class="cred-card cred-card--academic">
             <span class="tag tag--gold">Academic</span>
-            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
-              <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems certificate" />
-            </div>
-            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
             <h3 class="cred-title">Diploma in Business Information Systems</h3>
             <p class="cred-issuer">Republic Polytechnic, 2018</p>
             <p class="cred-detail">Recipient of Edusave Good Progress Award. Coursework: Database Systems, Business Intelligence, Systems Analysis and Design.</p>
@@ -89,10 +89,10 @@
 
           <div class="cred-card">
             <span class="tag tag--green">Professional Certificate</span>
-            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
-              <img src="media/certs/sas-jmp.png" alt="SAS Certificate of Achievement" />
-            </div>
-            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/sas-jmp.png" alt="SAS Certificate of Achievement" />
+                <div class="cred-img-overlay"></div>
+              </div>
             <h3 class="cred-title">Certificate of Achievement: Data Analysis using SAS JMP</h3>
             <p class="cred-issuer">SAS Academy, issued via Regent's University London, 2024</p>
             <p class="cred-detail">
@@ -100,28 +100,12 @@
               analysis of variance, categorical analysis, correlation and regression, multiple linear regression,
               and logistic regression.
             </p>
-          </div>
-
-          <div class="cred-card">
-            <span class="tag tag--navy">Course Certificate</span>
-            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
-              <div class="cred-img-placeholder">HS</div>
-            </div>
-            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
-            <h3 class="cred-title">Reporting and Analytics</h3>
-            <p class="cred-issuer">HandShake Academy</p>
-            <p class="cred-detail">
-              Completed during internship involvement with HandShake. Covers leveraging analytics for
-              dashboard creation, scheduling reports for automated data delivery, and report customisation.
-            </p>
-          </div>
-
-          <div class="cred-card">
+          </div><div class="cred-card">
             <span class="tag tag--green">Professional Certificate</span>
-            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
-              <div class="cred-img-placeholder">KNIME</div>
-            </div>
-            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
+            <div class="cred-img-wrapper">
+                <img src="media/certs/knime-data-science.png" alt="Data Science by KNIME certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
             <h3 class="cred-title">Data Science by KNIME</h3>
             <p class="cred-issuer">Accredited by KNIME, facilitated on LinkedIn Learning</p>
             <p class="cred-detail">
@@ -190,16 +174,37 @@
               <span class="tag tag--red">Regent's University London</span>
               <span class="project-year">2024</span>
             </div>
-            <h3 class="project-title">UKVI Compliance Power BI Dashboard</h3>
+            <h3 class="project-title">Student Placements Power BI Dashboard</h3>
             <p class="project-desc">
-              Designed and implemented a Power BI dashboard for non-technical stakeholders to visualise
-              student placement data, contributing to a projected 6-fold improvement in UKVI compliance
-              response speed.
+              Designed and implemented a Power BI dashboard for the Alumni Community, Careers Network and
+              Development (ACCND) department to visualise student placement data. Enabled real-time
+              monitoring of placement progress, approval statuses, and UKVI compliance — contributing to
+              a projected 6-fold improvement in UKVI audit response speed.
             </p>
+            <p class="project-desc">
+              Data was sourced from Handshake (student experience forms), cleaned for data type issues,
+              restructured via Excel, and visualised in Power BI with drill-down capability to individual
+              student records, employer details, and approval levels. A handover document was produced
+              for the incoming senior data scientist, detailing the data flow, dashboard architecture,
+              and guidance for future development.
+            </p>
+            <div class="project-links">
+              <a href="https://academy.joinhandshake.com/path/reporting-analytics" target="_blank" rel="noopener" class="project-link">HandShake Analytics (platform used)</a>
+            </div>
             <div class="project-tags">
               <span class="tag tag--navy">Power BI</span>
-              <span class="tag tag--navy">Stakeholder Communication</span>
+              <span class="tag tag--navy">ETL</span>
+              <span class="tag tag--navy">Handshake Analytics</span>
+              <span class="tag tag--navy">Data Cleaning</span>
+              <span class="tag tag--navy">Process Documentation</span>
+              <span class="tag tag--green">UKVI Compliance</span>
             </div>
+            <ul class="project-detail-list">
+              <li>Diagnosed and resolved data type issues in Handshake survey template causing null values in pre-Oct 2024 records</li>
+              <li>Built dashboard with real-time filters for students starting/ending placements within the next two weeks</li>
+              <li>Drill-down to individual student placement details, approval statuses, and employer information</li>
+              <li>Produced full handover documentation for a senior data scientist, covering data flow, architecture, and future guidance</li>
+            </ul>
           </div>
 
           <div class="project-card">
