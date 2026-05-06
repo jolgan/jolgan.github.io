@@ -736,3 +736,159 @@
   object-fit: cover;
   display: block;
 }
+
+/* ── AP1: 3 items × (180px + 3px gap) = 549px per set ── */
+.project-marquee-track--ap1 {
+  animation-name: projectMarqueeAP1;
+  animation-duration: 18s;
+}
+@keyframes projectMarqueeAP1 {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-549px); }
+}
+
+/* AP1 carousel height = 2 items visible = 366px */
+.project-marquee-track--ap1 ~ .project-marquee--vertical,
+.project-card--split:has(.project-marquee-track--ap1) .project-marquee--vertical {
+  height: 363px;
+}
+
+/* ── AP2: single video loops on its own, no marquee needed ── */
+/* Just show the single video full-height, no animation needed */
+.project-marquee-track--ap2 {
+  animation: none;
+}
+.project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
+  height: 363px;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+.project-marquee-track--ap2 .project-marquee-item--video {
+  height: 363px;
+}
+
+/* ── Per-entry vertical marquee animation timings ── */
+/* AP6: 3 items (2 images + 1 video) × (180+3) = 549px per set */
+.project-marquee-track--ap6 {
+  animation-name: projectMarqueeAP6;
+  animation-duration: 20s;
+}
+@keyframes projectMarqueeAP6 {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-549px); }
+}
+
+/* AP5, AP4, AP2: single video loops itself, no scroll needed */
+.project-marquee-track--ap5,
+.project-marquee-track--ap4,
+.project-marquee-track--ap2 {
+  animation: none;
+}
+.project-card--split:has(.project-marquee-track--ap5) .project-marquee--vertical,
+.project-card--split:has(.project-marquee-track--ap4) .project-marquee--vertical,
+.project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
+  height: 363px;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+.project-marquee-track--ap5 .project-marquee-item--video,
+.project-marquee-track--ap4 .project-marquee-item--video,
+.project-marquee-track--ap2 .project-marquee-item--video {
+  height: 363px;
+}
+
+/* AP3: report video (180px) + devices slot (220px) + gaps = 403px per set */
+.project-marquee-track--ap3 {
+  animation-name: projectMarqueeAP3;
+  animation-duration: 22s;
+}
+@keyframes projectMarqueeAP3 {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-403px); }
+}
+
+/* Devices slot inside marquee */
+.project-marquee-item--devices {
+  height: 220px;
+  width: 100%;
+  background: var(--surface-3);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3);
+}
+
+/* ── Device mockup frames ── */
+.device-mockup-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--sp-4);
+  width: 100%;
+  height: 100%;
+}
+
+/* iPad frame */
+.device-ipad {
+  width: 140px;
+  height: 190px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 3px solid #333;
+  box-shadow: 0 0 0 1px #444, inset 0 0 0 2px #222;
+  padding: 8px 6px;
+  position: relative;
+  flex-shrink: 0;
+}
+.device-ipad::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 28px;
+  background: #333;
+  border-radius: 2px;
+}
+
+/* iPhone frame */
+.device-iphone {
+  width: 80px;
+  height: 168px;
+  background: #1a1a1a;
+  border-radius: 18px;
+  border: 3px solid #333;
+  box-shadow: 0 0 0 1px #444, inset 0 0 0 2px #222;
+  padding: 14px 5px 10px;
+  position: relative;
+  flex-shrink: 0;
+}
+/* Dynamic island */
+.device-iphone::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 6px;
+  background: #000;
+  border-radius: 3px;
+}
+
+/* Screen area fills remaining space */
+.device-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+}
+.device-screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
