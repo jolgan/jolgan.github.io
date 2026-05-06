@@ -56,9 +56,10 @@
 
           <div class="cred-card cred-card--academic">
             <span class="tag tag--gold">Academic</span>
-            <div class="cred-img-slot">
+            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
               <img src="media/certs/msc-distinction.jpg" alt="MSc Data Science in Business certificate" />
             </div>
+            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
             <h3 class="cred-title">MSc Data Science in Business</h3>
             <p class="cred-issuer">Regent's University London, 2024</p>
             <p class="cred-detail">Awarded with distinction. SAS Academy accredited. Invited author, Data Science for Predictive UX Design (forthcoming, 2026).</p>
@@ -66,9 +67,10 @@
 
           <div class="cred-card cred-card--academic">
             <span class="tag tag--gold">Academic</span>
-            <div class="cred-img-slot">
+            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
               <img src="media/certs/ba-communication.png" alt="BA in Communication certificate" />
             </div>
+            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
             <h3 class="cred-title">BA in Communication</h3>
             <p class="cred-issuer">SUNY University at Buffalo, 2021</p>
             <p class="cred-detail">Relevant coursework: Statistics for Social Sciences, Risk Communication.</p>
@@ -76,9 +78,10 @@
 
           <div class="cred-card cred-card--academic">
             <span class="tag tag--gold">Academic</span>
-            <div class="cred-img-slot">
+            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
               <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems certificate" />
             </div>
+            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
             <h3 class="cred-title">Diploma in Business Information Systems</h3>
             <p class="cred-issuer">Republic Polytechnic, 2018</p>
             <p class="cred-detail">Recipient of Edusave Good Progress Award. Coursework: Database Systems, Business Intelligence, Systems Analysis and Design.</p>
@@ -86,9 +89,10 @@
 
           <div class="cred-card">
             <span class="tag tag--green">Professional Certificate</span>
-            <div class="cred-img-slot">
+            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
               <img src="media/certs/sas-jmp.png" alt="SAS Certificate of Achievement" />
             </div>
+            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
             <h3 class="cred-title">Certificate of Achievement: Data Analysis using SAS JMP</h3>
             <p class="cred-issuer">SAS Academy, issued via Regent's University London, 2024</p>
             <p class="cred-detail">
@@ -100,9 +104,10 @@
 
           <div class="cred-card">
             <span class="tag tag--navy">Course Certificate</span>
-            <div class="cred-img-slot">
+            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
               <div class="cred-img-placeholder">HS</div>
             </div>
+            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
             <h3 class="cred-title">Reporting and Analytics</h3>
             <p class="cred-issuer">HandShake Academy</p>
             <p class="cred-detail">
@@ -113,9 +118,10 @@
 
           <div class="cred-card">
             <span class="tag tag--green">Professional Certificate</span>
-            <div class="cred-img-slot">
+            <div class="cred-img-slot" onclick="toggleCredImg(this)" title="click to expand">
               <div class="cred-img-placeholder">KNIME</div>
             </div>
+            <span class="cred-expand-hint" onclick="toggleCredImg(this.previousElementSibling)">click to expand ↕</span>
             <h3 class="cred-title">Data Science by KNIME</h3>
             <p class="cred-issuer">Accredited by KNIME, facilitated on LinkedIn Learning</p>
             <p class="cred-detail">
@@ -140,45 +146,8 @@
         <p class="section-intro">Projects completed as part of paid employment or competitive processes.</p>
         <div class="project-list">
 
-          <div class="project-card">
-            <div class="project-meta">
-              <span class="tag tag--gold">Independent / Hiring Process</span>
-              <span class="project-year">2025</span>
-            </div>
-            <h3 class="project-title">UK National Student Survey Performance Dashboard</h3>
-            <p class="project-desc">
-              Time-boxed stakeholder dashboard project using public-sector survey data, developed and
-              presented as part of a competitive hiring process. End-to-end raw data transformation
-              into a structured, interactive Power BI dashboard.
-            </p>
-            <div class="project-video">
-              <iframe
-                src="https://www.youtube.com/embed/zVROBsRwAlc?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1"
-                title="NSS Dashboard walkthrough"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/jolgan/uk-nationalstudentsurvey" target="_blank" rel="noopener" class="project-link">GitHub documentation</a>
-              <a href="https://www.officeforstudents.org.uk/for-providers/student-protection-and-choice/national-student-survey-nss/" target="_blank" rel="noopener" class="project-link">data source</a>
-            </div>
-            <div class="project-tags">
-              <span class="tag tag--navy">Power BI</span>
-              <span class="tag tag--navy">ETL</span>
-              <span class="tag tag--navy">Power Query</span>
-              <span class="tag tag--navy">Data Cleaning</span>
-              <span class="tag tag--navy">Conditional Formatting</span>
-              <span class="tag tag--green">Public Sector Data</span>
-            </div>
-            <ul class="project-detail-list">
-              <li>ETL: data type correction, null handling, Power Query transformation, and data restructuring with custom columns</li>
-              <li>Troubleshooting Excel source files for Power BI compatibility</li>
-              <li>Relative performance logic using conditional columns</li>
-              <li>Conditional formatting for interpretability</li>
-            </ul>
-          </div>
+
+
 
           <div class="project-card">
             <div class="project-meta">
@@ -252,48 +221,43 @@
             </div>
           </div>
 
-          <div class="project-card project-card--featured">
-            <div class="project-meta">
-              <span class="tag tag--green">Independent / Hiring Process</span>
-              <span class="project-year">2025</span>
-            </div>
-            <h3 class="project-title">UK National Student Survey (NSS) Performance Dashboard</h3>
-            <p class="project-desc">
-              Time-boxed stakeholder dashboard project using public-sector survey data, developed and presented
-              as part of a competitive hiring process. End-to-end raw data transformation into a structured,
-              interactive Power BI dashboard.
-            </p>
-            <div class="project-video-slot">
-              <div class="project-video-overlay"></div>
-              <iframe
-                src="https://www.youtube.com/embed/zVROBsRwAlc?autoplay=1&mute=1&loop=1&playlist=zVROBsRwAlc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-                title="NSS Power BI Dashboard walkthrough"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="project-links">
-              <a href="https://app.powerbi.com/view?r=eyJrIjoiNDk3Njc5ZTctOTk2Mi00OTkxLWI1MGMtMjMwYTM5NjZmOTE3IiwidCI6ImYzMzE3MDQxLTRjMzYtNDQ2Ni1iNmIzLTdiZDdjNTYxZWM3YyJ9&embedImagePlaceholder=true" target="_blank" rel="noopener" class="project-link">Live dashboard</a>
-              <a href="https://github.com/jolgan/uk-nationalstudentsurvey" target="_blank" rel="noopener" class="project-link">GitHub documentation</a>
-              <a href="https://www.officeforstudents.org.uk/for-providers/student-protection-and-choice/national-student-survey-nss/" target="_blank" rel="noopener" class="project-link">Data source (OfS)</a>
-            </div>
-            <div class="project-tags">
-              <span class="tag tag--navy">Power BI</span>
-              <span class="tag tag--navy">ETL</span>
-              <span class="tag tag--navy">Power Query</span>
-              <span class="tag tag--navy">Data Cleaning</span>
-              <span class="tag tag--navy">Conditional Formatting</span>
-              <span class="tag tag--green">Public Sector Data</span>
-            </div>
-            <div class="project-applied-skills">
-              <p class="skills-label">applied skills</p>
-              <ul class="skills-list">
-                <li>ETL: data cleaning (data type correction, null handling), Power Query transformation, data restructuring with custom columns</li>
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--green">Independent / Hiring Process</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">UK National Student Survey (NSS) Performance Dashboard</h3>
+              <p class="project-desc">
+                Time-boxed stakeholder dashboard using public-sector survey data, developed and presented
+                as part of a competitive hiring process. End-to-end raw data transformation into a
+                structured, interactive Power BI dashboard.
+              </p>
+              <div class="project-links">
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDk3Njc5ZTctOTk2Mi00OTkxLWI1MGMtMjMwYTM5NjZmOTE3IiwidCI6ImYzMzE3MDQxLTRjMzYtNDQ2Ni1iNmIzLTdiZDdjNTYxZWM3YyJ9&embedImagePlaceholder=true" target="_blank" rel="noopener" class="project-link">live dashboard</a>
+                <a href="https://github.com/jolgan/uk-nationalstudentsurvey" target="_blank" rel="noopener" class="project-link">GitHub documentation</a>
+                <a href="https://www.officeforstudents.org.uk/for-providers/student-protection-and-choice/national-student-survey-nss/" target="_blank" rel="noopener" class="project-link">data source (OfS)</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">ETL</span>
+                <span class="tag tag--navy">Power Query</span>
+                <span class="tag tag--navy">Data Cleaning</span>
+                <span class="tag tag--navy">Conditional Formatting</span>
+                <span class="tag tag--green">Public Sector Data</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>ETL: data type correction, null handling, Power Query transformation, data restructuring with custom columns</li>
                 <li>Troubleshooting Excel source file for Power BI compatibility</li>
                 <li>Relative performance logic using conditional columns</li>
                 <li>Conditional formatting for interpretability</li>
               </ul>
+            </div>
+            <div class="project-split-media">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIII.%20OfS%20NSS%202025%20Dashboard.mp4">
+              </video>
             </div>
           </div>
 
@@ -380,6 +344,7 @@
     <p>2025 Jolene Gan. Built with intention.</p>
   </footer>
 
+  <button id="returnToTop" aria-label="Return to top">↑</button>
   <script src="js/main.js"></script>
 </body>
 </html>
