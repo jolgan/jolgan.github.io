@@ -426,34 +426,68 @@
 }
 
 /* ── Expandable credential images ── */
-.cred-img-slot {
+.cred-img-wrapper {
+  position: relative;
   cursor: pointer;
   overflow: hidden;
-  transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
-  max-height: 160px;
+  /* Collapsed: fixed height, image centred */
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-3);
+  transition: height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cred-img-slot.expanded {
-  max-height: 900px;
+.cred-img-wrapper.expanded {
+  height: var(--expanded-h, 500px);
+  align-items: flex-start;
 }
 
-.cred-img-slot img {
+.cred-img-wrapper img {
   width: 100%;
-  height: auto;       /* auto height so full image shows when expanded */
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  transition: none;
+  transition: height 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              object-fit 0s 0.55s;
 }
 
-.cred-expand-hint {
-  display: block;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  padding: var(--sp-1) 0 var(--sp-2);
-  transition: color var(--t-fast);
-  cursor: pointer;
+.cred-img-wrapper.expanded img {
+  height: auto;
+  object-fit: contain;
+  min-height: 100%;
 }
-.cred-expand-hint:hover { color: var(--gold-light); }
+
+/* Wine-red hover overlay with expand icon */
+.cred-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(125, 29, 63, 0.0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--t-mid) var(--ease);
+  pointer-events: none;
+}
+
+.cred-img-overlay::after {
+  content: '⤢';
+  font-size: 1.8rem;
+  color: rgba(255,255,255,0);
+  transition: color var(--t-mid) var(--ease);
+  line-height: 1;
+}
+
+.cred-img-wrapper:hover .cred-img-overlay {
+  background: rgba(125, 29, 63, 0.35);
+}
+
+.cred-img-wrapper:hover .cred-img-overlay::after {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cred-img-wrapper.expanded .cred-img-overlay {
+  display: none;
+}
