@@ -385,6 +385,24 @@
   align-items: start;
 }
 
+/* Year right-justified in split card meta row */
+.project-card--split .project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Year right-justified in split card meta row */
+.project-card--split .project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .project-split-text {
   display: flex;
   flex-direction: column;
@@ -627,14 +645,16 @@
 }
 
 
-/* ── Vertical project marquee (scrolls top to bottom) ── */
+/* ── Vertical project marquee (scrolls top to bottom, seamless loop) ── */
+/* 7 items × (180px height + 3px gap) = 1281px per set.
+   translateY(-1281px) moves exactly one set, then resets invisibly. */
 .project-marquee--vertical {
   overflow: hidden;
   border-radius: var(--r-md);
-  height: 100%;
-  min-height: 380px;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+  /* Height = exactly 3 items tall so it fills the card without overflowing */
+  height: 549px;        /* (180 + 3) × 3 = 549px */
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .project-marquee-track--vertical {
@@ -642,67 +662,77 @@
   flex-direction: column;
   gap: 3px;
   width: 100%;
-  height: max-content;
-  animation: projectMarqueeVertical 28s linear infinite;
+  animation: projectMarqueeVertical 30s linear infinite;
 }
 
 .project-marquee-track--vertical:hover {
   animation-play-state: paused;
 }
 
+/* One set = 7 items × (180px + 3px gap) minus last gap = 1260px + 21px gaps = 1281px */
 @keyframes projectMarqueeVertical {
   0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  100% { transform: translateY(-1281px); }
 }
 
 .project-marquee--vertical .project-marquee-item {
   width: 100%;
-  height: 200px;
+  height: 180px;
   flex-shrink: 0;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--surface-3);
 }
 
 .project-marquee--vertical .project-marquee-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .project-marquee--vertical .project-marquee-item--video {
   width: 100%;
-  height: 200px;
+  height: 180px;
+  position: relative;
 }
 
-/* Override :has() selector for marquee height when vertical */
-.project-split-media:has(.project-marquee--vertical) {
-  min-height: 380px;
-  aspect-ratio: unset;
+.project-marquee--vertical .project-marquee-item--video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-/* ── Tall media column: screenshot + video filling full column height ── */
+
+/* Match split media column height to carousel */
+.project-split-media:has(.project-marquee--vertical) {
+  height: 549px;
+  aspect-ratio: unset;
+  min-height: unset;
+}
+/* ── Tall media column: screenshot + video, equal halves ── */
 .project-split-media--tall {
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
-  height: 100%;
-  min-height: 340px;
 }
 
 .project-media-screenshot {
   width: 100%;
-  height: auto;
+  height: 220px;
   display: block;
   border-radius: var(--r-md);
-  flex: 1 1 55%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top left;
   background: var(--surface-3);
-  min-height: 0;
 }
 
 .project-media-video {
   width: 100%;
-  flex: 1 1 42%;
+  height: 220px;
   border-radius: var(--r-md);
   background: var(--surface-3);
   object-fit: cover;
   display: block;
-  min-height: 0;
 }
