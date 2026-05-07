@@ -79,7 +79,7 @@
 }
 
 /* ── Section wrapper ── */
-.port-section { padding: var(--sp-24) 0; }
+.port-section { padding: var(--sp-12) 0; }
 .port-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -902,4 +902,44 @@
 .project-card--split:has(.project-marquee-track--ap4) .project-marquee--vertical,
 .project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
   display: none; /* these were replaced with static video-only in HTML */
+}
+
+
+/* ── Student Placements: screenshot + video stacked, fixed heights ── */
+/* These classes are unique to this entry and affect nothing else */
+.project-placements-media {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  height: 549px;              /* match REPT carousel height for visual consistency */
+}
+
+.project-placements-screenshot {
+  width: 100%;
+  height: 260px;              /* top half */
+  display: block;
+  border-radius: var(--r-md);
+  object-fit: cover;
+  object-position: top left;
+  background: var(--surface-3);
+  flex-shrink: 0;
+}
+
+.project-placements-video {
+  width: 100%;
+  flex: 1;                    /* fills remaining height */
+  display: block;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+  object-fit: cover;
+  min-height: 0;
+}
+
+/* ── KNIME project image: expandable, shows more by default ── */
+.project-img-expandable {
+  height: 240px;              /* taller default than credentials (160px) */
+  border-radius: var(--r-md);
+}
+.project-img-expandable.expanded {
+  height: var(--expanded-h, 600px);
 }
