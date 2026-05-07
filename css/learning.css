@@ -869,3 +869,54 @@
 .event-marquee-item--video:hover .event-video-overlay {
   opacity: 1;
 }
+
+/* ── Course cert header: image on the right ── */
+.course-cert-header--img-right {
+  grid-template-columns: 1fr auto;
+}
+.course-cert-header--img-right .course-cert-meta {
+  order: 1;
+}
+.course-cert-header--img-right .course-cert-img-slot {
+  order: 2;
+}
+
+/* ── Expand on hover/click for credential thumbnails in L&D ── */
+/* cred-list-img-slot (professional credentials) */
+.cred-list-img-slot.cred-img-wrapper {
+  height: 70px;
+  width: 100px;
+}
+.cred-list-img-slot.cred-img-wrapper.expanded {
+  height: var(--expanded-h, 300px);
+  width: 100%;
+}
+.cred-list-img-slot.cred-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cred-list-img-slot.cred-img-wrapper.expanded img {
+  object-fit: contain;
+  height: auto;
+}
+
+/* course-cert-img-slot */
+.course-cert-img-slot.cred-img-wrapper {
+  width: 80px;
+  height: 60px;
+  flex-shrink: 0;
+}
+.course-cert-img-slot.cred-img-wrapper.expanded {
+  width: 100%;
+  height: var(--expanded-h, 300px);
+}
+.course-cert-img-slot.cred-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.course-cert-img-slot.cred-img-wrapper.expanded img {
+  object-fit: contain;
+  height: auto;
+}
