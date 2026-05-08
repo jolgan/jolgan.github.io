@@ -60,21 +60,10 @@
         <!-- Interactive Chart -->
         <div class="chart-container">
           <canvas id="courseChart"></canvas>
-          <div class="chart-quadrant-labels">
-            <span class="ql ql--tl">Data Analytics</span>
-            <span class="ql ql--tr">Data Science</span>
-            <span class="ql ql--bl">Foundations</span>
-            <span class="ql ql--br">Data Visualisation</span>
-          </div>
         </div>
 
-        <!-- Legend -->
-        <div class="chart-legend">
-          <span class="legend-item legend-item--analytics">Data Analytics</span>
-          <span class="legend-item legend-item--science">Data Science</span>
-          <span class="legend-item legend-item--foundations">Foundations</span>
-          <span class="legend-item legend-item--viz">Data Visualisation</span>
-        </div>
+        <!-- Course type legend (populated by JS) -->
+        <div id="courseTypeLegend" class="course-type-legend"></div>
 
         <!-- Course List + Detail Cards -->
         <div class="course-layout">
@@ -193,13 +182,19 @@
 
           <div class="course-cert-card">
             <div class="course-cert-header course-cert-header--img-right">
-              <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
-                <img src="media/certs/mimo-python.png" alt="Mimo Python cert" />
-              <div class="cred-img-overlay"></div></div>
+              <div class="course-cert-img-pair">
+                <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
+                  <img src="media/certs/mimo-python.png" alt="Mimo Python certificate" />
+                  <div class="cred-img-overlay"></div>
+                </div>
+                <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
+                  <img src="media/certs/mimo-python-ai.png" alt="Mimo Python AI Development certificate" />
+                  <div class="cred-img-overlay"></div>
+                </div>
+              </div>
               <div class="course-cert-meta">
                 <span class="tag tag--navy">Mimo</span>
                 <h3 class="course-cert-title">Python and AI Development</h3>
-                <p class="course-cert-note">Two certificates. Additional course content to be added.</p>
               </div>
             </div>
             <ul class="course-cert-bullets">
@@ -353,6 +348,69 @@
               <li>Relational databases (RDBMS), NoSQL, and ETL processes</li>
               <li>Data wrangling and data mining techniques</li>
               <li>Dashboarding, visualisation, and data storytelling</li>
+            </ul>
+          </div>
+
+          <!-- Healthcare AI course (LinkedIn Learning, 28 March 2025) -->
+          <div class="course-cert-card">
+            <div class="course-cert-header course-cert-header--img-right">
+              <div class="course-cert-img-slot" style="width:80px;height:60px;background:var(--surface-3);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-family:var(--font-mono);color:var(--text-muted)">cert<br>coming</div>
+              <div class="course-cert-meta">
+                <span class="tag tag--navy">LinkedIn Learning</span>
+                <h3 class="course-cert-title">How Generative AI Will Transform Healthcare</h3>
+                <p class="course-cert-note">Completed 28 March 2025. Certificate image to be uploaded.</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Generative AI use cases in diagnostics, drug discovery, and patient care</li>
+              <li>Applications in genomics and personalised medicine</li>
+              <li>Ethical considerations and limitations of AI in clinical settings</li>
+            </ul>
+          </div>
+
+          <!-- Healthcare AI - LinkedIn Learning (March 2025) -->
+          <div class="course-cert-card">
+            <div class="course-cert-header course-cert-header--img-right">
+              <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
+                <img src="media/certs/linkedin-healthcare-ai.png" alt="An Introduction to How Generative AI Will Transform Healthcare - LinkedIn Learning certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--red">LinkedIn Learning</span>
+                <h3 class="course-cert-title">An Introduction to How Generative AI Will Transform Healthcare</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.linkedin.com/learning/an-introduction-to-how-generative-ai-will-transform-healthcare" target="_blank" rel="noopener" class="cred-link">course page</a>
+                </div>
+                <p class="course-cert-note">Completed March 2025. CPE-accredited via QAS Self Study.</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Generative AI use cases in diagnostics, drug discovery, genomics, and personalised therapies</li>
+              <li>Patient data privacy, regulatory frameworks, and ethical considerations in clinical AI</li>
+              <li>Real-world applications across medical imaging, clinical decision support, and health system operations</li>
+            </ul>
+          </div>
+
+          <!-- HandShake Reporting and Analytics - Academy (internship-linked) -->
+          <div class="course-cert-card">
+            <div class="course-cert-header course-cert-header--img-right">
+              <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
+                <img src="media/certs/handshake.png" alt="HandShake Reporting and Analytics certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--navy">HandShake Academy</span>
+                <h3 class="course-cert-title">Reporting and Analytics</h3>
+                <div class="course-cert-links">
+                  <a href="http://verify.skilljar.com/c/2ux8cc4akqwb" target="_blank" rel="noopener" class="cred-link">verify certificate</a>
+                </div>
+                <p class="course-cert-note">Completed during the ACCND internship at Regent's University London. Applied directly to the Student Placements Power BI Dashboard project.</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Leveraging HandShake Analytics for dashboard creation and automated report scheduling</li>
+              <li>Filtering, exporting, and customising reporting outputs for student placement tracking</li>
+              <li>Applied to UKVI compliance monitoring and stakeholder-facing data products</li>
             </ul>
           </div>
 
