@@ -128,23 +128,34 @@ function toggleCredImg(wrapper) {
   const isExpanded = wrapper.classList.toggle('expanded');
 
   if (isExpanded) {
-    /* Use parent width (the card) as the expanded width target */
-    const parentWidth = (wrapper.closest('.cred-card') || wrapper.parentElement).offsetWidth;
-    const targetWidth = Math.min(parentWidth, wrapper.closest('.course-cert-card') ? parentWidth : parentWidth);
-    const ratio = img.naturalHeight / img.naturalWidth;
-    const naturalH = Math.round(targetWidth * ratio);
-    /* Cap: 180px desktop, uncapped mobile */
+    const isPortfolioCred = !!wrapper.closest('.cred-card');
+    const isMimoItem = !!wrapper.closest('.course-cert-img-pair');
     const isMobile = window.innerWidth < 768;
-    const maxH = isMobile ? 400 : 180;
-    const isMimoItem = wrapper.closest('.course-cert-img-pair');
-    const memoMax = isMimoItem ? (isMobile ? 240 : 130) : maxH;
-    const targetH = Math.min(naturalH, memoMax);
-    wrapper.style.setProperty('--expanded-h', targetH + 'px');
-    /* Scroll card into view */
-    setTimeout(() => {
-      const card = wrapper.closest('.cred-card, .course-cert-card');
-      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 80);
+
+    if (isPortfolioCred) {
+      /* Portfolio credentials: expand to natural full size */
+      const cardWidth = wrapper.closest('.cred-card').offsetWidth;
+      const ratio = img.naturalHeight / img.naturalWidth;
+      const targetH = Math.round(cardWidth * ratio);
+      wrapper.style.setProperty('--expanded-h', targetH + 'px');
+      setTimeout(() => {
+        wrapper.closest('.cred-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    } else {
+      /* Course cert items: capped expansion */
+      const parentWidth = (wrapper.closest('.course-cert-card') || wrapper.parentElement).offsetWidth;
+      const ratio = img.naturalHeight / img.naturalWidth;
+      const naturalH = Math.round(parentWidth * ratio);
+      let cap;
+      if (isMimoItem)      cap = isMobile ? 240 : 130;
+      else if (isMobile)   cap = 400;
+      else                 cap = 180;
+      wrapper.style.setProperty('--expanded-h', Math.min(naturalH, cap) + 'px');
+      setTimeout(() => {
+        const card = wrapper.closest('.course-cert-card');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 80);
+    }
   } else {
     wrapper.style.removeProperty('--expanded-h');
   }
