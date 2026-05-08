@@ -341,7 +341,7 @@ h1, h2, h3, h4 {
   background-image: var(--footer-bg);
   background-size: cover;
   background-position: center 60%;
-  opacity: 0.08;
+  opacity: 0.14;
   pointer-events: none;
 }
 .footer--photo > * {

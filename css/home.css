@@ -490,12 +490,12 @@
   background-image: var(--card-bg);
   background-size: cover;
   background-position: center;
-  opacity: 0.12;
+  opacity: 0.18;
   transition: opacity 0.4s var(--ease);
   border-radius: inherit;
 }
 .nav-card--has-bg:hover::before {
-  opacity: 0.22;
+  opacity: 0.32;
 }
 /* Ensure text sits above background */
 .nav-card--has-bg > * {

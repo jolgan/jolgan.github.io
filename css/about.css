@@ -278,6 +278,7 @@
 }
 
 /* ── Story images ── */
+figure { margin: 0; }   /* remove browser default 40px side margins */
 .story-img {
   margin: var(--sp-8) 0;
   border-radius: var(--r-lg);
@@ -363,7 +364,7 @@
 }
 .story-em {
   font-style: italic;
-  color: var(--gold-light);
+  color: var(--gold-light, #e0c070) !important;
 }
 
 /* ── Ikigai grid ── */
@@ -406,4 +407,13 @@
     max-width: 100%;
     margin-left: 0;
   }
+}
+
+/* ── Natural full image (no crop, shows full dimensions) ── */
+.story-img--natural img {
+  object-fit: contain !important;
+  max-height: none !important;
+  height: auto !important;
+  background: var(--surface-3);
+  width: 100%;
 }
