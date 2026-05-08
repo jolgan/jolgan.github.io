@@ -166,6 +166,16 @@ const COURSES = [
     desc: "Foundational data analytics: data file formats, relational databases, NoSQL, ETL, data wrangling, dashboarding, visualisation, and storytelling. Authorised by IBM.",
     skills: ["Data Analytics", "ETL", "Databases", "Visualisation"],
   },
+  {
+    id: 17,
+    name: "How Generative AI Will Transform Healthcare",
+    category: "data-science",
+    platform: "Online (LinkedIn)",
+    difficulty: 5,
+    duration: 3,
+    desc: "An introduction to generative AI applications in healthcare, covering emerging use cases in diagnostics, drug discovery, genomics, and patient care. Particularly relevant to a long-term interest in precision medicine and data-driven therapeutics.",
+    skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
+  }
 ];
 
 const CATEGORY_COLORS = {
