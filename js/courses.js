@@ -9,6 +9,7 @@ const COURSES = [
   {
     id: 1,
     name: "SAS for Data Analysis",
+    courseType: "certification",
     category: "data-science",
     platform: "SAS Academy",
     difficulty: 8,
@@ -19,6 +20,7 @@ const COURSES = [
   {
     id: 2,
     name: "Reporting and Analytics",
+    courseType: "certification",
     category: "analytics",
     platform: "HandShake Academy",
     difficulty: 3,
@@ -29,6 +31,7 @@ const COURSES = [
   {
     id: 3,
     name: "Data Science by KNIME",
+    courseType: "pathway",
     category: "data-science",
     platform: "KNIME via LinkedIn Learning",
     difficulty: 8,
@@ -39,6 +42,7 @@ const COURSES = [
   {
     id: 4,
     name: "Adobe InDesign",
+    courseType: "certification",
     category: "visualisation",
     platform: "Adobe via LinkedIn Learning",
     difficulty: 7,
@@ -49,6 +53,7 @@ const COURSES = [
   {
     id: 5,
     name: "Intro to AI, ML & LLMs",
+    courseType: "course",
     category: "data-science",
     platform: "Sololearn",
     difficulty: 6,
@@ -59,6 +64,7 @@ const COURSES = [
   {
     id: 6,
     name: "Data Visualisation Basics",
+    courseType: "course",
     category: "visualisation",
     platform: "Sololearn",
     difficulty: 5,
@@ -69,6 +75,7 @@ const COURSES = [
   {
     id: 7,
     name: "Analytics with AI",
+    courseType: "course",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -79,6 +86,7 @@ const COURSES = [
   {
     id: 8,
     name: "Python Intermediate",
+    courseType: "course",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 5,
@@ -89,6 +97,7 @@ const COURSES = [
   {
     id: 9,
     name: "Python AI Development",
+    courseType: "pathway",
     category: "data-science",
     platform: "Mimo",
     difficulty: 8,
@@ -99,6 +108,7 @@ const COURSES = [
   {
     id: 10,
     name: "SQL Intermediate",
+    courseType: "course",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -109,6 +119,7 @@ const COURSES = [
   {
     id: 11,
     name: "SQL",
+    courseType: "course",
     category: "analytics",
     platform: "Encode",
     difficulty: 3,
@@ -119,6 +130,7 @@ const COURSES = [
   {
     id: 12,
     name: "AI-Powered A/B Testing",
+    courseType: "course",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -129,6 +141,7 @@ const COURSES = [
   {
     id: 13,
     name: "Coding for Data",
+    courseType: "course",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -139,7 +152,8 @@ const COURSES = [
   {
     id: 14,
     name: "Intro to Probability",
-    category: "data-science",
+    courseType: "course",
+    category: "mathematics",
     platform: "University of Zurich via Coursera",
     difficulty: 7,
     duration: 6,
@@ -149,6 +163,7 @@ const COURSES = [
   {
     id: 15,
     name: "R (Programming)",
+    courseType: "course",
     category: "data-science",
     platform: "Encode",
     difficulty: 9,
@@ -159,6 +174,7 @@ const COURSES = [
   {
     id: 16,
     name: "Data Analytics Essentials",
+    courseType: "course",
     category: "analytics",
     platform: "IBM via edX",
     difficulty: 4,
@@ -169,27 +185,37 @@ const COURSES = [
   {
     id: 17,
     name: "How Generative AI Will Transform Healthcare",
+    courseType: "course",
     category: "data-science",
-    platform: "Online (LinkedIn)",
+    platform: "LinkedIn Learning",
     difficulty: 5,
     duration: 3,
-    desc: "An introduction to generative AI applications in healthcare, covering emerging use cases in diagnostics, drug discovery, genomics, and patient care. Particularly relevant to a long-term interest in precision medicine and data-driven therapeutics.",
+    desc: "Completed March 2025. An introduction to generative AI applications in healthcare, covering emerging use cases in diagnostics, drug discovery, genomics, and patient care. Particularly relevant to a long-term interest in precision medicine and data-driven therapeutics.",
     skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
   }
 ];
 
-const CATEGORY_COLORS = {
-  "analytics":     "#7da3c8",
-  "data-science":  "#a3274f",
-  "foundations":   "#5c5550",
-  "visualisation": "#c9a84c",
+/* Dot colours by course type, not category */
+const COURSE_TYPE_COLORS = {
+  "pathway":    "#c9a84c",   /* gold - structured multi-course programme */
+  "certification": "#7d1d3f",   /* burgundy - industry or platform certification */
+  "course":     "#7da3c8",   /* blue - individual online course */
 };
 
+/* Still used for category tags in the detail panel */
 const CATEGORY_TAG_CLASS = {
   "analytics":     "tag--navy",
   "data-science":  "tag--red",
-  "foundations":   "tag--navy",
+  "mathematics":   "tag--navy",
   "visualisation": "tag--gold",
+};
+
+/* Quadrant label display names */
+const QUADRANT_LABELS = {
+  "analytics":     "Analytics",
+  "data-science":  "Data Science",
+  "mathematics":   "Mathematics",
+  "visualisation": "Visualisation",
 };
 
 /* ── Tooltip state ── */
@@ -222,6 +248,21 @@ function drawChart(courses, hoverId = null) {
   ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
   ctx.setLineDash([]);
 
+  /* Quadrant labels */
+  const QL_STYLE = 'rgba(255,255,255,0.18)';
+  ctx.font = '500 9px "DM Mono", monospace';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = QL_STYLE;
+  ctx.fillText('DATA SCIENCE', 8, 8);
+  ctx.textAlign = 'right';
+  ctx.fillText('VISUALISATION', W - 8, 8);
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText('MATHEMATICS', 8, H - 8);
+  ctx.textAlign = 'right';
+  ctx.fillText('ANALYTICS', W - 8, H - 8);
+
   const PAD = 16;
   const mapX = d => PAD + ((d - 1) / 9) * (W - PAD * 2);
   const mapY = d => H - PAD - ((d - 1) / 9) * (H - PAD * 2);
@@ -231,7 +272,7 @@ function drawChart(courses, hoverId = null) {
     const y = mapY(c.duration);
     const isActive  = c.id === activeId;
     const isHovered = c.id === hoverId;
-    const col = CATEGORY_COLORS[c.category] || '#888';
+    const col = COURSE_TYPE_COLORS[c.courseType] || '#7da3c8';
     const r = (isActive || isHovered) ? 14 : 11;
 
     if (isActive || isHovered) {
@@ -265,7 +306,7 @@ function renderCourseList(courses) {
     const li = document.createElement('li');
     li.className = 'course-list-item' + (c.id === activeId ? ' active' : '');
     li.setAttribute('data-id', c.id);
-    const col = CATEGORY_COLORS[c.category] || '#888';
+    const col = COURSE_TYPE_COLORS[c.courseType] || '#7da3c8';
     li.innerHTML = `
       <span class="course-num">${c.id}.</span>
       <span class="course-dot" style="background:${col};box-shadow:0 0 5px ${col}80"></span>
@@ -278,6 +319,16 @@ function renderCourseList(courses) {
 
 /* ── Detail panel ── */
 function renderDetail(course) {
+  /* Render course-type legend */
+  const legend = document.getElementById('courseTypeLegend');
+  if (legend && !legend.dataset.built) {
+    legend.dataset.built = '1';
+    legend.innerHTML = Object.entries(COURSE_TYPE_COLORS).map(([type, col]) => {
+      const label = type === 'pathway' ? 'Learning Pathway' : type === 'certification' ? 'Industry Certification' : 'Online Course';
+      return `<span class="ql"><span class="ql-dot" style="background:${col}"></span>${label}</span>`;
+    }).join('');
+  }
+
   const panel = document.getElementById('courseDetailPanel');
   if (!panel) return;
   if (!course) {
