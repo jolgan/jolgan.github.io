@@ -476,3 +476,29 @@
   z-index: 1;
   border-radius: inherit;
 }
+
+
+/* ── Nav card background photo (subtle, dark-overlaid) ── */
+.nav-card--has-bg {
+  position: relative;
+  overflow: hidden;
+}
+.nav-card--has-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--card-bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  transition: opacity 0.4s var(--ease);
+  border-radius: inherit;
+}
+.nav-card--has-bg:hover::before {
+  opacity: 0.22;
+}
+/* Ensure text sits above background */
+.nav-card--has-bg > * {
+  position: relative;
+  z-index: 1;
+}

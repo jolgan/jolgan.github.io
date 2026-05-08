@@ -327,3 +327,24 @@ h1, h2, h3, h4 {
   border-color: var(--burgundy-light);
   color: var(--text-primary);
 }
+
+
+/* ── Footer with lifestyle photo background ── */
+.footer--photo {
+  position: relative;
+  overflow: hidden;
+}
+.footer--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--footer-bg);
+  background-size: cover;
+  background-position: center 60%;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.footer--photo > * {
+  position: relative;
+  z-index: 1;
+}
