@@ -12,7 +12,7 @@ const COURSES = [
     courseType: "certification",
     category: "data-science",
     platform: "SAS Academy",
-    difficulty: 8,
+    difficulty: 9,
     duration: 8,
     desc: "In-depth data analysis using SAS software. Completed as part of the MSc SAS Academy accreditation at Regent's University London.",
     skills: ["SAS", "Statistical Analysis", "Data Mining"],
@@ -185,6 +185,7 @@ const COURSES = [
   {
     id: 17,
     name: "How Generative AI Will Transform Healthcare",
+    shortName: "Gen AI for Healthcare",
     courseType: "course",
     category: "data-science",
     platform: "LinkedIn Learning",
@@ -310,7 +311,7 @@ function renderCourseList(courses) {
     li.innerHTML = `
       <span class="course-num">${c.id}.</span>
       <span class="course-dot" style="background:${col};box-shadow:0 0 5px ${col}80"></span>
-      <span class="course-name">${c.name}</span>
+      <span class="course-name">${c.shortName || c.name}</span>
     `;
     li.addEventListener('click', () => selectCourse(c.id));
     list.appendChild(li);
@@ -335,13 +336,14 @@ function renderDetail(course) {
     panel.innerHTML = `<div class="course-detail-empty"><span>select a course to see details</span></div>`;
     return;
   }
-  const tagClass = CATEGORY_TAG_CLASS[course.category] || 'tag--navy';
+  const typeColor = COURSE_TYPE_COLORS[course.courseType] || '#7da3c8';
+  const typeLabel = course.courseType === 'pathway' ? 'Learning Pathway' : course.courseType === 'certification' ? 'Industry Certification' : 'Online Course';
   const catLabel = course.category.replace('-', ' ');
   const skillTags = (course.skills || []).map(s => `<span class="tag tag--navy">${s}</span>`).join('');
 
   panel.innerHTML = `
     <div class="course-detail-content">
-      <span class="tag ${tagClass} cd-category">${catLabel}</span>
+      <div class="cd-type-row"><span class="cd-type-dot" style="background:${typeColor}"></span><span class="cd-type-label">${typeLabel}</span><span class="cd-cat-label">${catLabel}</span></div>
       <h3 class="cd-title">${course.name}</h3>
       <p class="cd-platform">${course.platform}</p>
       <p class="cd-desc">${course.desc}</p>
@@ -364,7 +366,7 @@ function showTooltip(course, canvasX, canvasY) {
   const t = document.createElement('div');
   t.id        = 'chart-tooltip';
   t.className = 'chart-tooltip';
-  t.textContent = course.name + ' — click for details';
+  t.textContent = course.name + ' (click to see details below)';
 
   /* Append off-screen first to measure width */
   t.style.visibility = 'hidden';

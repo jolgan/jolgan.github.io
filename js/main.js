@@ -128,14 +128,22 @@ function toggleCredImg(wrapper) {
   const isExpanded = wrapper.classList.toggle('expanded');
 
   if (isExpanded) {
-    /* Measure natural image height at full card width */
-    const cardWidth = wrapper.offsetWidth;
+    /* Use parent width (the card) as the expanded width target */
+    const parentWidth = (wrapper.closest('.cred-card') || wrapper.parentElement).offsetWidth;
+    const targetWidth = Math.min(parentWidth, wrapper.closest('.course-cert-card') ? parentWidth : parentWidth);
     const ratio = img.naturalHeight / img.naturalWidth;
-    const targetH = Math.round(cardWidth * ratio);
+    const naturalH = Math.round(targetWidth * ratio);
+    /* Cap: 180px desktop, uncapped mobile */
+    const isMobile = window.innerWidth < 768;
+    const maxH = isMobile ? 400 : 180;
+    const isMimoItem = wrapper.closest('.course-cert-img-pair');
+    const memoMax = isMimoItem ? (isMobile ? 240 : 130) : maxH;
+    const targetH = Math.min(naturalH, memoMax);
     wrapper.style.setProperty('--expanded-h', targetH + 'px');
-    /* Scroll so the card stays visible */
+    /* Scroll card into view */
     setTimeout(() => {
-      wrapper.closest('.cred-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const card = wrapper.closest('.cred-card, .course-cert-card');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 80);
   } else {
     wrapper.style.removeProperty('--expanded-h');
