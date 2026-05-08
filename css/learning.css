@@ -130,13 +130,13 @@
   border: 1px solid var(--border);
 }
 .ql--tl { top: 14px; left: 68px; }
-.ql--tr { top: 14px; right: 10px; }
+.ql--tr { top: 14px; right: 58px; }
 .ql--bl { bottom: 28px; left: 68px; }
-.ql--br { bottom: 28px; right: 10px; }
+.ql--br { bottom: 28px; right: 58px; }
 
 /* ── Chart axis labels ── */
 .chart-container::before {
-  content: 'course duration';
+  content: '→ course duration';
   position: absolute;
   left: 8px;
   top: 50%;
@@ -877,7 +877,8 @@
 .course-cert-header--img-right .course-cert-meta {
   order: 1;
 }
-.course-cert-header--img-right .course-cert-img-slot {
+.course-cert-header--img-right .course-cert-img-slot,
+.course-cert-header--img-right .course-cert-img-pair {
   order: 2;
 }
 
@@ -951,4 +952,41 @@
 }
 .course-cert-img-slot.cred-img-wrapper.expanded .cred-img-overlay {
   display: none;
+}
+
+/* ── Course type legend ── */
+.course-type-legend {
+  display: flex;
+  gap: var(--sp-6);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--sp-4) 0 var(--sp-2);
+}
+/* .ql and .ql-dot already used for quadrant labels - reuse */
+.course-type-legend .ql {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.course-type-legend .ql-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Mimo dual certificate image pair ── */
+.course-cert-img-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.course-cert-img-pair .course-cert-img-slot.cred-img-wrapper {
+  width: 80px;
+  height: 56px;
 }
