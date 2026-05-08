@@ -42,7 +42,7 @@ const COURSES = [
   {
     id: 4,
     name: "Adobe InDesign",
-    courseType: "certification",
+    courseType: "pathway",
     category: "visualisation",
     platform: "Adobe via LinkedIn Learning",
     difficulty: 7,
@@ -97,7 +97,7 @@ const COURSES = [
   {
     id: 9,
     name: "Python AI Development",
-    courseType: "pathway",
+    courseType: "course",
     category: "data-science",
     platform: "Mimo",
     difficulty: 8,
