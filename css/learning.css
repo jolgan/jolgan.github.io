@@ -967,6 +967,7 @@
 }
 /* .ql and .ql-dot already used for quadrant labels - reuse */
 .course-type-legend .ql {
+  position: static;       /* override .ql position:absolute */
   display: flex;
   align-items: center;
   gap: 6px;
@@ -974,6 +975,9 @@
   font-size: 0.65rem;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  background: none;
+  border: none;
+  padding: 0;
 }
 .course-type-legend .ql-dot {
   width: 10px;

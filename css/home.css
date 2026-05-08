@@ -478,27 +478,18 @@
 }
 
 
-/* ── Nav card background photo (subtle, dark-overlaid) ── */
+/* ── Nav card background photo ── */
+/* Use background-image directly; ::before is taken by the gradient bar */
 .nav-card--has-bg {
-  position: relative;
-  overflow: hidden;
-}
-.nav-card--has-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--card-bg);
+  background-image:
+    linear-gradient(rgba(18,17,16,0.82), rgba(18,17,16,0.82)),
+    var(--card-bg);
   background-size: cover;
   background-position: center;
-  opacity: 0.18;
-  transition: opacity 0.4s var(--ease);
-  border-radius: inherit;
+  transition: background-color var(--t-mid) var(--ease);
 }
-.nav-card--has-bg:hover::before {
-  opacity: 0.32;
-}
-/* Ensure text sits above background */
-.nav-card--has-bg > * {
-  position: relative;
-  z-index: 1;
+.nav-card--has-bg:hover {
+  background-image:
+    linear-gradient(rgba(18,17,16,0.68), rgba(18,17,16,0.68)),
+    var(--card-bg);
 }
