@@ -25,7 +25,7 @@ const COURSES = [
     platform: "HandShake Academy",
     difficulty: 3,
     duration: 3,
-    desc: "Extended description below.",
+    desc: "Platform-native analytics for student placement tracking. Dashboard creation, automated report scheduling, and data export for Power BI integration.",
     skills: ["Reporting", "Analytics", "Dashboarding"],
   },
   {
@@ -191,7 +191,7 @@ const COURSES = [
     platform: "LinkedIn Learning",
     difficulty: 5,
     duration: 3,
-    desc: "Extended description below.",
+    desc: "Generative AI applications in diagnostics, genomics, and personalised therapies. Covers AI in drug discovery and clinical decision support, with a precision medicine lens.",
     skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
   }
 ];
