@@ -1048,3 +1048,10 @@
 .course-detail-panel {
   margin-top: var(--sp-4);
 }
+
+/* ── Tag gap fix in course detail panel ── */
+.course-detail-panel .project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
