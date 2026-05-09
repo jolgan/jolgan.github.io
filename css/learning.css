@@ -1032,3 +1032,19 @@
 .course-cert-img-pair .course-cert-img-slot.cred-img-wrapper.expanded {
   height: var(--expanded-h, 130px);   /* smaller cap for Mimo pair items */
 }
+
+/* ── Brief summary label in detail panel ── */
+.cd-desc-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+
+/* Course detail panel: full width when list is removed */
+.course-detail-panel {
+  margin-top: var(--sp-4);
+}
