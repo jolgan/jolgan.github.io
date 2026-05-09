@@ -14,7 +14,7 @@ const COURSES = [
     platform: "SAS Academy",
     difficulty: 9,
     duration: 8,
-    desc: "In-depth data analysis using SAS software. Completed as part of the MSc SAS Academy accreditation at Regent's University London.",
+    desc: "Accreditation earned through the MSc at Regent's University London. Statistical analysis, data manipulation, and model building in SAS JMP.",
     skills: ["SAS", "Statistical Analysis", "Data Mining"],
   },
   {
@@ -25,7 +25,7 @@ const COURSES = [
     platform: "HandShake Academy",
     difficulty: 3,
     duration: 3,
-    desc: "Principles of reporting and analytics including dashboard creation, automated report scheduling, and report customisation. Completed during internship involvement with HandShake.",
+    desc: "Extended description below.",
     skills: ["Reporting", "Analytics", "Dashboarding"],
   },
   {
@@ -36,7 +36,7 @@ const COURSES = [
     platform: "KNIME via LinkedIn Learning",
     difficulty: 8,
     duration: 7,
-    desc: "Six-course professional learning path accredited by KNIME. Covers data science fundamentals, low code/no-code data literacy, AI, classification modelling, generative AI, and non-technical skills of effective data scientists.",
+    desc: "Six-course path: data science fundamentals, low-code data literacy, AI, classification modelling, and generative AI.",
     skills: ["KNIME", "Data Pipelines", "Machine Learning", "Generative AI"],
   },
   {
@@ -47,7 +47,7 @@ const COURSES = [
     platform: "Adobe via LinkedIn Learning",
     difficulty: 7,
     duration: 2,
-    desc: "Professional data presentation and layout design for print and digital publishing. Directly applied at Legal 500 for data report production via InDesign Data Merge pipelines.",
+    desc: "Professional certificate. Data presentation and layout design applied to 130+ reports at Legal 500 via InDesign Data Merge pipelines.",
     skills: ["InDesign", "Layout Design", "Data Merge", "Print Production"],
   },
   {
@@ -58,7 +58,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 6,
     duration: 4,
-    desc: "Introductory overview of artificial intelligence, machine learning concepts, and large language models. Covers theory, use cases, and practical limitations.",
+    desc: "Introductory overview of AI, ML concepts, and LLMs. Theory, use cases, and practical limitations.",
     skills: ["AI", "Machine Learning", "LLMs"],
   },
   {
@@ -69,7 +69,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 5,
     duration: 2,
-    desc: "Foundations of data visualisation: chart selection, visual encoding principles, and communicating data clearly to non-technical audiences using AI-assisted tools.",
+    desc: "Chart selection, visual encoding principles, and communicating data clearly to non-technical audiences.",
     skills: ["Data Visualisation", "Chart Design", "Data Storytelling"],
   },
   {
@@ -80,7 +80,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 6,
     duration: 5,
-    desc: "How AI tools and techniques augment traditional analytics workflows, including AI-assisted insight generation, significance testing, and automation.",
+    desc: "AI tools augmenting analytics: AI-assisted insight generation, significance testing, and workflow automation.",
     skills: ["AI", "Analytics", "A/B Testing", "Statistics"],
   },
   {
@@ -91,7 +91,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 5,
     duration: 5,
-    desc: "Intermediate Python: object-oriented programming, data structures, higher-order functions, lambda expressions, and data hiding for secure code.",
+    desc: "Intermediate Python: OOP, data structures, higher-order functions, and lambda expressions.",
     skills: ["Python", "OOP", "Data Structures", "Functions"],
   },
   {
@@ -102,7 +102,7 @@ const COURSES = [
     platform: "Mimo",
     difficulty: 8,
     duration: 8,
-    desc: "Applied Python for AI development covering Python essentials, functional and object-oriented programming paradigms, building scripts, working with modules and APIs, and working with LLMs.",
+    desc: "Applied Python for AI: scripts, modules, APIs, and working with LLMs.",
     skills: ["Python", "AI Development", "APIs", "LLMs"],
   },
   {
@@ -113,7 +113,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 6,
     duration: 8,
-    desc: "Intermediate SQL: text manipulation functions, CASE/WHEN logic, AUTO_INCREMENT, UNION vs UNION ALL, and SQL constraints for data integrity.",
+    desc: "Intermediate SQL: text functions, CASE/WHEN logic, UNION, and data integrity constraints.",
     skills: ["SQL", "Database Design", "Data Manipulation"],
   },
   {
@@ -124,7 +124,7 @@ const COURSES = [
     platform: "Encode",
     difficulty: 3,
     duration: 7,
-    desc: "Hands-on SQL fundamentals: SELECT, filtering, aggregation, JOINs, INSERT, DELETE, and foreign key relationships. Practical refresher course.",
+    desc: "SQL fundamentals: SELECT, filtering, aggregation, JOINs, and relational database concepts.",
     skills: ["SQL", "Databases", "Query Writing", "JOINs"],
   },
   {
@@ -135,7 +135,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 6,
     duration: 6,
-    desc: "Statistical significance testing for A/B experiments. p-values, the 5% industry standard threshold, and using AI to calculate conversion rates and drive product decisions. Completed as preparatory self-learning for the 2025 UX Design Conference.",
+    desc: "A/B experiment design: p-values, statistical significance, and AI-assisted conversion rate analysis.",
     skills: ["A/B Testing", "Statistics", "p-values", "AI Tools"],
   },
   {
@@ -146,7 +146,7 @@ const COURSES = [
     platform: "Sololearn",
     difficulty: 6,
     duration: 7,
-    desc: "Python and SQL for data analysis: data type conversion, loops, conditionals, list operations, SQL aggregation, filtering, sorting, and relational database concepts.",
+    desc: "Python and SQL for data: loops, conditionals, aggregation, filtering, and relational database concepts.",
     skills: ["Python", "SQL", "Data Analysis", "Debugging"],
   },
   {
@@ -157,7 +157,7 @@ const COURSES = [
     platform: "University of Zurich via Coursera",
     difficulty: 7,
     duration: 6,
-    desc: "Mathematical foundations of probability. Classical, empirical, and subjective probabilities, probability trees, naive Bayes, binomials, Q-Q plots, and Excel statistical functions.",
+    desc: "Probability theory: classical and empirical probability, naive Bayes, binomials, and Q-Q plots.",
     skills: ["Probability", "Statistics", "Bayes", "Excel"],
   },
   {
@@ -168,7 +168,7 @@ const COURSES = [
     platform: "Encode",
     difficulty: 9,
     duration: 4,
-    desc: "Data analysis techniques using R: objects, vectors, packages (tidyverse, dplyr), reading CSVs, data wrangling, and data visualisation with graphs.",
+    desc: "R for data analysis: tidyverse, dplyr, data wrangling, and visualisation with graphs.",
     skills: ["R", "tidyverse", "dplyr", "Data Wrangling"],
   },
   {
@@ -179,7 +179,7 @@ const COURSES = [
     platform: "IBM via edX",
     difficulty: 4,
     duration: 6,
-    desc: "Foundational data analytics: data file formats, relational databases, NoSQL, ETL, data wrangling, dashboarding, visualisation, and storytelling. Authorised by IBM.",
+    desc: "IBM/edX. Full analytics workflow: databases, ETL, data wrangling, dashboarding, and storytelling.",
     skills: ["Data Analytics", "ETL", "Databases", "Visualisation"],
   },
   {
@@ -191,7 +191,7 @@ const COURSES = [
     platform: "LinkedIn Learning",
     difficulty: 5,
     duration: 3,
-    desc: "Completed March 2025. An introduction to generative AI applications in healthcare, covering emerging use cases in diagnostics, drug discovery, genomics, and patient care. Particularly relevant to a long-term interest in precision medicine and data-driven therapeutics.",
+    desc: "Extended description below.",
     skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
   }
 ];
@@ -346,7 +346,7 @@ function renderDetail(course) {
       <div class="cd-type-row"><span class="cd-type-dot" style="background:${typeColor}"></span><span class="cd-type-label">${typeLabel}</span><span class="cd-cat-label">${catLabel}</span></div>
       <h3 class="cd-title">${course.name}</h3>
       <p class="cd-platform">${course.platform}</p>
-      <p class="cd-desc">${course.desc}</p>
+      <p class="cd-desc"><span class="cd-desc-label">brief summary</span>${course.desc}</p>
       <div class="project-tags">${skillTags}</div>
       <div class="cd-meta">
         <span class="cd-meta-item"><strong>difficulty</strong> ${course.difficulty}/10</span>
