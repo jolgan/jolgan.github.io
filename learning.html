@@ -54,7 +54,7 @@
         </div>
         <p class="section-intro">
           Each course is plotted by estimated difficulty (x-axis) and duration (y-axis), grouped by domain.
-          Click any numbered point or list item to jump to the course detail below.
+          Click any dot to see a brief summary below.
         </p>
 
         <!-- Interactive Chart -->
@@ -65,15 +65,10 @@
         <!-- Course type legend (populated by JS) -->
         <div id="courseTypeLegend" class="course-type-legend"></div>
 
-        <!-- Course List + Detail Cards -->
-        <div class="course-layout">
-          <ol class="course-list" id="courseList">
-            <!-- Populated by JS -->
-          </ol>
-          <div class="course-detail-panel" id="courseDetailPanel">
-            <div class="course-detail-empty">
-              <span>← Select a course to see details</span>
-            </div>
+        <!-- Detail panel (full width now list is removed) -->
+        <div class="course-detail-panel" id="courseDetailPanel" style="max-width:760px;margin:0 auto;">
+          <div class="course-detail-empty">
+            <span>Select a dot to see a brief summary</span>
           </div>
         </div>
       </div>
@@ -329,6 +324,29 @@
             </ul>
           </div>
 
+          <!-- Healthcare AI - LinkedIn Learning (March 2025) -->
+          <div class="course-cert-card">
+            <div class="course-cert-header course-cert-header--img-right">
+              <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
+                <img src="media/certs/linkedin-healthcare-ai.png" alt="An Introduction to How Generative AI Will Transform Healthcare - LinkedIn Learning certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+              <div class="course-cert-meta">
+                <span class="tag tag--red">LinkedIn Learning</span>
+                <h3 class="course-cert-title">An Introduction to How Generative AI Will Transform Healthcare</h3>
+                <div class="course-cert-links">
+                  <a href="https://www.linkedin.com/learning/an-introduction-to-how-generative-ai-will-transform-healthcare" target="_blank" rel="noopener" class="cred-link">course page</a>
+                </div>
+                <p class="course-cert-note">Completed March 2025. CPE-accredited via QAS Self Study.</p>
+              </div>
+            </div>
+            <ul class="course-cert-bullets">
+              <li>Generative AI use cases in diagnostics, drug discovery, genomics, and personalised therapies</li>
+              <li>Patient data privacy, regulatory frameworks, and ethical considerations in clinical AI</li>
+              <li>Real-world applications across medical imaging, clinical decision support, and health system operations</li>
+            </ul>
+          </div>
+
           <div class="course-cert-card">
             <div class="course-cert-header course-cert-header--img-right">
               <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
@@ -353,28 +371,7 @@
 
 
 
-          <!-- Healthcare AI - LinkedIn Learning (March 2025) -->
-          <div class="course-cert-card">
-            <div class="course-cert-header course-cert-header--img-right">
-              <div class="course-cert-img-slot cred-img-wrapper" onclick="toggleCredImg(this)" style="cursor:pointer">
-                <img src="media/certs/linkedin-healthcare-ai.png" alt="An Introduction to How Generative AI Will Transform Healthcare - LinkedIn Learning certificate" />
-                <div class="cred-img-overlay"></div>
-              </div>
-              <div class="course-cert-meta">
-                <span class="tag tag--red">LinkedIn Learning</span>
-                <h3 class="course-cert-title">An Introduction to How Generative AI Will Transform Healthcare</h3>
-                <div class="course-cert-links">
-                  <a href="https://www.linkedin.com/learning/an-introduction-to-how-generative-ai-will-transform-healthcare" target="_blank" rel="noopener" class="cred-link">course page</a>
-                </div>
-                <p class="course-cert-note">Completed March 2025. CPE-accredited via QAS Self Study.</p>
-              </div>
-            </div>
-            <ul class="course-cert-bullets">
-              <li>Generative AI use cases in diagnostics, drug discovery, genomics, and personalised therapies</li>
-              <li>Patient data privacy, regulatory frameworks, and ethical considerations in clinical AI</li>
-              <li>Real-world applications across medical imaging, clinical decision support, and health system operations</li>
-            </ul>
-          </div>
+
 
           <!-- HandShake Reporting and Analytics - Academy (internship-linked) -->
           <div class="course-cert-card">
@@ -387,9 +384,9 @@
                 <span class="tag tag--navy">HandShake Academy</span>
                 <h3 class="course-cert-title">Reporting and Analytics</h3>
                 <div class="course-cert-links">
-                  <a href="http://verify.skilljar.com/c/2ux8cc4akqwb" target="_blank" rel="noopener" class="cred-link">verify certificate</a>
+                  <a href="https://verify.skilljar.com/c/2ux8cc4akqwb" target="_blank" rel="noopener" class="cred-link">verify certificate</a>
                 </div>
-                <p class="course-cert-note">Completed during the ACCND internship at Regent's University London. Applied directly to the Student Placements Power BI Dashboard project.</p>
+                <p class="course-cert-note">Completed 20 July 2024, during the ACCND internship at Regent's University London. Applied directly to the Student Placements Power BI Dashboard project.</p>
               </div>
             </div>
             <ul class="course-cert-bullets">
