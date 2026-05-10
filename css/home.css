@@ -229,32 +229,6 @@
   background: var(--surface-2);
   transition: all var(--t-mid) var(--ease);
   cursor: default;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.tool-icon {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  opacity: 0.6;
-  transition: opacity var(--t-fast);
-}
-
-.tool-icon--mono {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  opacity: 0.6;
-  flex-shrink: 0;
-  transition: opacity var(--t-fast);
 }
 
 .tool-chip:hover {
@@ -262,11 +236,6 @@
   color: var(--gold-light);
   background: rgba(201,168,76,0.06);
   transform: translateY(-2px);
-}
-
-.tool-chip:hover .tool-icon,
-.tool-chip:hover .tool-icon--mono {
-  opacity: 1;
 }
 
 /* ── Credentials Marquee (auto-scroll, pause on hover) ── */
