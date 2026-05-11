@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Jolene Gan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/portfolio.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">JG</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+      <li><a href="learning.html" class="nav-link">Learning &amp; Development</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="portfolio-main">
+
+    <header class="page-header">
+      <div class="page-header-inner">
+        <p class="page-eyebrow">02 / Portfolio</p>
+        <h1 class="page-title">Work &amp;<br/><em>Credentials.</em></h1>
+        <p class="page-subtitle">Professional, academic, and independent projects alongside formal credentials.</p>
+      </div>
+    </header>
+
+    <!-- Jump Links -->
+    <div class="jump-nav">
+      <div class="jump-nav-inner">
+        <a href="#credentials" class="jump-link">Credentials</a>
+        <a href="#professional" class="jump-link">Professional</a>
+        <a href="#academic" class="jump-link">Academic</a>
+        <a href="#independent" class="jump-link">Independent</a>
+      </div>
+    </div>
+
+    <!-- Credentials -->
+    <section class="port-section" id="credentials">
+      <div class="port-inner">
+        <div class="section-header">
+          <h2 class="section-title">Credentials</h2>
+        </div>
+        <div class="cred-grid">
+
+          <div class="cred-card cred-card--academic">
+            <span class="tag tag--gold">Academic</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/msc-distinction.jpg" alt="MSc Data Science in Business certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+            <h3 class="cred-title">MSc Data Science in Business</h3>
+            <p class="cred-issuer">Regent's University London, 2024</p>
+            <p class="cred-detail">Awarded with distinction. SAS Academy accredited. 2x conference invited speaker. Textbook contributor for Data Science for Predictive UX Design (forthcoming, 2026).</p>
+          </div>
+
+          <div class="cred-card cred-card--academic">
+            <span class="tag tag--gold">Academic</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/ba-communication.png" alt="BA in Communication certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+            <h3 class="cred-title">BA in Communication</h3>
+            <p class="cred-issuer">SUNY University at Buffalo, 2021</p>
+            <p class="cred-detail">Relevant coursework: Statistics for Social Sciences, Risk Communication.</p>
+          </div>
+
+          <div class="cred-card cred-card--academic">
+            <span class="tag tag--gold">Academic</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+            <h3 class="cred-title">Diploma in Business Information Systems</h3>
+            <p class="cred-issuer">Republic Polytechnic, 2018</p>
+            <p class="cred-detail">Recipient of Edusave Good Progress Award. Coursework: Database Systems, Business Intelligence, Systems Analysis and Design.</p>
+          </div>
+
+          <div class="cred-card">
+            <span class="tag tag--green">Professional Certificate</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/sas-jmp.png" alt="SAS Certificate of Achievement" />
+                <div class="cred-img-overlay"></div>
+              </div>
+            <h3 class="cred-title">Certificate of Achievement: Data Analysis using SAS JMP</h3>
+            <p class="cred-issuer">SAS Academy, issued via Regent's University London, 2024</p>
+            <p class="cred-detail">
+              Demonstrates proficiency in using SAS software for statistical analysis. Covers comparing means,
+              analysis of variance, categorical analysis, correlation and regression, multiple linear regression,
+              and logistic regression.
+            </p>
+          </div><div class="cred-card">
+            <span class="tag tag--green">Professional Certificate</span>
+            <div class="cred-img-wrapper" onclick="toggleCredImg(this)">
+                <img src="media/certs/knime-data-science.png" alt="Data Science by KNIME certificate" />
+                <div class="cred-img-overlay"></div>
+              </div>
+            <h3 class="cred-title">Data Science by KNIME</h3>
+            <p class="cred-issuer">Accredited by KNIME, facilitated on LinkedIn Learning</p>
+            <p class="cred-detail">
+              Six-course learning path covering:
+              <ul class="cred-bullets">
+                <li>Data Science Fundamentals</li>
+                <li>Low Code/No-Code Data Literacy</li>
+                <li>Introduction to AI</li>
+                <li>Classification Modelling</li>
+                <li>Generative AI and LLMs</li>
+                <li>Non-Technical Skills of Effective Data Scientists</li>
+              </ul>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Professional Projects -->
+    <section class="port-section" id="professional">
+      <div class="port-inner">
+        <div class="section-header">
+          <h2 class="section-title">Professional</h2>
+        </div>
+        <p class="section-intro">Projects completed as part of paid employment or competitive processes.</p>
+        <div class="project-list">
+
+          <!-- NSS Dashboard -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--green">Independent / Hiring Process</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">UK National Student Survey (NSS) Performance Dashboard</h3>
+              <p class="project-desc">
+                Time-boxed stakeholder dashboard using public-sector survey data, developed and presented
+                as part of a competitive hiring process. End-to-end raw data transformation into a
+                structured, interactive Power BI dashboard.
+              </p>
+              <div class="project-links">
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDk3Njc5ZTctOTk2Mi00OTkxLWI1MGMtMjMwYTM5NjZmOTE3IiwidCI6ImYzMzE3MDQxLTRjMzYtNDQ2Ni1iNmIzLTdiZDdjNTYxZWM3YyJ9&embedImagePlaceholder=true" target="_blank" rel="noopener" class="project-link">live dashboard</a>
+                <a href="https://github.com/jolgan/uk-nationalstudentsurvey" target="_blank" rel="noopener" class="project-link">GitHub documentation</a>
+                <a href="https://www.officeforstudents.org.uk/for-providers/student-protection-and-choice/national-student-survey-nss/" target="_blank" rel="noopener" class="project-link">data source (OfS)</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">ETL</span>
+                <span class="tag tag--navy">Power Query</span>
+                <span class="tag tag--navy">Data Cleaning</span>
+                <span class="tag tag--navy">Conditional Formatting</span>
+                <span class="tag tag--green">Public Sector Data</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>ETL: data type correction, null handling, Power Query transformation, data restructuring with custom columns</li>
+                <li>Troubleshooting Excel source file for Power BI compatibility</li>
+                <li>Relative performance logic using conditional columns</li>
+                <li>Conditional formatting for interpretability</li>
+              </ul>
+            </div>
+            <div class="project-split-media">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIII.%20OfS%20NSS%202025%20Dashboard.mp4">
+              </video>
+            </div>
+          </div>
+
+          <!-- Student Placements Dashboard -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--red">Regent's University London</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Student Placements Power BI Dashboard</h3>
+              <p class="project-desc">
+                Designed and implemented a Power BI dashboard for the Alumni Community, Careers Network
+                and Development (ACCND) department to visualise student placement data. Enabled real-time
+                monitoring of placement progress, approval statuses, and UKVI compliance, contributing to
+                a projected 6-fold improvement in UKVI audit response speed.
+              </p>
+              <p class="project-desc">
+                Data sourced from Handshake (student experience forms), cleaned for data type issues,
+                restructured via Excel, and visualised in Power BI with drill-down to individual student
+                records, employer details, and approval levels. A handover document was produced for the
+                incoming senior data scientist covering data flow, dashboard architecture, and future guidance.
+              </p>
+              <div class="project-links">
+                <a href="https://joinhandshake.co.uk/" target="_blank" rel="noopener" class="project-link">Handshake (platform)</a>
+                <a href="learning.html#course-certs" class="project-link">Reporting and Analytics course</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">ETL</span>
+                <span class="tag tag--navy">Handshake Analytics</span>
+                <span class="tag tag--navy">Data Cleaning</span>
+                <span class="tag tag--navy">Process Documentation</span>
+                <span class="tag tag--green">UKVI Compliance</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Diagnosed and resolved data type issues in Handshake survey template causing null values in pre-Oct 2024 records</li>
+                <li>Built dashboard with real-time filters for students starting or ending placements within two weeks</li>
+                <li>Drill-down to individual student placement details, approval statuses, and employer information</li>
+                <li>Produced full handover documentation for a senior data scientist covering data flow, architecture, and future guidance</li>
+              </ul>
+            </div>
+            <div class="project-split-media project-placements-media">
+              <img class="project-placements-screenshot" src="media/projects/student-placements-dashboard.png"
+                   alt="Student Experience Approvals Dashboard, Regent's University London" />
+              <video class="project-placements-video" autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIIA.%20HandShake%20Data%20Dashboard%20Development%20for%20Placement%20Analysis.mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-meta">
+              <span class="tag tag--red">Legal 500</span>
+              <span class="project-year">2025</span>
+            </div>
+            <h3 class="project-title">Excel-to-InDesign Semi-Automation Pipeline</h3>
+            <p class="project-desc">
+              Independently designed and built a semi-automated Excel-to-CSV pipeline integrated with
+              InDesign Data Merge, reducing manual report production time by approximately 55 to 60%.
+              Applied across 130+ legal data reports.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag--navy">Excel</span>
+              <span class="tag tag--navy">InDesign</span>
+              <span class="tag tag--navy">Automation</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-meta">
+              <span class="tag tag--red">Legal 500</span>
+              <span class="project-year">2025</span>
+            </div>
+            <h3 class="project-title">Data Visualisation Innovation</h3>
+            <p class="project-desc">
+              Drove a data visualisation overhaul within the product development department, improving
+              the core product to save approximately 50% of manual reporting time and increase data
+              legibility. Expertise subsequently applied across sales and editorial teams.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag--navy">Power BI</span>
+              <span class="tag tag--navy">Tableau</span>
+              <span class="tag tag--navy">Data Visualisation</span>
+            </div>
+          </div>
+
+
+
+
+          <!-- Project I: REPT Consultancy (carousel, 7 media items) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--red">Regent's University London</span>
+                <span class="tag tag--navy" style="margin-left:var(--sp-2)">Paid Internship</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">REPT Administration Data Consultancy</h3>
+              <div class="project-duration-badge">3 months (July - September 2024)</div>
+              <p class="project-desc">
+                Paid internship consultancy project for the role of Data Administration Intern. Delivered
+                a data-driven report titled "Mastering REPT Administration: A Data-Driven Approach",
+                identifying operational weaknesses and recommending process improvements projecting a
+                ~200% efficiency increase.
+              </p>
+              <p class="project-desc">
+                Responsibilities included reviewing and maintaining prospective student data, timely
+                analysis of test demand and invigilator supply, database management, certificate
+                generation, and email technical support across 600+ test candidates.
+              </p>
+              <div class="project-tags">
+                <span class="tag tag--navy">Data Consultancy</span>
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">Data Visualisation</span>
+                <span class="tag tag--navy">Database Management</span>
+                <span class="tag tag--navy">Process Analysis</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Data visualisation and data science consultancy</li>
+                <li>Database management: reviewing and maintaining student records across 600+ candidates</li>
+                <li>Timely analysis of test demand and supply of invigilators</li>
+                <li>Certificate generation, email technical support, and professional communication</li>
+              </ul>
+            </div>
+            <div class="project-split-media">
+              <!-- Auto-scrolling media marquee - 7 items (5 images + 2 videos) -->
+              <!-- Images PPIA through PPIF to be added when uploaded -->
+              <div class="project-marquee project-marquee--vertical">
+                <div class="project-marquee-track project-marquee-track--vertical">
+                  <!-- Set A: 5 images + 2 videos -->
+                  <div class="project-marquee-item"><img src="media/projects/ppi-a-team-activity.jpg" alt="First team meeting with REPT department, group activity" /></div>
+                  <div class="project-marquee-item project-marquee-item--video">
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIF.%20REPT%20DEPT%20Consultancy%20Project%20Presentation%20Slides.mp4"></video>
+                  </div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-b-full-classroom.jpg" alt="REPT first team meeting, full classroom view" /></div>
+                  <div class="project-marquee-item project-marquee-item--video">
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIG.%20REPT%20Analytics%20Dashboard%20Screenshot%20Left%20to%20right.mp4"></video>
+                  </div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-c-group-entrance.jpg" alt="REPT team group photo at Regent's main entrance" /></div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-d-team-activity-2.jpg" alt="Jolene with REPT team during first meeting activity" /></div>
+                  <div class="project-marquee-item"><img src="media/projects/ppi-e-staff-conference.jpg" alt="Jolene with REPT team during Regent's Staff Conference 2024" /></div>
+                  <!-- Set B - seamless loop duplicates -->
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-a-team-activity.jpg" alt="" /></div>
+                  <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIF.%20REPT%20DEPT%20Consultancy%20Project%20Presentation%20Slides.mp4"></video>
+                  </div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-b-full-classroom.jpg" alt="" /></div>
+                  <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/PPIG.%20REPT%20Analytics%20Dashboard%20Screenshot%20Left%20to%20right.mp4"></video>
+                  </div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-c-group-entrance.jpg" alt="" /></div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-d-team-activity-2.jpg" alt="" /></div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ppi-e-staff-conference.jpg" alt="" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Academic Projects -->
+    <section class="port-section" id="academic">
+      <div class="port-inner">
+        <div class="section-header">
+          <h2 class="section-title">Academic</h2>
+        </div>
+        <p class="section-intro">Projects completed during the MSc Data Science in Business programme at Regent's University London, ordered most recent first.</p>
+        <div class="project-list">
+
+          <!-- AP6: Capstone (most recent, September 2024) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--gold">MSc Capstone</span>
+                <span class="project-year">September 2024</span>
+              </div>
+              <h3 class="project-title">Data Science Consultancy (Capstone)</h3>
+              <div class="project-duration-badge">Final degree assignment, 75/100 (Distinction)</div>
+              <p class="project-desc">
+                Final project for the completion of the MSc Data Science in Business degree. Delivered a
+                full data science consultancy for Regent's University's Careers Department, producing an
+                8,000-word report, a Power BI dashboard, a 20-minute presentation, and a manipulated
+                Excel spreadsheet. The project centred on Handshake analytics, consumer intelligence via
+                Brandwatch, and actionable recommendations for the department's data infrastructure.
+              </p>
+              <div class="project-links">
+                <a href="https://www.youtube.com/watch?v=2kUSxnGk_gY&feature=youtu.be" target="_blank" rel="noopener" class="project-link">presentation on YouTube</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">Data Visualisation</span>
+                <span class="tag tag--navy">Business Analytics</span>
+                <span class="tag tag--navy">Consumer Intelligence</span>
+                <span class="tag tag--navy">Brandwatch</span>
+                <span class="tag tag--green">Career Services</span>
+              </div>
+              <p class="project-skills-label">work produced</p>
+              <ul class="project-detail-list">
+                <li>8,000-word consultancy report with data-led findings and strategic recommendations</li>
+                <li>Interactive Power BI dashboard for the Careers Department</li>
+                <li>20-minute formal presentation delivered to stakeholders</li>
+                <li>Consumer intelligence analysis via Brandwatch on Handshake brand perception at Regent's</li>
+              </ul>
+            </div>
+            <div class="project-split-media">
+              <div class="project-marquee project-marquee--vertical">
+                <div class="project-marquee-track project-marquee-track--vertical project-marquee-track--ap6">
+                  <div class="project-marquee-item"><img src="media/projects/ap6-dashboard.png" alt="Capstone Power BI dashboard screenshot" /></div>
+                  <div class="project-marquee-item"><img src="media/projects/ap6-reflective-essay.jpg" alt="Capstone reflective writing essay" /></div>
+                  <div class="project-marquee-item project-marquee-item--video">
+                    <video autoplay muted loop playsinline
+                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP6C.%20Empowering%20Career%20Services%20with%20UKVI-Ready%20Dashboards%20-%20Jolene%20Gan.mp4">
+                    </video>
+                  </div>
+                  <!-- Set B -->
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ap6-dashboard.png" alt="" /></div>
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ap6-reflective-essay.jpg" alt="" /></div>
+                  <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
+                    <video autoplay muted loop playsinline
+                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP6C.%20Empowering%20Career%20Services%20with%20UKVI-Ready%20Dashboards%20-%20Jolene%20Gan.mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AP5: AI Implementation Proposal / CRISPR (7 May 2024) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--gold">MSc Academic Project</span>
+                <span class="project-year">7 May 2024</span>
+              </div>
+              <h3 class="project-title">AI Implementation Proposal for CRISPR Therapeutics</h3>
+              <p class="project-desc">
+                A conceptual proposal enhancing the patient journey for CRISPR Therapeutics' gene editing
+                therapies using AI and machine learning. Selected CRISPR Therapeutics as the subject
+                company, mapped their customer journey, conducted a SWOT analysis, and proposed four
+                AI-driven implementation strategies: AI-trained consultants, automated patient eligibility
+                assessments, automated scheduling, and a chatbot assistant for logistics (CRIS-PRTAL).
+              </p>
+              <div class="project-links">
+                <a href="https://drive.google.com/file/d/1qnka8sCDfuS-5kVtV_ltHpwkaCKCYP2s/view" target="_blank" rel="noopener" class="project-link">full report (20+ pages)</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Generative AI</span>
+                <span class="tag tag--navy">Chatbot / Virtual Assistant</span>
+                <span class="tag tag--navy">Customer Journey Mapping</span>
+                <span class="tag tag--navy">SWOT Analysis</span>
+                <span class="tag tag--navy">RISEN Framework</span>
+                <span class="tag tag--green">Biotech / Gene Editing</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Biotech industry analysis: CRISPR Therapeutics strategy overview and competitive landscape</li>
+                <li>Customer journey mapping and SWOT analysis for a gene editing company</li>
+                <li>Four AI implementation proposals: training, eligibility ML crawl, scheduling automation, and logistics chatbot</li>
+                <li>Bioethical implications analysis and RISEN framework prompting</li>
+              </ul>
+            </div>
+            <div class="project-split-media project-split-media--video-only">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP5.%20Project%20report%20scrollthrough.mp4">
+              </video>
+            </div>
+          </div>
+
+          <!-- AP4: MS Predictors (2 May 2024) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--gold">MSc Academic Project</span>
+                <span class="project-year">2 May 2024</span>
+              </div>
+              <h3 class="project-title">Categorical Analysis on Multiple Sclerosis Predictors</h3>
+              <p class="project-desc">
+                Statistical analysis identifying categorical predictors of multiple sclerosis diagnosis
+                using a clinical dataset of 271 observations from a single hospital in Mexico.
+                Applied logistic regression, decision trees, and chi-square tests in SAS JMP to surface
+                significant predictive variables. Findings were communicated through a 37-slide data
+                storytelling presentation featuring branded visualisations and a narrative clinical
+                interpretation.
+              </p>
+              <div class="project-links">
+                <a href="https://drive.google.com/file/d/17RrLsfxH5zr0OilP9xiKo6YQFYqFimYw/view" target="_blank" rel="noopener" class="project-link">slides and speaker notes</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">SAS JMP</span>
+                <span class="tag tag--navy">Logistic Regression</span>
+                <span class="tag tag--navy">Decision Trees</span>
+                <span class="tag tag--navy">Chi-Square</span>
+                <span class="tag tag--navy">Data Mining</span>
+                <span class="tag tag--green">Health Data</span>
+              </div>
+              <p class="project-skills-label">key findings</p>
+              <ul class="project-detail-list">
+                <li>Patients with 3 initial symptoms were 11 times more likely to be diagnosed with MS than those with 1 symptom</li>
+                <li>Positive LLSSEP (nerve signal transmission) was associated with 2.8x higher MS likelihood</li>
+                <li>Prediction profiler identified a high-vulnerability patient profile across 8 categorical variables</li>
+              </ul>
+            </div>
+            <div class="project-split-media project-split-media--video-only">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP4.%20MS%20prediction%20project%20presentation%20slide%20video.mp4">
+              </video>
+            </div>
+          </div>
+
+          <!-- AP3: Chatbot (17 April 2024) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--gold">MSc Pair Project</span>
+                <span class="project-year">17 April 2024</span>
+              </div>
+              <h3 class="project-title">Joix: Building a Mental Health Chatbot</h3>
+              <p class="project-desc">
+                Pair assignment with <a href="https://www.linkedin.com/in/felixpoll/" target="_blank" rel="noopener" style="color:var(--gold-light);border-bottom:1px solid rgba(201,168,76,0.3)">Felix Jonathan Poll</a>.
+                Designed and built Joix, a chatbot on Landbot.io connecting mental health patients to
+                appropriate care as an alternative to emergency hotlines. The name combines "Jo" from
+                Jolene and "ix" from Felix, with a nod to the French word "joie" (joy), reflecting the
+                chatbot's compassionate design goal.
+              </p>
+              <p class="project-desc">
+                Addresses the intersection of telephobia (anxiety around phone calls), overburdened
+                emergency lines, and the need for low-threshold mental health support. Joix routes users
+                between non-urgent and urgent pathways, providing immediate local NHS hotline numbers
+                based on postcode input.
+              </p>
+              <div class="project-links">
+                <a href="https://drive.google.com/file/d/11PRKpBLrb7d2AB77X4SERtxVj_q1OaiS/view" target="_blank" rel="noopener" class="project-link">full report</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Artificial Intelligence</span>
+                <span class="tag tag--navy">Machine Learning</span>
+                <span class="tag tag--navy">Virtual Assistant</span>
+                <span class="tag tag--navy">Landbot.io</span>
+                <span class="tag tag--green">Mental Health / Healthcare</span>
+              </div>
+            </div>
+            <div class="project-split-media project-ap3-media">
+              <!-- Report scrollthrough on top, device mockups below -->
+              <div class="project-marquee project-marquee--vertical">
+                <div class="project-marquee-track project-marquee-track--vertical project-marquee-track--ap3">
+                  <div class="project-marquee-item project-marquee-item--video">
+                    <video autoplay muted loop playsinline
+                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP3A.%20Pair%20work%20report%20scrollthrough.mp4">
+                    </video>
+                  </div>
+                  <!-- Device mockups row -->
+                  <div class="project-marquee-item project-marquee-item--devices">
+                    <div class="device-mockup-row">
+                      <div class="device-ipad">
+                        <div class="device-screen">
+                          <video autoplay muted loop playsinline
+                            src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP3B.%20Chatbot%20iPad%20mockup%20video.mp4">
+                          </video>
+                        </div>
+                      </div>
+                      <div class="device-iphone">
+                        <div class="device-screen">
+                          <video autoplay muted loop playsinline
+                            src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP3C.%20Chatbot%20iPhone%20mockup%20video.mp4">
+                          </video>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Set B -->
+                  <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
+                    <video autoplay muted loop playsinline
+                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP3A.%20Pair%20work%20report%20scrollthrough.mp4">
+                    </video>
+                  </div>
+                  <div class="project-marquee-item project-marquee-item--devices" aria-hidden="true">
+                    <div class="device-mockup-row">
+                      <div class="device-ipad"><div class="device-screen"></div></div>
+                      <div class="device-iphone"><div class="device-screen"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AP1: Data Science Job Market (11 December 2023) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--gold">MSc Academic Project</span>
+                <span class="project-year">11 December 2023</span>
+              </div>
+              <h3 class="project-title">Analysing the Data Science Job Market</h3>
+              <p class="project-desc">
+                Industry data analysis exploring trends, skill demand, and salary patterns across the
+                data science job market. Findings were visualised and presented as a structured data
+                story combining industry research with visual communication using Power BI and PowerPoint.
+              </p>
+              <div class="project-tags">
+                <span class="tag tag--navy">Excel</span>
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">PowerPoint</span>
+                <span class="tag tag--green">Industry Data Analysis</span>
+                <span class="tag tag--gold">Data Storytelling</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Industry data analysis: sourcing, structuring, and interpreting real market data</li>
+                <li>Data visualisation: translating findings into clear, accessible visual formats</li>
+                <li>Data storytelling: building a narrative connecting data to actionable insights</li>
+              </ul>
+            </div>
+            <div class="project-split-media">
+              <div class="project-marquee project-marquee--vertical">
+                <div class="project-marquee-track project-marquee-track--vertical project-marquee-track--ap1">
+                  <div class="project-marquee-item">
+                    <img src="media/projects/ap1-presenting.jpg" alt="Jolene Gan presenting the data science job market analysis" />
+                  </div>
+                  <div class="project-marquee-item project-marquee-item--video">
+                    <video autoplay muted loop playsinline
+                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP1B.%20Presentation%20slide%20video.mp4">
+                    </video>
+                  </div>
+                  <div class="project-marquee-item project-marquee-item--video">
+                    <video autoplay muted loop playsinline
+                      src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP1C.%20Jolene%20presenting.mov">
+                    </video>
+                  </div>
+                  <!-- Set B -->
+                  <div class="project-marquee-item" aria-hidden="true"><img src="media/projects/ap1-presenting.jpg" alt="" /></div>
+                  <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP1B.%20Presentation%20slide%20video.mp4"></video>
+                  </div>
+                  <div class="project-marquee-item project-marquee-item--video" aria-hidden="true">
+                    <video autoplay muted loop playsinline src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP1C.%20Jolene%20presenting.mov"></video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AP2: Home Equity (15 December 2023) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--gold">MSc Academic Project</span>
+                <span class="project-year">15 December 2023</span>
+              </div>
+              <h3 class="project-title">Home Equity Company Client Base Case Study Analysis</h3>
+              <p class="project-desc">
+                Financial data analytics case study examining 3,364 clients of a home equity credit line
+                company across two quarters. The business goal was to minimise future loan defaults by
+                building a decision-making model for categorising applicants by default likelihood.
+                Applied end-to-end ETL in Excel Power Query, merging three datasets (Home Equity Q1,
+                Q2, and job categories), then surfaced five key strategic insights covering debt-to-income
+                ratio, property value, job tenure, and derogatory credit reports.
+              </p>
+              <div class="project-links">
+                <a href="https://drive.google.com/file/d/1A5k4PSUaubzIebuZzsjXU3iP6CmhHMhj/view" target="_blank" rel="noopener" class="project-link">full report</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Excel Power Query</span>
+                <span class="tag tag--navy">ETL</span>
+                <span class="tag tag--navy">Data Cleaning</span>
+                <span class="tag tag--navy">Data Enrichment</span>
+                <span class="tag tag--green">Financial Data Analytics</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>ETL: appending Q1 and Q2 datasets, merging job category lookup table via foreign key, data type correction and standardisation</li>
+                <li>Excel functions: IFS for extending short-form labels, conditional formatting for interactive occupational category analysis</li>
+                <li>Five strategic insights surfaced from broad exploratory analysis across geographic, demographic, and financial variables</li>
+              </ul>
+            </div>
+            <div class="project-split-media project-split-media--video-only">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/AP2.%20Report%20scrollthrough.mp4">
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- Independent Projects -->
+    <section class="port-section" id="independent">
+      <div class="port-inner">
+        <div class="section-header">
+          <h2 class="section-title">Independent</h2>
+        </div>
+        <p class="section-intro">Guided and self-directed projects completed outside of formal education or employment, ordered most recent first.</p>
+        <div class="project-list">
+
+          <!-- IP3: Maven Analytics KPI Dashboard (most recent) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--navy">Maven Analytics Guided Project</span>
+                <span class="project-year">18 January 2026</span>
+              </div>
+              <h3 class="project-title">Sales Performance KPI Dashboard</h3>
+              <p class="project-desc">
+                End-to-end Power BI report using a star-schema model, custom date hierarchies, and DAX
+                measures to analyse orders, revenue, and profit across time, stores, and product
+                categories. Built as a trend analysis and interactive KPI dashboard guided project.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/jolgan/sales-performance-kpi" target="_blank" rel="noopener" class="project-link">GitHub documentation</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Power BI</span>
+                <span class="tag tag--navy">DAX</span>
+                <span class="tag tag--navy">Star Schema</span>
+                <span class="tag tag--navy">Data Modelling</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Time-based aggregation and custom date hierarchies</li>
+                <li>Relational modelling with star schema</li>
+                <li>Column profiling and statistics tools (table view)</li>
+                <li>Debugging data with Replace Values tool</li>
+                <li>Exploring key metrics: orders, revenue, and profit by time, store, and category</li>
+              </ul>
+            </div>
+            <div class="project-split-media project-split-media--video-only">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/IP3.%20Maven%20Analytics%20Power%20BI%20Guided%20Project%20Dashboard.mp4">
+              </video>
+            </div>
+          </div>
+
+          <!-- IP2: Maven Analytics Airbnb Python Project -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--navy">Maven Analytics Guided Project</span>
+                <span class="project-year">16 November 2025</span>
+              </div>
+              <h3 class="project-title">Airbnb Listing Analysis</h3>
+              <p class="project-desc">
+                Python-based exploratory data analysis of Airbnb listings, examining pricing patterns,
+                host distribution, and occupancy trends. Applied pandas for data cleaning and
+                preparation, and produced visualisations using Matplotlib and Seaborn.
+              </p>
+              <div class="project-links">
+                <a href="https://mavenshowcase.com/project/53995" target="_blank" rel="noopener" class="project-link">Maven Analytics showcase</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">Python</span>
+                <span class="tag tag--navy">pandas</span>
+                <span class="tag tag--navy">Matplotlib</span>
+                <span class="tag tag--navy">Seaborn</span>
+                <span class="tag tag--green">Time-Series Analysis</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Data cleaning and preparation with the pandas library</li>
+                <li>Time-series analysis and .groupby operations for trend analysis</li>
+                <li>Exploring pricing, host distribution, and occupancy patterns</li>
+                <li>Visualising insights: line charts, horizontal bar plots, and dual-axis charts</li>
+              </ul>
+            </div>
+            <div class="project-split-media project-split-media--video-only">
+              <video autoplay muted loop playsinline
+                src="https://github.com/jolgan/jolgan.github.io/raw/refs/heads/main/media/video/IP2.%20Jupyter%20code%20scrollthrough.mp4">
+              </video>
+            </div>
+          </div>
+
+          <!-- IP1: KNIME Data Analytics Platform (oldest) -->
+          <div class="project-card project-card--split">
+            <div class="project-split-text">
+              <div class="project-meta">
+                <span class="tag tag--navy">KNIME Community Project</span>
+                <span class="project-year">16 January 2025</span>
+              </div>
+              <h3 class="project-title">KNIME Data Analytics Platform Workflows</h3>
+              <p class="project-desc">
+                Practical workflow projects completed as part of the Low Code/No-Code Data Literacy
+                course (Basic to Advanced) for the Data Science Professional Certificate. Submitted
+                workflows are publicly available on the KNIME Community Hub.
+              </p>
+              <div class="project-links">
+                <a href="https://hub.knime.com/jolene" target="_blank" rel="noopener" class="project-link">KNIME Community Hub</a>
+              </div>
+              <div class="project-tags">
+                <span class="tag tag--navy">KNIME</span>
+                <span class="tag tag--navy">Data Cleaning</span>
+                <span class="tag tag--navy">Data Transformation</span>
+                <span class="tag tag--navy">Data Aggregation</span>
+                <span class="tag tag--navy">Data Visualisation</span>
+              </div>
+              <p class="project-skills-label">applied skills</p>
+              <ul class="project-detail-list">
+                <li>Building analytics workflows from raw data to visualisation output</li>
+                <li>Joining tables and aggregating data across multiple sources</li>
+                <li>Data cleaning, transformation, and workflow documentation</li>
+              </ul>
+            </div>
+            <div class="project-split-media">
+              <div class="cred-img-wrapper project-img-expandable" onclick="toggleCredImg(this)">
+                <img src="media/projects/ip1-knime-result.png" alt="KNIME data visualisation workflow result" />
+                <div class="cred-img-overlay"></div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <p class="placeholder-note">Additional independent projects to be added as they are completed.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>2025 Jolene Gan. Built with intention.</p>
+  </footer>
+
+  <button id="returnToTop" aria-label="Return to top">↑</button>
+  <script src="js/main.js"></script>
+</body>
+</html>
