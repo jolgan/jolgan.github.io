@@ -202,7 +202,7 @@ const COURSES = [
     category: "data-science",
     platform: "Anthropic Academy",
     difficulty: 3,
-    duration: 3,
+    duration: 4,
     desc: "Three online courses covering generative AI behaviour, the 4D prompting framework, and practical Claude usage including agentic workflows and Claude Code.",
     skills: ["Prompt Engineering", "Agentic AI", "Generative AI", "Claude Code"],
   }
