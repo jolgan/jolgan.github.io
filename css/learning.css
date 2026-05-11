@@ -1056,34 +1056,16 @@
   gap: var(--sp-2);
 }
 
-/* ── Anthropic multi-cert horizontal carousel ── */
-.course-cert-img-carousel {
-  width: 80px;
-  height: 60px;
-  overflow: hidden;
-  flex-shrink: 0;
-  border-radius: var(--r-sm);
-}
-
-.course-cert-img-carousel-track {
+/* ── Anthropic three-thumbnail row ── */
+.course-cert-img-trio {
   display: flex;
   flex-direction: row;
-  gap: 2px;
-  width: max-content;
-  animation: certCarouselScroll 9s linear infinite;
-}
-
-.course-cert-img-carousel-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes certCarouselScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.course-cert-img-carousel .course-cert-img-slot {
-  width: 80px;
-  height: 60px;
+  gap: var(--sp-1);
   flex-shrink: 0;
+  order: 2;
+}
+
+.course-cert-img-trio .course-cert-img-slot {
+  width: 60px;
+  height: 45px;
 }
