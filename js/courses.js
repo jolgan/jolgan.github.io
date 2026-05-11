@@ -193,6 +193,18 @@ const COURSES = [
     duration: 3,
     desc: "Generative AI applications in diagnostics, genomics, and personalised therapies. Covers AI in drug discovery and clinical decision support, with a precision medicine lens.",
     skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
+  },
+  {
+    id: 18,
+    name: "Applied AI Fluency and Claude Code",
+    shortName: "Anthropic Academy",
+    courseType: "course",
+    category: "data-science",
+    platform: "Anthropic Academy",
+    difficulty: 3,
+    duration: 3,
+    desc: "Three online courses covering generative AI behaviour, the 4D prompting framework, and practical Claude usage including agentic workflows and Claude Code.",
+    skills: ["Prompt Engineering", "Agentic AI", "Generative AI", "Claude Code"],
   }
 ];
 
