@@ -1,4 +1,4 @@
-# jolgan.github.io
+## jolgan.github.io
 
 Portfolio website for Jolene Gan. Built with HTML, CSS, and JavaScript. No frameworks required.
 
