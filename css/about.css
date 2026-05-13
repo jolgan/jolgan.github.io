@@ -437,3 +437,31 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   display: block;
   border-radius: var(--r-md);
 }
+
+/* ── Language tag tooltip (e.g. DELF B2 pending note) ── */
+.lang-tooltip {
+  position: relative;
+  cursor: default;
+}
+.lang-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.lang-tooltip:hover::after {
+  opacity: 1;
+}
