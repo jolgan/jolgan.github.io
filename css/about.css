@@ -386,10 +386,10 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   margin: var(--sp-8) 0;
 }
 .ikigai-item {
-  background: #f5f0e8;           /* cream, echoes the Ikigai image background */
+  background: #f5f0e8;
   border: 2px solid transparent;
   border-radius: var(--r-md);
-  padding: var(--sp-6);          /* increased from sp-5 for breathing room */
+  padding: var(--sp-5);          /* restored - text size unchanged */
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
@@ -398,27 +398,28 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 .ikigai-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
+  font-weight: 600;              /* bold for legibility on cream */
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .ikigai-desc {
   font-size: 0.88rem;
   line-height: 1.6;
-  color: #3a3530;                /* warm dark brown - readable on cream */
+  color: #3a3530;
 }
 
 /* Per-card accent colours matching the Ikigai diagram */
-.ikigai-item:nth-child(1) .ikigai-label { color: #5a9e6e; }   /* What I love - sage green */
-.ikigai-item:nth-child(1):hover         { border-color: #5a9e6e; }
+.ikigai-item:nth-child(1) .ikigai-label { color: #5a9e6e; }
+.ikigai-item:nth-child(1):hover         { border-color: #5a9e6e; border-width: 4px; }
 
-.ikigai-item:nth-child(2) .ikigai-label { color: #b08a2a; }   /* What I'm good at - warm gold on cream */
-.ikigai-item:nth-child(2):hover         { border-color: #b08a2a; }
+.ikigai-item:nth-child(2) .ikigai-label { color: #b08a2a; }
+.ikigai-item:nth-child(2):hover         { border-color: #b08a2a; border-width: 4px; }
 
-.ikigai-item:nth-child(3) .ikigai-label { color: #b85c6a; }   /* What the world needs - dusty rose */
-.ikigai-item:nth-child(3):hover         { border-color: #b85c6a; }
+.ikigai-item:nth-child(3) .ikigai-label { color: #b85c6a; }
+.ikigai-item:nth-child(3):hover         { border-color: #b85c6a; border-width: 4px; }
 
-.ikigai-item:nth-child(4) .ikigai-label { color: #c4773a; }   /* What I'm paid for - warm amber */
-.ikigai-item:nth-child(4):hover         { border-color: #c4773a; }
+.ikigai-item:nth-child(4) .ikigai-label { color: #c4773a; }
+.ikigai-item:nth-child(4):hover         { border-color: #c4773a; border-width: 4px; }
 
 @media (max-width: 600px) {
   .ikigai-grid { grid-template-columns: 1fr; }
