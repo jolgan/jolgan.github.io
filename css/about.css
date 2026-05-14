@@ -389,16 +389,17 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   background: #f5f0e8;
   border: 2px solid transparent;
   border-radius: var(--r-md);
-  padding: var(--sp-5);          /* restored - text size unchanged */
+  padding: calc(var(--sp-5) + 2px);
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
   transition: border-color 0.25s ease;
+  text-align: center;
 }
 .ikigai-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 600;              /* bold for legibility on cream */
+  font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
