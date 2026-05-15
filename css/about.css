@@ -481,14 +481,15 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 .timeline-badge {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;   /* tighter - matches heading tracking */
   text-transform: uppercase;
-  padding: 2px 6px;
+  line-height: 1;             /* hugs text height exactly */
+  padding: 2px 5px;
   border-radius: 3px;
   vertical-align: middle;
-  margin-left: 6px;
+  margin-left: 5px;
   position: relative;
   top: -1px;
 }
@@ -541,4 +542,18 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 @keyframes textShimmer {
   0%   { background-position: 200% center; }
   100% { background-position: -200% center; }
+}
+
+/* ── Letter wave animation ── */
+.text-wave {
+  display: inline;
+}
+.text-wave span {
+  display: inline-block;
+  animation: letterWave 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.06s);
+}
+@keyframes letterWave {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%            { transform: translateY(-2px); }
 }
