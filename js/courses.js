@@ -191,7 +191,7 @@ const COURSES = [
     platform: "LinkedIn Learning",
     difficulty: 5,
     duration: 3,
-    desc: "Generative AI applications in diagnostics, genomics, and personalised therapies. Covers AI in drug discovery and clinical decision support, with a precision medicine lens.",
+    desc: "Generative AI applications in diagnostics, genomics, and personalised therapies. Covers AI in drug discovery and clinical decision support.",
     skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
   },
   {
