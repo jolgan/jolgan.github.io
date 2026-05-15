@@ -319,7 +319,7 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 
 /* Half-width floated */
 .story-img--half {
-  max-width: 46%;
+  max-width: 36%;     /* slightly narrower so it pairs with paragraph more neatly */
   margin-top: var(--sp-2);
   margin-bottom: var(--sp-6);
 }
@@ -436,11 +436,11 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 
 /* ── Natural full image: full proportions, no letterbox ── */
 .story-img--natural {
-  max-width: 520px;
+  max-width: 42%;     /* proportional to column, text fills the left */
   float: right;
-  margin-left: var(--sp-8);
-  margin-bottom: var(--sp-6);
-  margin-top: var(--sp-2);
+  margin-left: var(--sp-6);
+  margin-bottom: var(--sp-2);
+  margin-top: 0;
 }
 .story-img--natural img {
   width: 100%;
@@ -548,7 +548,11 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 .text-wave {
   display: inline;
 }
-.text-wave span {
+.text-wave .tw-word {
+  display: inline-block;    /* keeps word together as a unit */
+  white-space: nowrap;
+}
+.text-wave span[style] {
   display: inline-block;
   animation: letterWave 3s ease-in-out infinite;
   animation-delay: calc(var(--i) * 0.06s);
