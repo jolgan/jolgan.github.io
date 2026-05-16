@@ -145,12 +145,25 @@ function toggleCredImg(wrapper) {
       /* Course cert items: capped expansion */
       const parentWidth = (wrapper.closest('.course-cert-card') || wrapper.parentElement).offsetWidth;
       const ratio = img.naturalHeight / img.naturalWidth;
-      const naturalH = Math.round(parentWidth * ratio);
-      let cap;
-      if (isMimoItem)      cap = isMobile ? 240 : 130;
-      else if (isMobile)   cap = 400;
-      else                 cap = 180;
-      wrapper.style.setProperty('--expanded-h', Math.min(naturalH, cap) + 'px');
+      const isPortrait = ratio > 1;
+
+      if (isMimoItem && isPortrait) {
+        /* MIMO portrait images: expand based on width cap */
+        const widthCap = isMobile ? 350 : 320;
+        const expandedW = Math.min(widthCap, parentWidth);
+        const expandedH = Math.round(expandedW * ratio);
+        wrapper.style.setProperty('--expanded-w', expandedW + 'px');
+        wrapper.style.setProperty('--expanded-h', expandedH + 'px');
+      } else {
+        /* Landscape or non-MIMO: expand based on height */
+        const naturalH = Math.round(parentWidth * ratio);
+        let cap;
+        if (isMimoItem)      cap = isMobile ? 240 : 180;
+        else if (isMobile)   cap = 400;
+        else                 cap = 180;
+        wrapper.style.setProperty('--expanded-h', Math.min(naturalH, cap) + 'px');
+      }
+
       setTimeout(() => {
         const card = wrapper.closest('.course-cert-card');
         if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

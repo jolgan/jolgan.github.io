@@ -1028,9 +1028,12 @@
   border-left: 1px solid var(--border);
 }
 
-/* ── Mimo cert pair: match full expansion height ── */
+/* ── Mimo cert pair: width-aware expansion for portrait images ── */
 .course-cert-img-pair .course-cert-img-slot.cred-img-wrapper.expanded {
-  height: var(--expanded-h, 180px);   /* match standard expansion height */
+  width: var(--expanded-w, 100%);     /* portrait images set custom width */
+  height: var(--expanded-h, 180px);   /* standard expansion height */
+  transition: width 0.55s cubic-bezier(0.4,0,0.2,1),
+              height 0.55s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* ── Brief summary label in detail panel ── */
