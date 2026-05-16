@@ -148,14 +148,14 @@ function toggleCredImg(wrapper) {
       const isPortrait = ratio > 1;
 
       if (isMimoItem && isPortrait) {
-        /* MIMO portrait images: expand based on width cap */
-        const widthCap = isMobile ? 350 : 320;
+        /* MIMO portrait images: use inline styles to guarantee override */
+        const widthCap = isMobile ? 340 : 280;
         const expandedW = Math.min(widthCap, parentWidth);
         const expandedH = Math.round(expandedW * ratio);
-        wrapper.style.setProperty('--expanded-w', expandedW + 'px');
-        wrapper.style.setProperty('--expanded-h', expandedH + 'px');
+        wrapper.style.width  = expandedW + 'px';
+        wrapper.style.height = expandedH + 'px';
       } else {
-        /* Landscape or non-MIMO: expand based on height */
+        /* Landscape or non-MIMO: expand based on height via CSS variable */
         const naturalH = Math.round(parentWidth * ratio);
         let cap;
         if (isMimoItem)      cap = isMobile ? 240 : 180;
@@ -171,5 +171,8 @@ function toggleCredImg(wrapper) {
     }
   } else {
     wrapper.style.removeProperty('--expanded-h');
+    wrapper.style.removeProperty('--expanded-w');
+    wrapper.style.removeProperty('width');
+    wrapper.style.removeProperty('height');
   }
 }

@@ -994,8 +994,8 @@
   flex-shrink: 0;
 }
 .course-cert-img-pair .course-cert-img-slot.cred-img-wrapper {
-  width: 60px;
-  height: 45px;
+  width: 45px;
+  height: 65px;
 }
 
 /* ── Course detail panel: type badge replacing category color ── */
@@ -1028,13 +1028,7 @@
   border-left: 1px solid var(--border);
 }
 
-/* ── Mimo cert pair: width-aware expansion for portrait images ── */
-.course-cert-img-pair .course-cert-img-slot.cred-img-wrapper.expanded {
-  width: var(--expanded-w, 100%);     /* portrait images set custom width */
-  height: var(--expanded-h, 180px);   /* standard expansion height */
-  transition: width 0.55s cubic-bezier(0.4,0,0.2,1),
-              height 0.55s cubic-bezier(0.4,0,0.2,1);
-}
+/* MIMO expanded: handled via inline styles in JS (portrait images need direct override) */
 
 /* ── Brief summary label in detail panel ── */
 .cd-desc-label {
