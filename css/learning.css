@@ -989,13 +989,13 @@
 /* ── Mimo dual certificate image pair ── */
 .course-cert-img-pair {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: row;
+  gap: var(--sp-1);
   flex-shrink: 0;
 }
 .course-cert-img-pair .course-cert-img-slot.cred-img-wrapper {
-  width: 80px;
-  height: 56px;
+  width: 60px;
+  height: 45px;
 }
 
 /* ── Course detail panel: type badge replacing category color ── */
