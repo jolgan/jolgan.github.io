@@ -1028,9 +1028,9 @@
   border-left: 1px solid var(--border);
 }
 
-/* ── Mimo cert pair: slightly smaller expansion ── */
+/* ── Mimo cert pair: match full expansion height ── */
 .course-cert-img-pair .course-cert-img-slot.cred-img-wrapper.expanded {
-  height: var(--expanded-h, 130px);   /* smaller cap for Mimo pair items */
+  height: var(--expanded-h, 180px);   /* match standard expansion height */
 }
 
 /* ── Brief summary label in detail panel ── */
