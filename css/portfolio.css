@@ -905,34 +905,35 @@
 }
 
 
-/* ── Student Placements: screenshot + video stacked, fixed heights ── */
-/* These classes are unique to this entry and affect nothing else */
+/* ── Student Placements: screenshot + video stacked ── */
 .project-placements-media {
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
-  height: 549px;              /* match REPT carousel height for visual consistency */
+  width: 100%;
+  height: auto;              /* let children determine height */
+  aspect-ratio: auto;        /* override the 16/9 from .project-split-media */
+  overflow: visible;
 }
 
 .project-placements-screenshot {
   width: 100%;
-  height: 260px;              /* top half */
+  height: auto;
+  aspect-ratio: 16/9;
   display: block;
   border-radius: var(--r-md);
-  object-fit: contain;
-  object-position: top center;
+  object-fit: cover;
   background: var(--surface-3);
-  flex-shrink: 0;
 }
 
 .project-placements-video {
   width: 100%;
-  flex: 1;                    /* fills remaining height */
+  height: auto;
+  aspect-ratio: 16/9;
   display: block;
   border-radius: var(--r-md);
   background: var(--surface-3);
-  object-fit: contain;
-  min-height: 0;
+  object-fit: cover;
 }
 
 /* ── KNIME project image: expandable, shows more by default ── */
