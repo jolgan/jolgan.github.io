@@ -919,8 +919,8 @@
   height: 260px;              /* top half */
   display: block;
   border-radius: var(--r-md);
-  object-fit: cover;
-  object-position: top left;
+  object-fit: contain;
+  object-position: top center;
   background: var(--surface-3);
   flex-shrink: 0;
 }
@@ -931,7 +931,7 @@
   display: block;
   border-radius: var(--r-md);
   background: var(--surface-3);
-  object-fit: cover;
+  object-fit: contain;
   min-height: 0;
 }
 
