@@ -306,6 +306,7 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 /* Portrait: narrower, centred */
 .story-img--portrait {
   max-width: 380px;
+  aspect-ratio: 896 / 1345;   /* content area: 1372px tall minus 27px white strip at bottom */
 }
 .story-img--center {
   margin-left: auto;
@@ -313,8 +314,10 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 }
 .story-img--portrait img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center top;  /* anchor top; white strip at bottom gets clipped */
 }
 
 /* Half-width floated */
@@ -441,12 +444,14 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   margin-left: var(--sp-6);
   margin-bottom: var(--sp-2);
   margin-top: 0;
+  aspect-ratio: 1269 / 952;   /* content area: 1288px wide minus 19px white strip on right */
 }
 .story-img--natural img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  border-radius: var(--r-md);
+  object-fit: cover;
+  object-position: left center; /* anchor left; white strip on right gets clipped */
 }
 
 /* ── Language tag tooltip (e.g. DELF B2 pending note) ── */
