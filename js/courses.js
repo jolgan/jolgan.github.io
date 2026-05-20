@@ -205,6 +205,18 @@ const COURSES = [
     duration: 5,
     desc: "Three online courses covering generative AI behaviour, the 4D prompting framework, and practical Claude usage including agentic workflows and Claude Code.",
     skills: ["Prompt Engineering", "Agentic AI", "Generative AI", "Claude Code"],
+  },
+  {
+    id: 19,
+    name: "Practice It: Python Data Structures",
+    shortName: "Python Data Structures",
+    courseType: "course",
+    category: "analytics",
+    platform: "LinkedIn Learning",
+    difficulty: 4,
+    duration: 1,
+    desc: "Hands-on practice using a restaurant dataset. Python's collections module: Counter, deque, namedtuple, defaultdict, and lambda functions applied to real-world data analytics tasks.",
+    skills: ["Python", "Data Structures", "collections", "Lambda Functions"],
   }
 ];
 
