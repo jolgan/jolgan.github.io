@@ -20,7 +20,7 @@ const COURSES = [
   {
     id: 2,
     name: "Reporting and Analytics",
-    courseType: "certification",
+    courseType: "practical",
     category: "analytics",
     platform: "HandShake Academy",
     difficulty: 3,
@@ -86,7 +86,7 @@ const COURSES = [
   {
     id: 8,
     name: "Python Intermediate",
-    courseType: "course",
+    courseType: "practical",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 5,
@@ -97,7 +97,7 @@ const COURSES = [
   {
     id: 9,
     name: "Python AI Development",
-    courseType: "course",
+    courseType: "practical",
     category: "data-science",
     platform: "Mimo",
     difficulty: 8,
@@ -108,7 +108,7 @@ const COURSES = [
   {
     id: 10,
     name: "SQL Intermediate",
-    courseType: "course",
+    courseType: "practical",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -119,7 +119,7 @@ const COURSES = [
   {
     id: 11,
     name: "SQL",
-    courseType: "course",
+    courseType: "practical",
     category: "analytics",
     platform: "Encode",
     difficulty: 3,
@@ -130,7 +130,7 @@ const COURSES = [
   {
     id: 12,
     name: "AI-Powered A/B Testing",
-    courseType: "course",
+    courseType: "practical",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -141,7 +141,7 @@ const COURSES = [
   {
     id: 13,
     name: "Coding for Data",
-    courseType: "course",
+    courseType: "practical",
     category: "analytics",
     platform: "Sololearn",
     difficulty: 6,
@@ -152,7 +152,7 @@ const COURSES = [
   {
     id: 14,
     name: "Intro to Probability",
-    courseType: "course",
+    courseType: "practical",
     category: "mathematics",
     platform: "University of Zurich via Coursera",
     difficulty: 7,
@@ -163,7 +163,7 @@ const COURSES = [
   {
     id: 15,
     name: "R (Programming)",
-    courseType: "course",
+    courseType: "practical",
     category: "data-science",
     platform: "Encode",
     difficulty: 9,
@@ -174,7 +174,7 @@ const COURSES = [
   {
     id: 16,
     name: "Data Analytics Essentials",
-    courseType: "course",
+    courseType: "practical",
     category: "analytics",
     platform: "IBM via edX",
     difficulty: 4,
@@ -198,7 +198,7 @@ const COURSES = [
     id: 18,
     name: "Practice It: Python Data Structures",
     shortName: "Python Data Structures",
-    courseType: "course",
+    courseType: "practical",
     category: "data-science",
     platform: "LinkedIn Learning",
     difficulty: 4.5,
@@ -222,9 +222,10 @@ const COURSES = [
 
 /* Dot colours by course type, not category */
 const COURSE_TYPE_COLORS = {
-  "pathway":    "#c9a84c",   /* gold - structured multi-course programme */
+  "pathway":       "#c9a84c",   /* gold - structured multi-course programme */
   "certification": "#7d1d3f",   /* burgundy - industry or platform certification */
-  "course":     "#7da3c8",   /* blue - individual online course */
+  "course":        "#1B3A6B",   /* navy - individual online course */
+  "practical":     "#2D6A4F",   /* green - hands-on practical course */
 };
 
 /* Still used for category tags in the detail panel */
@@ -349,7 +350,7 @@ function renderDetail(course) {
   if (legend && !legend.dataset.built) {
     legend.dataset.built = '1';
     legend.innerHTML = Object.entries(COURSE_TYPE_COLORS).map(([type, col]) => {
-      const label = type === 'pathway' ? 'Learning Pathway' : type === 'certification' ? 'Industry Certification' : 'Online Course';
+      const label = type === 'pathway' ? 'Learning Pathway' : type === 'certification' ? 'Industry Certification' : type === 'practical' ? 'Practical Course' : 'Online Course';
       return `<span class="ql"><span class="ql-dot" style="background:${col}"></span>${label}</span>`;
     }).join('');
   }
@@ -360,8 +361,8 @@ function renderDetail(course) {
     panel.innerHTML = `<div class="course-detail-empty"><span>select a course to see details</span></div>`;
     return;
   }
-  const typeColor = COURSE_TYPE_COLORS[course.courseType] || '#7da3c8';
-  const typeLabel = course.courseType === 'pathway' ? 'Learning Pathway' : course.courseType === 'certification' ? 'Industry Certification' : 'Online Course';
+  const typeColor = COURSE_TYPE_COLORS[course.courseType] || '#1B3A6B';
+  const typeLabel = course.courseType === 'pathway' ? 'Learning Pathway' : course.courseType === 'certification' ? 'Industry Certification' : course.courseType === 'practical' ? 'Practical Course' : 'Online Course';
   const catLabel = course.category.replace('-', ' ');
   const skillTags = (course.skills || []).map(s => `<span class="tag tag--navy">${s}</span>`).join('');
 
