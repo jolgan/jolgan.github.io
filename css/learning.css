@@ -111,14 +111,7 @@
   aspect-ratio: 1;
 }
 
-.chart-quadrant-labels {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
 .ql {
-  position: absolute;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.06em;
@@ -129,10 +122,6 @@
   border-radius: 2px;
   border: 1px solid var(--border);
 }
-.ql--tl { top: 14px; left: 68px; }
-.ql--tr { top: 14px; right: 58px; }
-.ql--bl { bottom: 28px; left: 68px; }
-.ql--br { bottom: 28px; right: 58px; }
 
 /* ── Chart axis labels ── */
 .chart-container::before {
@@ -964,9 +953,7 @@
   flex-wrap: wrap;
   margin: var(--sp-4) 0 var(--sp-2);
 }
-/* .ql and .ql-dot already used for quadrant labels - reuse */
 .course-type-legend .ql {
-  position: static;       /* override .ql position:absolute */
   display: flex;
   align-items: center;
   gap: 6px;
