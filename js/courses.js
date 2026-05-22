@@ -24,7 +24,7 @@ const COURSES = [
     category: "analytics",
     platform: "HandShake Academy",
     difficulty: 3,
-    duration: 3,
+    duration: 2.5,
     desc: "Platform-native analytics for student placement tracking. Dashboard creation, automated report scheduling, and data export for Power BI integration.",
     skills: ["Reporting", "Analytics", "Dashboarding"],
   },
@@ -57,7 +57,7 @@ const COURSES = [
     category: "data-science",
     platform: "Sololearn",
     difficulty: 6,
-    duration: 4,
+    duration: 7,
     desc: "Introductory overview of AI, ML concepts, and LLMs. Theory, use cases, and practical limitations.",
     skills: ["AI", "Machine Learning", "LLMs"],
   },
@@ -78,8 +78,8 @@ const COURSES = [
     courseType: "course",
     category: "analytics",
     platform: "Sololearn",
-    difficulty: 6,
-    duration: 5,
+    difficulty: 5,
+    duration: 7,
     desc: "AI tools augmenting analytics: AI-assisted insight generation, significance testing, and workflow automation.",
     skills: ["AI", "Analytics", "A/B Testing", "Statistics"],
   },
@@ -144,7 +144,7 @@ const COURSES = [
     courseType: "practical",
     category: "analytics",
     platform: "Sololearn",
-    difficulty: 6,
+    difficulty: 7,
     duration: 7,
     desc: "Python and SQL for data: loops, conditionals, aggregation, filtering, and relational database concepts.",
     skills: ["Python", "SQL", "Data Analysis", "Debugging"],
@@ -155,8 +155,8 @@ const COURSES = [
     courseType: "practical",
     category: "mathematics",
     platform: "University of Zurich via Coursera",
-    difficulty: 7,
-    duration: 6,
+    difficulty: 8,
+    duration: 3,
     desc: "Probability theory: classical and empirical probability, naive Bayes, binomials, and Q-Q plots.",
     skills: ["Probability", "Statistics", "Bayes", "Excel"],
   },
@@ -167,7 +167,7 @@ const COURSES = [
     category: "data-science",
     platform: "Encode",
     difficulty: 9,
-    duration: 4,
+    duration: 6,
     desc: "R for data analysis: tidyverse, dplyr, data wrangling, and visualisation with graphs.",
     skills: ["R", "tidyverse", "dplyr", "Data Wrangling"],
   },
@@ -190,7 +190,7 @@ const COURSES = [
     category: "data-science",
     platform: "LinkedIn Learning",
     difficulty: 5,
-    duration: 3,
+    duration: 6,
     desc: "Generative AI applications in diagnostics, genomics, and personalised therapies. Covers AI in drug discovery and clinical decision support.",
     skills: ["Generative AI", "Healthcare AI", "Genomics", "Precision Medicine"],
   },
@@ -266,28 +266,6 @@ function drawChart(courses, hoverId = null) {
   ctx.fillStyle = 'rgba(26,25,23,0.6)';
   ctx.fillRect(0, 0, W, H);
 
-  /* Quadrant dividers */
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-  ctx.lineWidth = 1;
-  ctx.setLineDash([4, 4]);
-  ctx.beginPath(); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
-  ctx.setLineDash([]);
-
-  /* Quadrant labels */
-  const QL_STYLE = 'rgba(255,255,255,0.18)';
-  ctx.font = '500 9px "DM Mono", monospace';
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'top';
-  ctx.fillStyle = QL_STYLE;
-  ctx.fillText('DATA SCIENCE', 8, 8);
-  ctx.textAlign = 'right';
-  ctx.fillText('VISUALISATION', W - 8, 8);
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'bottom';
-  ctx.fillText('MATHEMATICS', 8, H - 8);
-  ctx.textAlign = 'right';
-  ctx.fillText('ANALYTICS', W - 8, H - 8);
 
   const PAD = 16;
   const mapX = d => PAD + ((d - 1) / 9) * (W - PAD * 2);
