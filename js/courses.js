@@ -224,7 +224,7 @@ const COURSES = [
 const COURSE_TYPE_COLORS = {
   "pathway":       "#c9a84c",   /* gold - structured multi-course programme */
   "certification": "#7d1d3f",   /* burgundy - industry or platform certification */
-  "course":        "#1B3A6B",   /* navy - individual online course */
+  "course":        "#1B3A6B",   /* navy - theory/conceptual course */
   "practical":     "#2D6A4F",   /* green - hands-on practical course */
 };
 
@@ -328,7 +328,7 @@ function renderDetail(course) {
   if (legend && !legend.dataset.built) {
     legend.dataset.built = '1';
     legend.innerHTML = Object.entries(COURSE_TYPE_COLORS).map(([type, col]) => {
-      const label = type === 'pathway' ? 'Learning Pathway' : type === 'certification' ? 'Industry Certification' : type === 'practical' ? 'Practical Course' : 'Online Course';
+      const label = type === 'pathway' ? 'Learning Pathway' : type === 'certification' ? 'Industry Certification' : type === 'practical' ? 'Practical Course' : 'Theory Course';
       return `<span class="ql"><span class="ql-dot" style="background:${col}"></span>${label}</span>`;
     }).join('');
   }
@@ -340,7 +340,7 @@ function renderDetail(course) {
     return;
   }
   const typeColor = COURSE_TYPE_COLORS[course.courseType] || '#1B3A6B';
-  const typeLabel = course.courseType === 'pathway' ? 'Learning Pathway' : course.courseType === 'certification' ? 'Industry Certification' : course.courseType === 'practical' ? 'Practical Course' : 'Online Course';
+  const typeLabel = course.courseType === 'pathway' ? 'Learning Pathway' : course.courseType === 'certification' ? 'Industry Certification' : course.courseType === 'practical' ? 'Practical Course' : 'Theory Course';
   const catLabel = course.category.replace('-', ' ');
   const skillTags = (course.skills || []).map(s => `<span class="tag tag--navy">${s}</span>`).join('');
 
