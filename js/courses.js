@@ -47,7 +47,7 @@ const COURSES = [
     platform: "Adobe via LinkedIn Learning",
     difficulty: 7,
     duration: 5,
-    desc: "Professional certificate. Data presentation and layout design applied to 130+ reports at Legal 500 via InDesign Data Merge pipelines.",
+    desc: "Professional Adobe certificate. Data presentation and layout design applied to 140+ reports at Legal 500 via InDesign, later enhanced with Data Merge pipelines for report layout semi-automation.",
     skills: ["InDesign", "Layout Design", "Data Merge", "Print Production"],
   },
   {
