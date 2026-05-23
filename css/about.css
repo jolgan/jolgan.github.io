@@ -267,6 +267,10 @@
   line-height: 1.5;
 }
 
+.currently-faded {
+  color: var(--text-muted);
+}
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .story { padding: var(--sp-12) var(--sp-4); }
