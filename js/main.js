@@ -51,6 +51,27 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.add('fade-observe');
     observer.observe(el);
   });
+
+  /* ── Nav card background photos ── */
+  const navCardBgs = {
+    'about.html':     'media/about/ls2-marylebone.png',
+    'portfolio.html': 'media/about/ls3-photoshoot.jpg',
+    'learning.html':  'media/about/ls4-graduation-arch.png',
+  };
+  document.querySelectorAll('.nav-card').forEach(card => {
+    const page = (card.getAttribute('href') || '').split('/').pop();
+    const img  = navCardBgs[page];
+    if (!img) return;
+    const applyBg = alpha => {
+      const ov = `rgba(10,9,8,${alpha})`;
+      card.style.backgroundImage    = `linear-gradient(${ov},${ov}),url('${img}')`;
+      card.style.backgroundSize     = 'cover';
+      card.style.backgroundPosition = 'center';
+    };
+    applyBg(0.82);
+    card.addEventListener('mouseenter', () => applyBg(0.68));
+    card.addEventListener('mouseleave', () => applyBg(0.82));
+  });
 });
 
 /* ── Certificate Carousel ── */

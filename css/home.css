@@ -479,17 +479,5 @@
 
 
 /* ── Nav card background photo ── */
-/* Use background-image directly; ::before is taken by the gradient bar */
-.nav-card--has-bg {
-  background-image:
-    linear-gradient(rgba(18,17,16,0.82), rgba(18,17,16,0.82)),
-    var(--card-bg);
-  background-size: cover;
-  background-position: center;
-  transition: background-color var(--t-mid) var(--ease);
-}
-.nav-card--has-bg:hover {
-  background-image:
-    linear-gradient(rgba(18,17,16,0.68), rgba(18,17,16,0.68)),
-    var(--card-bg);
-}
+/* Background images are applied via JS (main.js) to avoid CSS custom
+   property resolution issues with background-image across browsers. */
