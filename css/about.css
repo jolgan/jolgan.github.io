@@ -267,7 +267,7 @@
   line-height: 1.5;
 }
 
-.currently-faded {
+.currently-list li.currently-faded {
   color: var(--text-muted);
 }
 
