@@ -14,7 +14,7 @@ const COURSES = [
     platform: "SAS Academy",
     difficulty: 9,
     duration: 8,
-    desc: "Accreditation earned through the MSc at Regent's University London. Statistical analysis, data manipulation, and model building in SAS JMP.",
+    desc: "Official accreditation earned through the MSc at Regent's University London. Statistical analysis, data manipulation, and model building in SAS JMP.",
     skills: ["SAS", "Statistical Analysis", "Data Mining"],
   },
   {
@@ -114,7 +114,7 @@ const COURSES = [
     difficulty: 6,
     duration: 8,
     desc: "Intermediate SQL: text functions, CASE/WHEN logic, UNION, and data integrity constraints.",
-    skills: ["SQL", "Database Design", "Data Manipulation"],
+    skills: ["SQL", "Data Querying", "Data Manipulation"],
   },
   {
     id: 11,
@@ -179,7 +179,7 @@ const COURSES = [
     platform: "IBM via edX",
     difficulty: 4,
     duration: 6,
-    desc: "IBM/edX. Full analytics workflow: databases, ETL, data wrangling, dashboarding, and storytelling.",
+    desc: "Full analytics workflow: databases, ETL, data wrangling, dashboarding, and storytelling.",
     skills: ["Data Analytics", "ETL", "Databases", "Visualisation"],
   },
   {
