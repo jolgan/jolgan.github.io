@@ -73,6 +73,53 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseleave', () => applyBg(0.82));
   });
 
+  /* ── Hero name typewriter ── */
+  const heroName = document.querySelector('.hero-name');
+  if (heroName) {
+    const em = heroName.querySelector('em');
+
+    // Grab the first non-empty text node ("Jolene")
+    let firstTextNode = null;
+    for (const node of heroName.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        firstTextNode = node;
+        break;
+      }
+    }
+
+    const text1 = firstTextNode ? firstTextNode.textContent.trim() : '';
+    const text2 = em ? em.textContent.trim() : '';
+
+    // Replace each text string with per-character spans that are invisible
+    // (visibility:hidden keeps layout space; each span snaps visible on its turn)
+    function spannify(text) {
+      const frag = document.createDocumentFragment();
+      for (const ch of text) {
+        const s = document.createElement('span');
+        s.textContent = ch;
+        s.style.visibility = 'hidden';
+        frag.appendChild(s);
+      }
+      return frag;
+    }
+
+    if (firstTextNode && text1) firstTextNode.replaceWith(spannify(text1));
+    if (em && text2) { em.innerHTML = ''; em.appendChild(spannify(text2)); }
+
+    const spans1 = [...heroName.querySelectorAll(':scope > span')];
+    const spans2 = em ? [...em.querySelectorAll('span')] : [];
+
+    const msPerChar   = 90;   // typing speed
+    const pauseBetween = 160; // gap between "Jolene" and "Gan"
+    const startAfter  = 880;  // wait for fadeUp (~0.9s) to settle
+
+    setTimeout(() => {
+      spans1.forEach((s, i) => setTimeout(() => { s.style.visibility = 'visible'; }, i * msPerChar));
+      const line2Start = spans1.length * msPerChar + pauseBetween;
+      spans2.forEach((s, i) => setTimeout(() => { s.style.visibility = 'visible'; }, line2Start + i * msPerChar));
+    }, startAfter);
+  }
+
   /* ── Chip tooltip typewriter ── */
   document.querySelectorAll('.chip-tooltip').forEach(tooltip => {
     const chip = tooltip.closest('.tool-chip');
