@@ -72,6 +72,40 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseenter', () => applyBg(0.68));
     card.addEventListener('mouseleave', () => applyBg(0.82));
   });
+
+  /* ── Chip tooltip typewriter ── */
+  document.querySelectorAll('.chip-tooltip').forEach(tooltip => {
+    const chip = tooltip.closest('.tool-chip');
+    if (!chip) return;
+    const lines = (tooltip.dataset.lines || '').split('|').map(l => l.trim()).filter(Boolean);
+    let timer = null;
+
+    chip.addEventListener('mouseenter', () => {
+      clearInterval(timer);
+      tooltip.innerHTML = '';
+
+      /* Build a span per line up-front so the tooltip expands cleanly */
+      const lineEls = lines.map(line => {
+        const span = document.createElement('span');
+        span.className = 'chip-tooltip-line' + (line === '+ more' ? ' chip-tooltip-more' : '');
+        tooltip.appendChild(span);
+        return { el: span, text: line };
+      });
+
+      let li = 0, ci = 0;
+      timer = setInterval(() => {
+        if (li >= lineEls.length) { clearInterval(timer); return; }
+        lineEls[li].el.textContent = lineEls[li].text.substring(0, ci + 1);
+        ci++;
+        if (ci >= lineEls[li].text.length) { li++; ci = 0; }
+      }, 18);
+    });
+
+    chip.addEventListener('mouseleave', () => {
+      clearInterval(timer);
+      tooltip.innerHTML = '';
+    });
+  });
 });
 
 /* ── Certificate Carousel ── */

@@ -220,6 +220,7 @@
 }
 
 .tool-chip {
+  position: relative;
   padding: var(--sp-2) var(--sp-4);
   border: 1px solid var(--border-mid);
   border-radius: var(--r-sm);
@@ -236,6 +237,70 @@
   color: var(--gold-light);
   background: rgba(201,168,76,0.06);
   transform: translateY(-2px);
+  z-index: 10;
+}
+
+/* ── Chip tooltips ── */
+.chip-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) scale(0) translateY(6px);
+  transform-origin: bottom center;
+  background: #f5f0e8;
+  color: #7d1d3f;
+  font-size: 0.62rem;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  opacity: 0;
+}
+
+.chip-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #f5f0e8;
+}
+
+.chip-tooltip-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.chip-tooltip-more {
+  color: #999;
+  font-style: italic;
+}
+
+.tool-chip:hover .chip-tooltip {
+  animation: chipTooltipPop 280ms ease forwards,
+             chipTooltipFloat 2.4s ease-in-out 280ms infinite;
+}
+
+@keyframes chipTooltipPop {
+  0%   { opacity: 0; transform: translateX(-50%) scale(0) translateY(6px); }
+  70%  { opacity: 1; transform: translateX(-50%) scale(1.1) translateY(-2px); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
+}
+
+@keyframes chipTooltipFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-4px); }
+}
+
+@media (max-width: 767px) {
+  .chip-tooltip { display: none; }
 }
 
 /* ── Credentials Marquee (auto-scroll, pause on hover) ── */
