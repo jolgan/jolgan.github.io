@@ -133,7 +133,7 @@ const COURSES = [
     courseType: "practical",
     category: "analytics",
     platform: "Sololearn",
-    difficulty: 6,
+    difficulty: 3,
     duration: 6,
     desc: "A/B experiment design: p-values, statistical significance, and AI-assisted conversion rate analysis.",
     skills: ["A/B Testing", "Statistics", "p-values", "AI Tools"],
@@ -213,9 +213,9 @@ const COURSES = [
     courseType: "pathway",
     category: "data-science",
     platform: "Anthropic Academy",
-    difficulty: 3,
+    difficulty: 6,
     duration: 6,
-    desc: "Five courses completed May 2026. Covers the 4D prompting framework, AI capabilities and limitations, practical Claude usage, Claude Code setup and agentic workflow, and task-based Cowork sessions including subagent delegation and MCP integration.",
+    desc: "Five courses completed May 2026. Covers the 4D prompting framework, AI capabilities and limitations, practical Claude usage, Claude Code setup and agentic workflow, and task-based Cowork sessions.",
     skills: ["Prompt Engineering", "Agentic AI", "Claude Code", "Claude Cowork"],
   }
 ];
