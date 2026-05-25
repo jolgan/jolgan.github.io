@@ -210,13 +210,13 @@ const COURSES = [
     id: 19,
     name: "Applied AI Fluency and Claude Code",
     shortName: "Anthropic Academy",
-    courseType: "course",
+    courseType: "pathway",
     category: "data-science",
     platform: "Anthropic Academy",
     difficulty: 3,
-    duration: 5,
-    desc: "Three online courses covering generative AI behaviour, the 4D prompting framework, and practical Claude usage including agentic workflows and Claude Code.",
-    skills: ["Prompt Engineering", "Agentic AI", "Generative AI", "Claude Code"],
+    duration: 6,
+    desc: "Five courses completed May 2026. Covers the 4D prompting framework, AI capabilities and limitations, practical Claude usage, Claude Code setup and agentic workflow, and task-based Cowork sessions including subagent delegation and MCP integration.",
+    skills: ["Prompt Engineering", "Agentic AI", "Claude Code", "Claude Cowork"],
   }
 ];
 

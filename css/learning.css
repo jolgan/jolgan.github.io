@@ -1040,7 +1040,8 @@
 }
 
 /* ── Anthropic three-thumbnail row ── */
-.course-cert-img-trio {
+.course-cert-img-trio,
+.course-cert-img-multi {
   display: flex;
   flex-direction: row;
   gap: var(--sp-1);
@@ -1051,4 +1052,9 @@
 .course-cert-img-trio .course-cert-img-slot {
   width: 60px;
   height: 45px;
+}
+
+.course-cert-img-multi .course-cert-img-slot {
+  width: 48px;
+  height: 36px;
 }
