@@ -300,16 +300,15 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   object-fit: cover;
 }
 
-/* Campus image: slightly taller, shows the setting */
+/* Campus image: fixed-height cinematic banner */
 .story-img--campus {
-  aspect-ratio: 1456 / 800;  /* clean content area: ~40px buffer above 20px white strip */
-  max-height: 340px;
+  height: 200px;
 }
 .story-img--campus img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;  /* anchor top; white strip at bottom gets clipped */
+  object-position: center center;
 }
 
 /* Portrait: narrower, centred */
