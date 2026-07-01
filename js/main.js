@@ -73,9 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseleave', () => applyBg(0.82));
   });
 
-  /* ── Hero name typewriter ── */
-  const heroName = document.querySelector('.hero-name');
-  if (heroName) {
+  /* ── Typewriter reveal for hero name and page titles ── */
+  function typewriterReveal(heroName) {
     const em = heroName.querySelector('em');
 
     // Grab the first non-empty text node ("Jolene")
@@ -110,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spans2 = em ? [...em.querySelectorAll('span')] : [];
 
     const msPerChar   = 90;   // typing speed
-    const pauseBetween = 160; // gap between "Jolene" and "Gan"
+    const pauseBetween = 160; // gap between the two lines
     const startAfter  = 880;  // wait for fadeUp (~0.9s) to settle
 
     setTimeout(() => {
@@ -119,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
       spans2.forEach((s, i) => setTimeout(() => { s.style.visibility = 'visible'; }, line2Start + i * msPerChar));
     }, startAfter);
   }
+
+  document.querySelectorAll('.hero-name, .page-title').forEach(typewriterReveal);
 
   /* ── Chip tooltip typewriter ── */
   document.querySelectorAll('.chip-tooltip').forEach(tooltip => {
