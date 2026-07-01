@@ -498,7 +498,7 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   font-family: var(--font-mono);
   font-size: 0.5rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1;
   padding: 2px 5px;
@@ -509,17 +509,23 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 }
 
 .timeline-badge--distinction {
-  color: var(--gold-light);
   border: 1px solid rgba(201,168,76,0.4);
   background: rgba(201,168,76,0.08);
   box-shadow: 0 0 8px var(--gold-glow);
 }
 
 .timeline-badge--now {
-  color: #8fcfa0;
   border: 1px solid rgba(143,207,160,0.4);
   background: rgba(143,207,160,0.08);
   box-shadow: 0 0 8px rgba(143,207,160,0.2);
+}
+
+.timeline-content .timeline-badge--distinction {
+  color: var(--gold-light);
+}
+
+.timeline-content .timeline-badge--now {
+  color: #8fcfa0;
 }
 
 /* ── Shimmer text animation ── */
