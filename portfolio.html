@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/animations.css" />
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <nav class="nav">
     <a href="index.html" class="nav-logo">JG</a>
@@ -796,5 +797,18 @@
 
   <button id="returnToTop" aria-label="Return to top">↑</button>
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var bar = document.getElementById('scrollProgress');
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    })();
+  </script>
 </body>
 </html>

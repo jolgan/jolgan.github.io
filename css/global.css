@@ -168,6 +168,18 @@ h1, h2, h3, h4 {
   transition: transform var(--t-mid) var(--ease), opacity var(--t-mid) var(--ease);
 }
 
+/* ── Scroll progress bar ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--burgundy), var(--gold));
+  z-index: 200;
+  transition: width 0.1s linear;
+}
+
 /* ── Buttons ── */
 .btn {
   display: inline-flex;
