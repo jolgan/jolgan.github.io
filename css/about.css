@@ -480,6 +480,11 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 .lang-tooltip:hover::after {
   opacity: 1;
 }
+.lang-tooltip--multiline::after {
+  white-space: pre-line;
+  text-align: center;
+  line-height: 1.4;
+}
 
 /* ── Timeline badges ── */
 .timeline-badge {
