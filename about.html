@@ -299,18 +299,5 @@ Certificate pending from Institut Français">DELF B2 - certified</span></li>
 
   <button id="returnToTop" aria-label="Return to top">↑</button>
   <script src="js/main.js"></script>
-  <script>
-    (function () {
-      var bar = document.getElementById('scrollProgress');
-      function updateProgress() {
-        var scrollTop = window.scrollY || document.documentElement.scrollTop;
-        var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-        bar.style.width = pct + '%';
-      }
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      updateProgress();
-    })();
-  </script>
 </body>
 </html>

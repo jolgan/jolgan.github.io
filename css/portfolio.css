@@ -785,7 +785,6 @@
 /* ── AP1: 3 items × (180px + 3px gap) = 549px per set ── */
 .project-marquee-track--ap1 {
   animation-name: projectMarqueeAP1;
-  animation-duration: 18s;
 }
 @keyframes projectMarqueeAP1 {
   0%   { transform: translateY(0); }
@@ -798,38 +797,10 @@
   height: 363px;
 }
 
-/* ── AP2: single video loops on its own, no marquee needed ── */
-/* Just show the single video full-height, no animation needed */
-.project-marquee-track--ap2 {
-  animation: none;
-}
-.project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
-  height: 363px;
-  mask-image: none;
-  -webkit-mask-image: none;
-}
-.project-marquee-track--ap2 .project-marquee-item--video {
-  height: 363px;
-}
-
 /* ── Per-entry overrides ── */
 
 /* AP6: 3 items, keep scrolling */
 .project-marquee-track--ap6 { animation-duration: 20s; }
-
-/* AP5, AP4, AP2: single video - static, no carousel needed */
-.project-marquee-track--ap5,
-.project-marquee-track--ap4,
-.project-marquee-track--ap2 {
-  animation: none;
-}
-.project-card--split:has(.project-marquee-track--ap5) .project-marquee--vertical,
-.project-card--split:has(.project-marquee-track--ap4) .project-marquee--vertical,
-.project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
-  max-height: none;
-  mask-image: none;
-  -webkit-mask-image: none;
-}
 
 /* AP3: report + device mockups */
 .project-marquee-track--ap3 { animation-duration: 22s; }
@@ -936,14 +907,6 @@
   display: block;
   object-fit: contain;
 }
-
-/* Clean up the now-unused AP5/AP4/AP2 carousel overrides */
-.project-card--split:has(.project-marquee-track--ap5) .project-marquee--vertical,
-.project-card--split:has(.project-marquee-track--ap4) .project-marquee--vertical,
-.project-card--split:has(.project-marquee-track--ap2) .project-marquee--vertical {
-  display: none; /* these were replaced with static video-only in HTML */
-}
-
 
 /* ── Student Placements: screenshot + video stacked ── */
 .project-placements-media {
