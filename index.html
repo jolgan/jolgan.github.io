@@ -81,99 +81,48 @@
     </div>
   </section>
 
-  <!-- Certificate Carousel - auto-scrolling marquee -->
+  <!-- Featured credentials -->
   <section class="certs">
     <div class="section-header">
       <h2 class="section-title">Credentials</h2>
-      <a href="portfolio.html#credentials" class="section-link">View all →</a>
+      <a href="https://www.jolenegan.com/portfolio" class="section-link">View all →</a>
     </div>
-    <div class="marquee-wrapper">
-      <div class="marquee-track" id="marqueeTrack">
-        <!-- Set A -->
-        <div class="cert-card">
-          <div class="cert-img-slot">
-            <img src="media/certs/msc-distinction.jpg" alt="MSc Data Science in Business certificate" />
-          </div>
-          <p class="cert-name">MSc Data Science in Business</p>
-          <p class="cert-issuer">Regent's University London, 2024</p>
-        </div>
-        <div class="cert-card">
-          <div class="cert-img-slot">
-            <img src="media/certs/sas-jmp.png" alt="SAS Certificate of Achievement" />
-          </div>
-          <p class="cert-name">SAS Certificate of Achievement</p>
-          <p class="cert-issuer">SAS Academy, 2024</p>
-        </div>
-        <div class="cert-card">
-          <div class="cert-img-slot">
-            <img src="media/certs/knime-data-science.png" alt="KNIME Data Science certificate" />
-          </div>
-          <p class="cert-name">Data Science by KNIME</p>
-          <p class="cert-issuer">KNIME via LinkedIn Learning</p>
-        </div>
-        <div class="cert-card">
-          <div class="cert-img-slot">
-            <img src="media/certs/adobe-indesign.png" alt="Adobe InDesign certificate" />
-          </div>
-          <p class="cert-name">Adobe InDesign for Data Presentation</p>
-          <p class="cert-issuer">Adobe via LinkedIn Learning</p>
-        </div>
-        <div class="cert-card">
-          <div class="cert-img-slot">
-            <img src="media/certs/ba-communication.png" alt="BA in Communication" />
-          </div>
-          <p class="cert-name">BA in Communication</p>
-          <p class="cert-issuer">SUNY University at Buffalo, 2021</p>
-        </div>
-        <div class="cert-card">
-          <div class="cert-img-slot">
-            <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems" />
-          </div>
-          <p class="cert-name">Diploma in Business Information Systems</p>
-          <p class="cert-issuer">Republic Polytechnic, 2018</p>
-        </div>
-        <!-- Set B - duplicate for seamless loop -->
-        <div class="cert-card" aria-hidden="true">
-          <div class="cert-img-slot">
-            <img src="media/certs/msc-distinction.jpg" alt="" />
-          </div>
-          <p class="cert-name">MSc Data Science in Business</p>
-          <p class="cert-issuer">Regent's University London, 2024</p>
-        </div>
-        <div class="cert-card" aria-hidden="true">
-          <div class="cert-img-slot">
-            <img src="media/certs/sas-jmp.png" alt="" />
-          </div>
-          <p class="cert-name">SAS Certificate of Achievement</p>
-          <p class="cert-issuer">SAS Academy, 2024</p>
-        </div>
-        <div class="cert-card" aria-hidden="true">
-          <div class="cert-img-slot">
-            <img src="media/certs/knime-data-science.png" alt="" />
-          </div>
-          <p class="cert-name">Data Science by KNIME</p>
-          <p class="cert-issuer">KNIME via LinkedIn Learning</p>
-        </div>
-        <div class="cert-card" aria-hidden="true">
-          <div class="cert-img-slot">
-            <img src="media/certs/adobe-indesign.png" alt="" />
-          </div>
-          <p class="cert-name">Adobe InDesign for Data Presentation</p>
-          <p class="cert-issuer">Adobe via LinkedIn Learning</p>
-        </div>
-        <div class="cert-card" aria-hidden="true">
-          <div class="cert-img-slot">
-            <img src="media/certs/ba-communication.png" alt="" />
-          </div>
-          <p class="cert-name">BA in Communication</p>
-          <p class="cert-issuer">SUNY University at Buffalo, 2021</p>
-        </div>
-        <div class="cert-card" aria-hidden="true">
-          <div class="cert-img-slot">
-            <img src="media/certs/diploma-bis.jpg" alt="" />
-          </div>
-          <p class="cert-name">Diploma in Business Information Systems</p>
-          <p class="cert-issuer">Republic Polytechnic, 2018</p>
+    <div class="cert-scroll" id="certScroll">
+      <div class="cert-pin">
+        <div class="cert-stage" id="certStage" aria-label="Featured academic credentials">
+          <article class="cert-card cert-card--diploma">
+            <div class="cert-card-inner">
+              <div class="cert-img-slot">
+                <img src="media/certs/diploma-bis.jpg" alt="Diploma in Business Information Systems certificate" />
+              </div>
+              <div class="cert-copy">
+                <p class="cert-name">Diploma in Business Information Systems</p>
+                <p class="cert-issuer">Republic Polytechnic, 2018</p>
+              </div>
+            </div>
+          </article>
+          <article class="cert-card cert-card--bachelors">
+            <div class="cert-card-inner">
+              <div class="cert-img-slot">
+                <img src="media/certs/ba-communication.png" alt="Bachelor of Arts in Communication certificate" />
+              </div>
+              <div class="cert-copy">
+                <p class="cert-name">BA in Communication</p>
+                <p class="cert-issuer">SUNY University at Buffalo, 2021</p>
+              </div>
+            </div>
+          </article>
+          <article class="cert-card cert-card--masters">
+            <div class="cert-card-inner">
+              <div class="cert-img-slot">
+                <img src="media/certs/msc-distinction.jpg" alt="Master of Science in Data Science in Business certificate" />
+              </div>
+              <div class="cert-copy">
+                <p class="cert-name">MSc Data Science in Business</p>
+                <p class="cert-issuer">Regent's University London, 2024</p>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -185,19 +134,19 @@
       <h2 class="section-title">Explore</h2>
     </div>
     <div class="nav-cards">
-      <a href="about.html" class="nav-card">
+      <a href="about.html" class="nav-card nav-card--about">
         <span class="nav-card-num">01</span>
         <h3 class="nav-card-title">About</h3>
         <p class="nav-card-desc">The story behind the career change - from food and beverage to data science, and the long game.</p>
         <span class="nav-card-arrow">→</span>
       </a>
-      <a href="portfolio.html" class="nav-card">
+      <a href="portfolio.html" class="nav-card nav-card--portfolio">
         <span class="nav-card-num">02</span>
         <h3 class="nav-card-title">Portfolio</h3>
         <p class="nav-card-desc">Credentials, professional projects, academic work, and independent explorations - a record of applied data practice.</p>
         <span class="nav-card-arrow">→</span>
       </a>
-      <a href="learning.html" class="nav-card">
+      <a href="learning.html" class="nav-card nav-card--learning">
         <span class="nav-card-num">03</span>
         <h3 class="nav-card-title">Learning &amp; Development</h3>
         <p class="nav-card-desc">An honest map of the learning journey - courses plotted by difficulty and domain, events attended, and credentials earned.</p>
@@ -250,6 +199,8 @@
   </footer>
 
   <button id="returnToTop" aria-label="Return to top">↑</button>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -47,31 +47,99 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.story-block, .project-card, .cred-card, .nav-card, .cert-card').forEach(el => {
+  document.querySelectorAll('.story-block, .project-card, .cred-card, .nav-card').forEach(el => {
     el.classList.add('fade-observe');
     observer.observe(el);
   });
 
-  /* ── Nav card background photos ── */
-  const navCardBgs = {
-    'about.html':     'media/about/ls2-marylebone.png',
-    'portfolio.html': 'media/about/ls3-photoshoot.jpg',
-    'learning.html':  'media/about/ls4-graduation-arch.png',
-  };
-  document.querySelectorAll('.nav-card').forEach(card => {
-    const page = (card.getAttribute('href') || '').split('/').pop();
-    const img  = navCardBgs[page];
-    if (!img) return;
-    const applyBg = alpha => {
-      const ov = `rgba(10,9,8,${alpha})`;
-      card.style.backgroundImage    = `linear-gradient(${ov},${ov}),url('${img}')`;
-      card.style.backgroundSize     = 'cover';
-      card.style.backgroundPosition = 'center';
-    };
-    applyBg(0.82);
-    card.addEventListener('mouseenter', () => applyBg(0.68));
-    card.addEventListener('mouseleave', () => applyBg(0.82));
+  /* ── Scroll-scrubbed featured credentials ── */
+  const certStage = document.getElementById('certStage');
+  const certScroll = document.getElementById('certScroll');
+  const certPin = certScroll?.querySelector('.cert-pin');
+  const certCards = certStage ? [...certStage.querySelectorAll('.cert-card')] : [];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  certCards.forEach(card => {
+    card.addEventListener('pointerenter', () => certStage.classList.add('is-hovering'));
+    card.addEventListener('pointerleave', () => certStage.classList.remove('is-hovering'));
   });
+
+  if (certStage && certScroll && certPin && certCards.length === 3 && !reduceMotion && window.gsap && window.ScrollTrigger) {
+    const [diplomaCard, bachelorsCard, mastersCard] = certCards;
+    gsap.registerPlugin(ScrollTrigger);
+    certScroll.classList.add('is-scroll-ready');
+
+    const cardMedia = gsap.matchMedia();
+    cardMedia.add({
+      desktop: '(min-width: 601px)',
+      mobile: '(max-width: 600px)'
+    }, context => {
+      const mobile = context.conditions.mobile;
+      const twoCardOffset = () => diplomaCard.offsetWidth * (mobile ? 0.28 : 0.32);
+      const threeCardOffset = () => diplomaCard.offsetWidth * (mobile ? 0.42 : 0.54);
+
+      gsap.set(diplomaCard, { xPercent: -50, yPercent: -50, x: 0, rotation: 0, scale: 1, autoAlpha: 1 });
+      gsap.set(bachelorsCard, { xPercent: -50, yPercent: -50, x: twoCardOffset, rotation: 5, scale: 0.9, autoAlpha: 0 });
+      gsap.set(mastersCard, { xPercent: -50, yPercent: -50, x: threeCardOffset, rotation: 7, scale: 0.9, autoAlpha: 0 });
+
+      const cardTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: certScroll,
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: certPin,
+          pinSpacing: false,
+          scrub: 0.65,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      cardTimeline
+        .to(diplomaCard, {
+          x: () => -twoCardOffset(),
+          rotation: -5,
+          duration: 0.9,
+          ease: 'power3.inOut'
+        }, 0)
+        .to(bachelorsCard, {
+          x: twoCardOffset,
+          rotation: 5,
+          scale: 1,
+          autoAlpha: 1,
+          duration: 0.76,
+          ease: 'back.out(1.55)'
+        }, 0.16)
+        .to(diplomaCard, {
+          x: () => -threeCardOffset(),
+          rotation: -7,
+          duration: 0.9,
+          ease: 'power3.inOut'
+        }, 1.24)
+        .to(bachelorsCard, {
+          x: 0,
+          rotation: 0,
+          duration: 0.9,
+          ease: 'power3.inOut'
+        }, 1.24)
+        .to(mastersCard, {
+          x: threeCardOffset,
+          rotation: 7,
+          scale: 1,
+          autoAlpha: 1,
+          duration: 0.76,
+          ease: 'back.out(1.55)'
+        }, 1.4);
+
+      return () => {
+        cardTimeline.scrollTrigger?.kill();
+        cardTimeline.kill();
+        gsap.set(certCards, { clearProps: 'transform,opacity,visibility' });
+      };
+    });
+
+    window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  }
 
   /* ── Typewriter reveal for hero name and page titles ── */
   function typewriterReveal(heroName) {
@@ -155,19 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
-/* ── Certificate Carousel ── */
-let carouselIndex = 0;
-
-function shiftCarousel(dir) {
-  const track = document.getElementById('certTrack');
-  if (!track) return;
-  const cards = track.querySelectorAll('.cert-card');
-  const visible = Math.floor(track.parentElement.offsetWidth / (220 + 16));
-  const max = Math.max(0, cards.length - visible);
-  carouselIndex = Math.min(Math.max(carouselIndex + dir, 0), max);
-  track.style.transform = `translateX(-${carouselIndex * (220 + 16)}px)`;
-}
 
 /* ── Smooth hash scrolling ── */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
