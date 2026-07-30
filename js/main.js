@@ -211,6 +211,20 @@ function goToEventSlide(trackId, index) {
   }
 }
 
+/* ── Scroll progress bar ── */
+document.addEventListener('DOMContentLoaded', () => {
+  const bar = document.getElementById('scrollProgress');
+  if (!bar) return;
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+});
+
 /* ── Return to top button ── */
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('returnToTop');
