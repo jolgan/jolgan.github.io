@@ -394,7 +394,7 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   padding: var(--sp-8);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: 0; /* spacing now lives inside the panel so collapsed cards sit flush */
   transition: border-color 0.25s ease;
   text-align: center;
 }
@@ -411,6 +411,96 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   color: #3a3530;
 }
 
+/* ── Ikigai accordion: title row toggles the description panel ── */
+.ikigai-toggle {
+  /* strip the UA button chrome so the card looks unchanged */
+  appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+}
+.ikigai-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: var(--r-sm, 4px);
+}
+
+/* Plus icon, drawn from two bars so it needs no icon font */
+.ikigai-plus {
+  position: relative;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  color: inherit;
+  opacity: 0.85;
+  transition: transform 0.55s var(--ease), opacity var(--t-fast) var(--ease);
+}
+.ikigai-plus::before,
+.ikigai-plus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+.ikigai-plus::before { width: 11px; height: 1.5px; }
+.ikigai-plus::after  { width: 1.5px; height: 11px; }
+
+.ikigai-toggle:hover .ikigai-plus { opacity: 1; }
+
+/* Open state: quarter turn takes the plus to an x */
+.ikigai-item.is-open .ikigai-plus {
+  transform: rotate(45deg);
+  opacity: 1;
+}
+
+/* The 0fr to 1fr grid row animates height without a measured pixel value,
+   so it stays correct through resize, rotation and text reflow. */
+.ikigai-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.55s var(--ease),
+              opacity 0.55s var(--ease);
+}
+.ikigai-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.55s;
+}
+.ikigai-item.is-open .ikigai-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.ikigai-item.is-open .ikigai-panel-inner {
+  visibility: visible;
+  transition-delay: 0s;
+}
+/* Restores the gap the collapsed card no longer carries */
+.ikigai-panel-inner .ikigai-desc {
+  display: block;
+  padding-top: var(--sp-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikigai-panel,
+  .ikigai-plus { transition-duration: 0.01ms; }
+}
+
 /* Per-card accent colours matching the Ikigai diagram */
 .ikigai-item:nth-child(1) .ikigai-label { color: #5a9e6e; }
 .ikigai-item:nth-child(1):hover         { border-color: #5a9e6e; border-width: 4px; }
@@ -424,8 +514,17 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
 .ikigai-item:nth-child(4) .ikigai-label { color: #c4773a; }
 .ikigai-item:nth-child(4):hover         { border-color: #c4773a; border-width: 4px; }
 
+/* Plus icon picks up the same accent as its card title */
+.ikigai-item:nth-child(1) .ikigai-plus { color: #5a9e6e; }
+.ikigai-item:nth-child(2) .ikigai-plus { color: #b08a2a; }
+.ikigai-item:nth-child(3) .ikigai-plus { color: #b85c6a; }
+.ikigai-item:nth-child(4) .ikigai-plus { color: #c4773a; }
+
 @media (max-width: 600px) {
   .ikigai-grid { grid-template-columns: 1fr; }
+  /* Comfortable tap target once the cards stack */
+  .ikigai-toggle { min-height: 44px; }
+  .ikigai-plus { width: 30px; height: 30px; }
   .story-img--half,
   .story-img--natural,
   .story-img--left {

@@ -348,3 +348,32 @@ function toggleCredImg(wrapper) {
     wrapper.style.removeProperty('height');
   }
 }
+
+/* ── Ikigai cards: single-open accordion ── */
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.ikigai-grid');
+  if (!grid) return;
+
+  const items = Array.from(grid.querySelectorAll('.ikigai-item'));
+
+  items.forEach(item => {
+    const toggle = item.querySelector('.ikigai-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const willOpen = !item.classList.contains('is-open');
+
+      /* Close whatever is open, so only one card is ever expanded */
+      items.forEach(other => {
+        other.classList.remove('is-open');
+        const otherToggle = other.querySelector('.ikigai-toggle');
+        if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+      });
+
+      if (willOpen) {
+        item.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+});
