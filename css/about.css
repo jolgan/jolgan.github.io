@@ -411,7 +411,10 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   color: #3a3530;
 }
 
-/* ── Ikigai accordion: title row toggles the description panel ── */
+/* ── Ikigai accordion: the whole card toggles the description panel ── */
+.ikigai-item {
+  position: relative; /* anchors the full-card hit area below */
+}
 .ikigai-toggle {
   /* strip the UA button chrome so the card looks unchanged */
   appearance: none;
@@ -428,6 +431,13 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   align-items: center;
   justify-content: center;
   gap: var(--sp-3);
+}
+/* Stretches the button's hit area over the whole card, padding included, so a
+   click anywhere on the card toggles it rather than only on the title row. */
+.ikigai-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 .ikigai-toggle:focus-visible {
   outline: 2px solid currentColor;
