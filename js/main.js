@@ -377,3 +377,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/* ── About page: reversible scroll reveal ──
+   Same IntersectionObserver approach as the fade-observe pass above, with two
+   differences: it never unobserves, so the fade runs in both directions, and it
+   targets the content inside each .story-block rather than the block itself,
+   which already owns the fadeUp animation. */
+document.addEventListener('DOMContentLoaded', () => {
+  const main = document.querySelector('.about-main');
+  if (!main) return;
+
+  /* Honour the OS setting: leave everything visible and skip the observer */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const targets = main.querySelectorAll([
+    '.page-header-inner',
+    '.story-label',
+    '.story-text',
+    '.story-img',
+    '.ikigai-item',
+    '.timeline-item',
+    '.stat',
+    '.currently-col'
+  ].join(', '));
+
+  if (!targets.length) return;
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('is-inview', entry.isIntersecting);
+    });
+  /* threshold 0 keeps this correct for elements taller than the viewport,
+     where a ratio-based threshold could never be reached */
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+
+  targets.forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+});
