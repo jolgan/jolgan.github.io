@@ -407,9 +407,12 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       entry.target.classList.toggle('is-inview', entry.isIntersecting);
     });
-  /* threshold 0 keeps this correct for elements taller than the viewport,
-     where a ratio-based threshold could never be reached */
-  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+  /* The active band is inset from both edges, so an element fades in once it is
+     properly on screen rather than in the bottom sliver, and fades back out
+     while it is still visible near the top. A full-viewport root would only
+     flip once the element had left the screen entirely, hiding the reverse.
+     threshold 0 keeps this correct for elements taller than the band. */
+  }, { threshold: 0, rootMargin: '-12% 0px -20% 0px' });
 
   targets.forEach(el => {
     el.classList.add('reveal');
