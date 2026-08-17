@@ -134,75 +134,96 @@ h1, h2, h3, h4 {
   bottom: 0;
   transform: translateX(-50%);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   height: 60px;
   gap: 8px;
-  padding: 6px 8px 5px;
+  padding: 0 8px;
 }
 
 .nav-links li {
   height: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
-
-.nav-links li:nth-child(1) .nav-link { --nav-bar-height: 34px; }
-.nav-links li:nth-child(2) .nav-link { --nav-bar-height: 40px; }
-.nav-links li:nth-child(3) .nav-link { --nav-bar-height: 46px; }
-.nav-links li:nth-child(4) .nav-link { --nav-bar-height: 52px; }
 
 .nav-links::before {
   display: none;
 }
 
+/* Each link carries a short column bar on its left, like one bar of a column
+   chart. On hover the bar grows rightward into a rounded pill sitting behind
+   the label. z-index 0 makes the link its own stacking context so the bar can
+   sit at -1, behind the text but still inside the link. */
 .nav-link {
-  height: var(--nav-bar-height, 40px);
-  display: flex;
-  align-items: flex-end;
-  padding: 0 14px 8px;
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
   font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-secondary);
   white-space: nowrap;
-  overflow: hidden;
-  background: linear-gradient(180deg, #302b28, #211e1c);
+  background: none;
   border: 0;
-  border-radius: 10px 10px 6px 6px;
-  box-shadow: 0 5px 0 #0d0c0b, 0 8px 18px rgba(0,0,0,0.28);
+  border-radius: var(--r-md);
+  transition: color 0.3s ease-out;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 50%;
+  width: 5px;
+  height: 1.5em; /* tracks the text line box so the bar sits flush */
+  transform: translateY(-50%);
+  background: var(--gold);
+  border-radius: 3px 3px 1px 1px; /* rounded top, squared foot */
   transition:
-    color var(--t-fast) var(--ease),
-    background var(--t-mid) var(--ease),
-    box-shadow var(--t-fast) var(--ease),
-    transform var(--t-mid) var(--ease);
-  position: relative;
+    width 0.3s ease-out,
+    height 0.3s ease-out,
+    background-color 0.3s ease-out,
+    border-radius 0.3s ease-out;
 }
 
 .nav-link::after {
   display: none;
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: var(--text-primary);
-  background: linear-gradient(180deg, #8f294e, #671a3a);
-  box-shadow: 0 5px 0 #3f0d24, 0 10px 22px rgba(0,0,0,0.34);
+/* Bar stretches to a full pill. The active page stays in this state. */
+.nav-link:hover::before,
+.nav-link:focus-visible::before,
+.nav-link.active::before {
+  width: 100%;
+  height: 100%;
+  background: var(--burgundy);
+  border-radius: var(--r-md);
 }
 
-.nav-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 0 #3f0d24, 0 12px 24px rgba(0,0,0,0.36);
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.active {
+  color: var(--text-primary);
 }
 
 .nav-link:active {
-  transform: translateY(3px);
-  box-shadow: 0 2px 0 #3f0d24, 0 5px 12px rgba(0,0,0,0.3);
+  transform: translateY(1px);
 }
 
 .nav-link:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .nav-link::before {
+    transition: none;
+  }
 }
 
 .nav-toggle {
@@ -362,37 +383,55 @@ h1, h2, h3, h4 {
   .nav-links li { height: auto; }
   .nav-toggle { display: flex; }
 
-  /* 3D pill buttons for mobile nav links */
+  /* Same column bar idea, scaled for touch. The links share one width so the
+     bars line up down the left edge, and each is tall enough to tap. The
+     resting fill is opaque because this overlay sits over page content. */
   .nav-links .nav-link {
+    box-sizing: border-box;
+    width: min(78vw, 320px);
+    min-height: 48px;
     height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
     font-size: 0.9rem;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #f5f0e8;
-    background: #7d1d3f;
-    border-radius: 8px;
-    padding: 10px 28px;
-    box-shadow: 0 6px 0 #4a0f25, 0 8px 10px rgba(0,0,0,0.35);
-    transition: transform 80ms ease, box-shadow 80ms ease, color 80ms ease;
-    display: inline-block;
-    text-align: center;
-    overflow: visible;
+    color: var(--text-primary);
+    background: var(--surface-2);
     border: 0;
+    border-radius: var(--r-md);
+    padding: 10px 20px;
+    text-align: left;
+    overflow: visible;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
   }
+
+  /* Bar is a touch wider here so it reads at arm's length */
+  .nav-links .nav-link::before {
+    width: 6px;
+    height: 1.6em;
+    border-radius: 3px 3px 1px 1px;
+  }
+
+  /* No hover on touch, so the press state carries the expansion */
+  .nav-links .nav-link:active::before,
+  .nav-links .nav-link.active::before {
+    width: 100%;
+    height: 100%;
+    background: var(--burgundy);
+    border-radius: var(--r-md);
+  }
+
   .nav-links .nav-link::after {
     display: none; /* suppress desktop underline indicator on mobile */
   }
-  .nav-links .nav-link:hover {
-    color: #f5f0e8;
-    transform: none;
-  }
-  .nav-links .nav-link:active {
-    transform: translateY(3px);
-    box-shadow: 0 3px 0 #4a0f25, 0 4px 6px rgba(0,0,0,0.25);
-  }
+
+  /* The current page stays visible and expanded, so the menu shows where you are */
   .nav-links .nav-link.active {
-    display: none;
+    display: inline-flex;
+    color: var(--text-primary);
   }
 }
 
