@@ -674,26 +674,34 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   30%            { transform: translateY(-2px); }
 }
 
-/* ── Scroll reveal: opacity only, each element keeps its own colour ──
-   Applied to content inside .story-block and to the standalone sections,
-   never to .story-block itself, which already owns the fadeUp animation.
-   Only opacity and transform are animated, so nothing reflows. */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-}
-.reveal.is-inview {
-  opacity: 1;
-  transform: translateY(0);
+/* ── Scroll-linked reveal ──
+   JS writes a single custom property --p (0 to 1) on each block as it moves
+   through the reveal window. Every word inside carries its own --d (0 at the
+   start of the block, 1 at the end), so the browser derives each word's
+   opacity from the two numbers. That keeps the per-frame cost at one style
+   write per block rather than one per word, and gives the diagonal top-left
+   to bottom-right sweep, since --d follows reading order.
+   Nothing here animates layout: opacity only. */
+.sr {
+  --p: 1; /* fully revealed unless JS says otherwise */
 }
 
-/* Users who opt out of motion get the content plainly visible */
+/* Whole-block units: images and the accordion cards fade as one piece */
+.sr-block {
+  opacity: clamp(0.15, var(--p), 1);
+}
+
+/* Word units. The 0.55 is how much of the block's travel is spent staggering,
+   the remaining 0.45 is how long any single word takes to reach full opacity.
+   The 0.15 floor keeps text visible but ghosted before its turn. */
+.sr-w {
+  --d: 0;
+  opacity: clamp(0.15, calc((var(--p) - var(--d) * 0.55) / 0.45), 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal.is-inview {
+  .sr-block,
+  .sr-w {
     opacity: 1;
-    transform: none;
-    transition: none;
   }
 }

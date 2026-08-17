@@ -378,44 +378,139 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ── About page: reversible scroll reveal ──
-   Same IntersectionObserver approach as the fade-observe pass above, with two
-   differences: it never unobserves, so the fade runs in both directions, and it
-   targets the content inside each .story-block rather than the block itself,
-   which already owns the fadeUp animation. */
+/* ── About page: scroll-linked opacity reveal ──
+   Opacity is mapped continuously to each block's position in the viewport
+   rather than toggled at a threshold, so the fade tracks the scrollbar in
+   both directions. Text blocks are split into word spans that each carry a
+   stagger offset, producing a diagonal reveal; images and the accordion
+   cards fade as whole blocks. */
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('.about-main');
   if (!main) return;
 
-  /* Honour the OS setting: leave everything visible and skip the observer */
+  /* Honour the OS setting: leave everything at full opacity, no listeners */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const targets = main.querySelectorAll([
-    '.page-header-inner',
-    '.story-label',
-    '.story-text',
-    '.story-img',
-    '.ikigai-item',
-    '.timeline-item',
-    '.stat',
-    '.currently-col'
-  ].join(', '));
+  /* Split these into words. .page-header-inner is deliberately absent: the
+     typewriter reveal rewrites .page-title into per-character spans, so this
+     must not touch its subtree. */
+  const TEXT_UNITS = '.story-label, .story-text, .timeline-item, .stat, .currently-col';
+  const BLOCK_UNITS = '.story-img, .ikigai-item, .page-header-inner';
 
-  if (!targets.length) return;
+  /* Never split inside these. Each becomes one atomic word so it still fades,
+     but its internal markup and animations survive untouched. */
+  const ATOMIC = '.text-wave, .story-em--shimmer, .timeline-badge, .lang-level, .ikigai-toggle, .ikigai-panel, img, br';
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      entry.target.classList.toggle('is-inview', entry.isIntersecting);
+  /* Wrap bare text nodes in spans, leaving element children alone */
+  function splitWords(root) {
+    const words = [];
+
+    (function walk(node) {
+      for (const child of [...node.childNodes]) {
+        if (child.nodeType === Node.TEXT_NODE) {
+          if (!child.textContent.trim()) continue;
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) {
+              frag.appendChild(document.createTextNode(part));
+            } else {
+              const span = document.createElement('span');
+              span.className = 'sr-w';
+              span.textContent = part;
+              frag.appendChild(span);
+              words.push(span);
+            }
+          });
+          child.replaceWith(frag);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          if (child.matches(ATOMIC)) {
+            if (child.tagName !== 'BR') {
+              child.classList.add('sr-w');
+              words.push(child);
+            }
+          } else {
+            walk(child);
+          }
+        }
+      }
+    })(root);
+
+    /* Reading order gives the diagonal: first word 0, last word 1 */
+    const last = words.length - 1;
+    words.forEach((w, i) => {
+      w.style.setProperty('--d', last > 0 ? (i / last).toFixed(3) : '0');
     });
-  /* The active band is inset from both edges, so an element fades in once it is
-     properly on screen rather than in the bottom sliver, and fades back out
-     while it is still visible near the top. A full-viewport root would only
-     flip once the element had left the screen entirely, hiding the reverse.
-     threshold 0 keeps this correct for elements taller than the band. */
-  }, { threshold: 0, rootMargin: '-12% 0px -20% 0px' });
+  }
 
-  targets.forEach(el => {
-    el.classList.add('reveal');
-    revealObserver.observe(el);
+  const units = [];
+
+  main.querySelectorAll(TEXT_UNITS).forEach(el => {
+    el.classList.add('sr');
+    splitWords(el);
+    units.push(el);
   });
+
+  main.querySelectorAll(BLOCK_UNITS).forEach(el => {
+    el.classList.add('sr', 'sr-block');
+    units.push(el);
+  });
+
+  if (!units.length) return;
+
+  /* Reveal window, as fractions of viewport height. A block starts fading in
+     when its top passes ENTER_START and is fully revealed by ENTER_END. It
+     fades back out as its bottom approaches the top of the screen, so the
+     reverse is visible on screen rather than off it. */
+  const ENTER_START = 0.92;
+  const ENTER_END   = 0.42;
+  const EXIT_BAND   = 0.18;
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+    const enterFrom = vh * ENTER_START;
+    const enterTo   = vh * ENTER_END;
+    const exitZone  = vh * EXIT_BAND;
+
+    /* How far the page can still scroll. Blocks near the very bottom can never
+       climb as high as enterTo, so their target is capped to the highest point
+       they can actually reach, otherwise they would sit part-faded forever. */
+    const scrollY   = window.scrollY;
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - vh);
+
+    for (const el of units) {
+      const rect = el.getBoundingClientRect();
+
+      /* Skip anything far from the viewport, but pin its value first so it
+         does not keep a stale mid-fade opacity when it comes back */
+      if (rect.top > vh + 200) { el.style.setProperty('--p', '0'); continue; }
+      if (rect.bottom < -200)  { el.style.setProperty('--p', '0'); continue; }
+
+      const reachableTop = rect.top - (maxScroll - scrollY);
+      const target = Math.max(enterTo, reachableTop);
+      const span = enterFrom - target;
+
+      const entering = span > 0 ? (enterFrom - rect.top) / span : 1;
+      const leaving  = rect.bottom / exitZone;
+      let p = Math.min(entering, leaving);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+
+      el.style.setProperty('--p', p.toFixed(3));
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('load', update, { once: true });
+  update();
 });
