@@ -391,15 +391,13 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Honour the OS setting: leave everything at full opacity, no listeners */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  /* Split these into words. .page-header-inner is deliberately absent: the
-     typewriter reveal rewrites .page-title into per-character spans, so this
-     must not touch its subtree. */
-  const TEXT_UNITS = '.story-label, .story-text, .timeline-item, .stat, .currently-col';
-  const BLOCK_UNITS = '.story-img, .ikigai-item, .page-header-inner';
+  const TEXT_UNITS = '.page-header-inner, .story-label, .story-text, .timeline-item, .stat, .currently-col';
+  const BLOCK_UNITS = '.story-img, .ikigai-item';
 
   /* Never split inside these. Each becomes one atomic word so it still fades,
-     but its internal markup and animations survive untouched. */
-  const ATOMIC = '.text-wave, .story-em--shimmer, .timeline-badge, .lang-level, .ikigai-toggle, .ikigai-panel, img, br';
+     but its internal markup and animations survive untouched. .page-title is
+     here because the typewriter reveal rewrites it into per-character spans. */
+  const ATOMIC = '.text-wave, .story-em--shimmer, .timeline-badge, .lang-level, .ikigai-toggle, .ikigai-panel, .page-title, img, br';
 
   /* Wrap bare text nodes in spans, leaving element children alone */
   function splitWords(root) {
@@ -436,19 +434,48 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })(root);
 
-    /* Reading order gives the diagonal: first word 0, last word 1 */
-    const last = words.length - 1;
+    return words;
+  }
+
+  /* Group a block's words into visual lines by measuring where each one sits,
+     then stagger by line rather than by word index. Every word on a line
+     shares one offset, so the block wipes straight down instead of drifting
+     diagonally across each line. Line breaks depend on layout, so this is
+     recomputed whenever the text can rewrap. */
+  function assignLines(unit) {
+    const words = unit.querySelectorAll('.sr-w');
+    if (!words.length) return;
+
+    const lineOf = [];
+    let lineTop = null;
+    let line = -1;
+
+    words.forEach(w => {
+      const top = w.getBoundingClientRect().top;
+      /* A new line starts once a word sits clearly below the current one.
+         The tolerance absorbs baseline nudges, such as the timeline badges
+         that are shifted up by a pixel. */
+      if (lineTop === null || top > lineTop + 4) {
+        line++;
+        lineTop = top;
+      }
+      lineOf.push(line);
+    });
+
+    const lastLine = line;
     words.forEach((w, i) => {
-      w.style.setProperty('--d', last > 0 ? (i / last).toFixed(3) : '0');
+      w.style.setProperty('--d', lastLine > 0 ? (lineOf[i] / lastLine).toFixed(3) : '0');
     });
   }
 
   const units = [];
+  const textUnits = [];
 
   main.querySelectorAll(TEXT_UNITS).forEach(el => {
     el.classList.add('sr');
     splitWords(el);
     units.push(el);
+    textUnits.push(el);
   });
 
   main.querySelectorAll(BLOCK_UNITS).forEach(el => {
@@ -509,8 +536,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* Re-measure lines in one batched pass, then repaint the opacities */
+  function remeasure() {
+    textUnits.forEach(assignLines);
+    update();
+  }
+
+  let resizeTimer = null;
+  function onResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(remeasure, 120);
+    onScroll();
+  }
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  window.addEventListener('load', update, { once: true });
-  update();
+  window.addEventListener('resize', onResize, { passive: true });
+
+  /* Web fonts can rewrap the text after first paint, which would leave the
+     line grouping measured against the fallback font */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(remeasure);
+  }
+  window.addEventListener('load', remeasure, { once: true });
+
+  remeasure();
 });

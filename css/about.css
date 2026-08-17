@@ -691,12 +691,16 @@ figure { margin: 0; }   /* remove browser default 40px side margins */
   opacity: clamp(0.15, var(--p), 1);
 }
 
-/* Word units. The 0.55 is how much of the block's travel is spent staggering,
-   the remaining 0.45 is how long any single word takes to reach full opacity.
+/* Line units. --d is the word's line position within the block, 0 for the top
+   line and 1 for the bottom, so a block wipes downward. The 0.65 is how much
+   of the block's travel is spent staggering between first line and last, the
+   remaining 0.35 is how long any single line takes to reach full opacity.
+   Weighting it toward the stagger is what keeps the top of a paragraph
+   noticeably more opaque than the bottom at any mid-scroll moment.
    The 0.15 floor keeps text visible but ghosted before its turn. */
 .sr-w {
   --d: 0;
-  opacity: clamp(0.15, calc((var(--p) - var(--d) * 0.55) / 0.45), 1);
+  opacity: clamp(0.15, calc((var(--p) - var(--d) * 0.65) / 0.35), 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
