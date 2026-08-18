@@ -173,7 +173,7 @@
 
 .timeline-content span {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* ── Stats ── */
