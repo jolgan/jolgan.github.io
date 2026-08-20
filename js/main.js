@@ -488,10 +488,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Reveal window, as fractions of viewport height. A block starts fading in
      when its top passes ENTER_START and is fully revealed by ENTER_END. It
      fades back out as its bottom approaches the top of the screen, so the
-     reverse is visible on screen rather than off it. */
-  const ENTER_START = 0.92;
-  const ENTER_END   = 0.42;
-  const EXIT_BAND   = 0.18;
+     reverse is visible on screen rather than off it.
+     The gap between the two enter values is deliberately narrow. A wide window
+     means several blocks sit mid-fade at once and the page reads as one
+     synchronised wash, so this is kept close to the spacing between blocks,
+     letting each finish before the next starts in earnest. It stays a window
+     rather than a trigger point, so the fade is still continuous. */
+  const ENTER_START = 0.85;
+  const ENTER_END   = 0.68;
+  const EXIT_BAND   = 0.12;
 
   let ticking = false;
 
