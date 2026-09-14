@@ -848,6 +848,22 @@
   object-fit: cover;
 }
 
+/* Aspect-ratio-preserving variant: sizes video by its own ratio at the shared
+   260px height, like .event-marquee-item img does, instead of forcing every
+   clip into a 420x260 landscape box (which crops portrait clips heavily). */
+.event-marquee-item--video.event-marquee-item--fit {
+  width: auto;
+  max-width: 420px;
+}
+
+.event-marquee-item--fit video {
+  position: static;
+  height: 260px;
+  width: auto;
+  max-width: 420px;
+  object-fit: cover;
+}
+
 .event-marquee-item--video a {
   display: block;
   position: absolute;
