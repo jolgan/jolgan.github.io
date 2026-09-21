@@ -799,6 +799,9 @@
 
 /* ── Per-entry overrides ── */
 
+/* Resultance: dashboard screenshot + walkthrough video */
+.project-marquee-track--resultance { animation-duration: 16s; }
+
 /* AP6: 3 items, keep scrolling */
 .project-marquee-track--ap6 { animation-duration: 20s; }
 
