@@ -802,6 +802,11 @@
 /* Resultance: dashboard screenshot + walkthrough video */
 .project-marquee-track--resultance { animation-duration: 16s; }
 
+/* Resultance carousel height matches the text column */
+.project-card--split:has(.project-marquee-track--resultance) .project-marquee--vertical {
+  max-height: 450px;
+}
+
 /* AP6: 3 items, keep scrolling */
 .project-marquee-track--ap6 { animation-duration: 20s; }
 
