@@ -378,6 +378,189 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* ── Learning page: layered folder tabs for events ──
+   Single-open across the whole component, like the ikigai accordion.
+   Closed panels are inert, their videos paused, and once folded shut
+   they are marked dormant so CSS stops rendering their carousels. */
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.getElementById('ld-folder');
+  if (!root) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bands  = Array.from(root.querySelectorAll('.ld-folder-band'));
+  const tabs   = Array.from(root.querySelectorAll('.ld-folder-tab'));
+  const panels = Array.from(root.querySelectorAll('.ld-folder-panel'));
+  const panelFor = btn => document.getElementById(btn.getAttribute('aria-controls'));
+  const firstPanelOf = band => panelFor(band.querySelector('.ld-folder-tab'));
+  const durMs = parseFloat(getComputedStyle(root).getPropertyValue('--ld-folder-dur')) || 650;
+
+  let openPanel = null;
+  let instant = false;
+
+  const setVideos = (panel, play) => {
+    panel.querySelectorAll('video').forEach(v => {
+      if (!play) { v.pause(); return; }
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    });
+  };
+
+  const closePanel = panel => {
+    panel.classList.remove('is-open');
+    panel.inert = true;
+    setVideos(panel, false);
+    /* Go dormant only after the fold has finished, and only if still closed */
+    setTimeout(() => {
+      if (!panel.classList.contains('is-open')) panel.setAttribute('data-ld-folder-dormant', '');
+    }, (instant || reduceMotion) ? 0 : durMs + 50);
+  };
+
+  const openPanelEl = panel => {
+    panel.removeAttribute('data-ld-folder-dormant');
+    panel.inert = false;
+    void panel.offsetHeight;          /* commit the closed size so the open animates */
+    panel.classList.add('is-open');
+    setVideos(panel, true);
+  };
+
+  const sync = () => {
+    tabs.forEach(t => t.setAttribute('aria-expanded', String(panelFor(t) === openPanel)));
+    bands.forEach(b => {
+      const isOpen = !!openPanel && b.contains(openPanel);
+      b.classList.toggle('is-open', isOpen);
+      b.querySelector('.ld-folder-label').setAttribute('aria-expanded', String(isOpen));
+    });
+  };
+
+  const show = panel => {
+    if (panel === openPanel) return;
+    if (openPanel) closePanel(openPanel);
+    openPanel = panel;
+    if (panel) openPanelEl(panel);
+    sync();
+  };
+
+  /* Run a change with all transitions off, for hash and jump-link opens */
+  const withoutMotion = fn => {
+    instant = true;
+    root.classList.add('ld-folder--instant');
+    fn();
+    void root.offsetHeight;
+    instant = false;
+    setTimeout(() => root.classList.remove('ld-folder--instant'), 50);
+  };
+
+  /* Keep the clicked control where it was while bands above it fold or
+     unfold, so the page never jumps away from the user. Stops as soon
+     as the user scrolls themselves. */
+  const keepInView = (el, fn) => {
+    const startTop = el.getBoundingClientRect().top;
+    /* The browser's own scroll anchoring would fight this correction */
+    const html = document.documentElement;
+    html.style.overflowAnchor = 'none';
+    fn();
+    const until = performance.now() + ((reduceMotion) ? 0 : durMs + 80);
+    let cancelled = false;
+    const cancel = () => { cancelled = true; };
+    window.addEventListener('wheel', cancel, { once: true, passive: true });
+    window.addEventListener('touchstart', cancel, { once: true, passive: true });
+    const correct = () => {
+      const drift = el.getBoundingClientRect().top - startTop;
+      if (Math.abs(drift) > 0.5) window.scrollTo({ top: window.scrollY + drift, behavior: 'instant' });
+    };
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      if (!cancelled) correct();
+      html.style.overflowAnchor = '';
+      window.removeEventListener('wheel', cancel);
+      window.removeEventListener('touchstart', cancel);
+    };
+    const step = () => {
+      if (cancelled || finished) return;
+      correct();
+      if (performance.now() < until) requestAnimationFrame(step);
+      else finish();
+    };
+    requestAnimationFrame(step);
+    /* Frames can be throttled (background tabs), so also settle on a timer */
+    setTimeout(finish, until - performance.now() + 40);
+  };
+
+  /* Initial state: everything closed, quiet and out of the tab order */
+  panels.forEach(panel => {
+    panel.inert = true;
+    panel.setAttribute('data-ld-folder-dormant', '');
+    panel.querySelectorAll('video').forEach(v => {
+      v.pause();
+      /* autoplay can fire after this runs, so guard against it */
+      v.addEventListener('play', () => { if (!panel.classList.contains('is-open')) v.pause(); });
+    });
+  });
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const panel = panelFor(tab);
+      keepInView(tab, () => show(panel === openPanel ? null : panel));
+    });
+    /* Arrow keys move between the year tabs of one band */
+    tab.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const siblings = Array.from(tab.parentElement.querySelectorAll('.ld-folder-tab'));
+      const next = siblings[(siblings.indexOf(tab) + (e.key === 'ArrowRight' ? 1 : -1) + siblings.length) % siblings.length];
+      e.preventDefault();
+      next.focus();
+    });
+  });
+
+  bands.forEach(band => {
+    const label = band.querySelector('.ld-folder-label');
+    label.addEventListener('click', () => {
+      keepInView(label, () => show(band.contains(openPanel) ? null : firstPanelOf(band)));
+    });
+  });
+
+  const bandForHash = hash => bands.find(b => '#' + b.id === hash);
+  const openBand = (band, smooth) => {
+    withoutMotion(() => show(firstPanelOf(band)));
+    band.scrollIntoView({ behavior: (smooth && !reduceMotion) ? 'smooth' : 'instant', block: 'start' });
+  };
+
+  /* Jump links open their band before scrolling to it */
+  document.querySelectorAll('a[href^="#events-"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const band = bandForHash(a.getAttribute('href'));
+      if (!band) return;
+      e.preventDefault();
+      history.pushState(null, '', a.getAttribute('href'));
+      openBand(band, true);
+    });
+  });
+  window.addEventListener('hashchange', () => {
+    const band = bandForHash(location.hash);
+    if (band) openBand(band, false);
+  });
+
+  /* Default: the band named in the URL, otherwise hackathons & workshops */
+  const hashBand = bandForHash(location.hash);
+  if (hashBand) openBand(hashBand, false);
+  else withoutMotion(() => show(firstPanelOf(bands[0])));
+
+  /* Entrance: bands settle into place in sequence, the first time only */
+  if (!reduceMotion && 'IntersectionObserver' in window && !hashBand) {
+    root.classList.add('ld-folder--pre');
+    const io = new IntersectionObserver(entries => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      io.disconnect();
+      root.classList.add('ld-folder--entering');
+      root.classList.remove('ld-folder--pre');
+      setTimeout(() => root.classList.remove('ld-folder--entering'), 900 + 140 * bands.length + 100);
+    }, { threshold: 0.12 });
+    io.observe(root);
+  }
+});
+
 /* ── About page: scroll-linked opacity reveal ──
    Opacity is mapped continuously to each block's position in the viewport
    rather than toggled at a threshold, so the fade tracks the scrollbar in

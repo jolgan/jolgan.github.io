@@ -1074,3 +1074,307 @@
   width: 48px;
   height: 36px;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   Events: layered folder tabs
+   Three colour bands stacked like folders in a drawer. Each band's
+   year tabs rise from its top edge and overlap the band above, so the
+   label of the band above stays visible on the right. Panels open
+   with a 0fr to 1fr grid-row transition, which needs no measured
+   heights and stays correct through resize and text reflow.
+   ════════════════════════════════════════════════════════════════ */
+.ld-folder {
+  --ld-folder-gold: var(--gold);
+  --ld-folder-wine: #b8325c;
+  --ld-folder-green: var(--green);
+  --ld-folder-tab-h: 46px;
+  --ld-folder-foot: 14px;
+  --ld-folder-radius: 14px;
+  --ld-folder-gutter: 28px;
+  /* Timing and curve match the reference (0.65s, easeOutCubic) */
+  --ld-folder-dur: 650ms;
+  --ld-folder-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --ld-folder-fade: 320ms;
+  position: relative;
+  isolation: isolate;
+  overflow-anchor: none;   /* main.js keeps the clicked tab in place instead */
+}
+.ld-folder-section { padding-block: 0 var(--sp-16); }
+
+/* Per-band colour: fill, label ink, and a deeper shade for tabs behind */
+.ld-folder-band--gold {
+  --ld-folder-c: var(--ld-folder-gold);
+  --ld-folder-ink: var(--black);
+}
+.ld-folder-band--wine {
+  --ld-folder-c: var(--ld-folder-wine);
+  --ld-folder-ink: var(--text-primary);
+}
+.ld-folder-band--green {
+  --ld-folder-c: var(--ld-folder-green);
+  --ld-folder-ink: var(--text-primary);
+}
+.ld-folder-band {
+  --ld-folder-c-dim: color-mix(in srgb, var(--ld-folder-c) 80%, #000);
+  position: relative;
+  z-index: calc(var(--ld-folder-i, 0) + 1);   /* later bands sit on top */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: var(--ld-folder-tab-h) var(--ld-folder-tab-h) auto;
+  scroll-margin-top: 130px;                   /* clears nav and sticky jump nav */
+}
+/* Each band's tab row overlaps the bar of the band above */
+.ld-folder-band + .ld-folder-band {
+  margin-top: calc(-1 * var(--ld-folder-tab-h));
+}
+
+/* ── Bar: the category heading, right-aligned like a folder label ── */
+.ld-folder-heading {
+  grid-row: 2;
+  grid-column: 1;
+  margin: 0;
+  background: var(--ld-folder-c);
+  display: flex;
+}
+.ld-folder-band:first-child .ld-folder-heading {
+  border-top-right-radius: var(--ld-folder-radius);
+}
+.ld-folder-band:last-child:not(.is-open) .ld-folder-heading {
+  border-bottom-left-radius: var(--ld-folder-radius);
+  border-bottom-right-radius: var(--ld-folder-radius);
+}
+.ld-folder-label {
+  appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  width: 100%;
+  padding: 0 var(--ld-folder-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  cursor: pointer;
+  color: var(--ld-folder-ink);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.ld-folder-label:focus-visible,
+.ld-folder-tab:focus-visible {
+  outline: 2px solid var(--ld-folder-ink);
+  outline-offset: -5px;
+  border-radius: var(--r-sm);
+}
+.ld-folder-tab:focus-visible { border-radius: var(--ld-folder-radius) var(--ld-folder-radius) 0 0; }
+
+/* Chevron: points left when closed, down when open */
+.ld-folder-chevron {
+  width: 7px;
+  height: 7px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateX(2px) rotate(45deg);
+  transition: transform var(--ld-folder-dur) var(--ld-folder-ease);
+}
+.ld-folder-band.is-open .ld-folder-chevron {
+  transform: translateY(-2px) rotate(-45deg);
+}
+/* Mobile arrow marker, hidden on desktop */
+.ld-folder-marker {
+  display: none;
+  width: 13px;
+  height: 11px;
+  background: currentColor;
+  clip-path: polygon(0 0, 58% 0, 100% 50%, 58% 100%, 0 100%);
+  transition: transform var(--ld-folder-dur) var(--ld-folder-ease);
+}
+.ld-folder-band.is-open .ld-folder-marker { transform: rotate(90deg); }
+
+/* ── Tabs ── */
+.ld-folder-tabs {
+  grid-row: 1;
+  grid-column: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding-left: var(--ld-folder-foot);   /* left foot lands on the bar's edge */
+  pointer-events: none;                  /* let clicks reach the bar above */
+  position: relative;
+  z-index: 2;
+}
+.ld-folder-tab {
+  --ld-folder-tab-bg: var(--ld-folder-c-dim);
+  pointer-events: auto;
+  appearance: none;
+  border: 0;
+  margin: 0 var(--ld-folder-foot) 0 0;
+  position: relative;
+  height: calc(var(--ld-folder-tab-h) - 8px);
+  min-width: 96px;
+  padding: 0 var(--sp-6);
+  background: var(--ld-folder-tab-bg);
+  color: var(--ld-folder-ink);
+  border-radius: var(--ld-folder-radius) var(--ld-folder-radius) 0 0;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: height 260ms var(--ease), background-color 260ms var(--ease);
+}
+/* Concave feet: a quarter circle cut from a square either side of the tab */
+.ld-folder-tab::before,
+.ld-folder-tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: var(--ld-folder-foot);
+  height: var(--ld-folder-foot);
+  pointer-events: none;
+}
+.ld-folder-tab::before {
+  left: calc(-1 * var(--ld-folder-foot));
+  background: radial-gradient(circle at 0 0, transparent calc(var(--ld-folder-foot) - 0.5px), var(--ld-folder-tab-bg) var(--ld-folder-foot));
+}
+.ld-folder-tab::after {
+  right: calc(-1 * var(--ld-folder-foot));
+  background: radial-gradient(circle at 100% 0, transparent calc(var(--ld-folder-foot) - 0.5px), var(--ld-folder-tab-bg) var(--ld-folder-foot));
+}
+.ld-folder-tab:hover { height: calc(var(--ld-folder-tab-h) - 5px); }
+.ld-folder-tab[aria-expanded="true"] {
+  --ld-folder-tab-bg: var(--ld-folder-c);
+  height: calc(var(--ld-folder-tab-h) - 4px);
+  z-index: 1;
+}
+.ld-folder-tab[aria-expanded="true"]:hover { height: calc(var(--ld-folder-tab-h) - 2px); }
+
+/* ── Panels: every panel of a band shares one grid cell, so switching
+   year tabs cross-fades in place while the band eases to the new height ── */
+.ld-folder-panel {
+  grid-row: 3;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: 0fr;
+  background: var(--ld-folder-c);
+  transition: grid-template-rows var(--ld-folder-dur) var(--ld-folder-ease);
+}
+.ld-folder-panel.is-open { grid-template-rows: 1fr; }
+.ld-folder-band:last-child .ld-folder-panel {
+  border-radius: 0 0 var(--ld-folder-radius) var(--ld-folder-radius);
+}
+.ld-folder-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  /* closing: fade out quickly, then hide once the band has folded shut */
+  transition: opacity var(--ld-folder-fade) var(--ease),
+              visibility 0s linear var(--ld-folder-dur);
+}
+.ld-folder-panel.is-open .ld-folder-panel-inner {
+  opacity: 1;
+  visibility: visible;
+  /* opening: content fades in once the band has started to unfold */
+  transition: opacity 480ms var(--ease) 180ms, visibility 0s;
+}
+/* Fully closed panels stop rendering, so hidden carousels do no work */
+.ld-folder-panel[data-ld-folder-dormant] .ld-folder-panel-inner {
+  content-visibility: hidden;
+}
+.ld-folder-panel[data-ld-folder-dormant] .event-marquee-track {
+  animation-play-state: paused;
+}
+
+.ld-folder-intro {
+  margin: var(--sp-6) var(--ld-folder-gutter) var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: var(--ld-folder-ink);
+}
+.ld-folder-panel .event-list {
+  margin: 0 var(--ld-folder-gutter) calc(var(--ld-folder-tab-h) + var(--ld-folder-gutter));
+}
+.ld-folder-band:last-child .ld-folder-panel .event-list {
+  margin-bottom: var(--ld-folder-gutter);
+}
+/* Cards read as documents filed inside the folder */
+.ld-folder .event-card {
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.35),
+              0 18px 40px -24px rgba(0, 0, 0, 0.7);
+}
+
+/* Quiet outlined "by invitation" pill (the gold award pill is untouched) */
+.ld-folder .event-date > .tag--red {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--text-secondary);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  margin-left: var(--sp-2);
+}
+
+/* ── Entrance: bands settle into place in sequence, once ── */
+.ld-folder.ld-folder--pre .ld-folder-band {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.ld-folder.ld-folder--entering .ld-folder-band {
+  transition: opacity 600ms var(--ease), transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--ld-folder-i, 0) * 140ms);
+}
+/* Used for hash and jump-link opens, which should land without animating */
+.ld-folder.ld-folder--instant *,
+.ld-folder.ld-folder--instant *::before,
+.ld-folder.ld-folder--instant *::after {
+  transition: none !important;
+}
+
+/* ── Mobile: full-width stacked strips, like menu dividers ── */
+@media (max-width: 600px) {
+  .ld-folder {
+    --ld-folder-tab-h: 34px;
+    --ld-folder-foot: 10px;
+    --ld-folder-radius: 10px;
+    --ld-folder-gutter: 14px;
+  }
+  .ld-folder-band {
+    grid-template-rows: var(--ld-folder-tab-h) 52px auto;
+    scroll-margin-top: 120px;
+  }
+  .ld-folder-band + .ld-folder-band { margin-top: var(--sp-2); }
+  .ld-folder-band .ld-folder-heading,
+  .ld-folder-band:first-child .ld-folder-heading { border-radius: var(--r-sm) var(--r-sm) 0 0; }
+  .ld-folder-band:not(.is-open) .ld-folder-heading,
+  .ld-folder-band:last-child:not(.is-open) .ld-folder-heading { border-radius: var(--r-sm); }
+  .ld-folder-band .ld-folder-panel,
+  .ld-folder-band:last-child .ld-folder-panel { border-radius: 0 0 var(--r-sm) var(--r-sm); }
+  .ld-folder-label {
+    justify-content: flex-start;
+    font-size: 0.74rem;
+  }
+  .ld-folder-marker { display: block; }
+  .ld-folder-chevron { display: none; }
+  .ld-folder-tab {
+    min-width: 64px;
+    padding: 0 var(--sp-4);
+    font-size: 0.88rem;
+  }
+  .ld-folder-panel .event-list,
+  .ld-folder-band:last-child .ld-folder-panel .event-list {
+    margin-bottom: var(--ld-folder-gutter);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ld-folder *,
+  .ld-folder *::before,
+  .ld-folder *::after {
+    transition: none !important;
+  }
+}
