@@ -28,7 +28,7 @@ Portfolio website for Jolene Gan. Built with HTML, CSS, and JavaScript. No frame
 
 ## Adding a new event
 
-In learning.html, inside the `#events-public` or `#events-private` section, copy and paste:
+In learning.html, inside the `#events-hands-on`, `#events-speaking` or `#events-attended` section, copy and paste:
 
 ```html
 <div class="event-card">
