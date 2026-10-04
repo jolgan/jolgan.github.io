@@ -34,7 +34,9 @@ Events on learning.html sit in a folder-tab interface: three colour bands (categ
 |---|---|---|---|
 | hackathons & workshops | `#events-hands-on` | gold | 2026 |
 | speaking | `#events-speaking` | wine | 2026, 2025 |
-| events attended | `#events-attended` | green | 2026, 2023-2025 |
+| events attended | `#events-attended` | green | 2026, 2025, 2024, 2023 |
+
+**The year tab rule:** every band gets exactly one tab per year. A new year tab is added when that year's first entry arrives in that band, and years are never merged into a range.
 
 **1. Pick the band.** Hackathons and hands-on workshops go in hands-on, talks you gave go in speaking, everything else you attended goes in events attended.
 
@@ -74,7 +76,7 @@ For an event you attended by private invitation, add the label at the end of the
 
 - Point the band's heading button (`ld-folder-label`) `aria-controls` at the new first panel, because clicking the band label and jump links open the band's first tab.
 
-No JavaScript changes are needed; main.js picks up every `.ld-folder-tab` and `.ld-folder-panel` on load. Keep about four tabs or fewer per band. When older years grow thin, merge them into a range tab such as `2023-2025` rather than adding more tabs.
+No JavaScript changes are needed; main.js picks up every `.ld-folder-tab` and `.ld-folder-panel` on load. Never merge years into a range tab, even when a year holds a single entry.
 
 ## Adding a new course
 
