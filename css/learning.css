@@ -1257,12 +1257,19 @@
 .ld-folder-panel {
   grid-row: 3;
   grid-column: 1;
+  /* Without this, grid stretches a closed panel to the open panel's height,
+     and its band-coloured background paints over the open panel's cards */
+  align-self: start;
   display: grid;
   grid-template-rows: 0fr;
   background: var(--ld-folder-c);
   transition: grid-template-rows var(--ld-folder-dur) var(--ld-folder-ease);
 }
-.ld-folder-panel.is-open { grid-template-rows: 1fr; }
+.ld-folder-panel.is-open {
+  grid-template-rows: 1fr;
+  position: relative;
+  z-index: 1;   /* the opening panel sits above one still folding shut */
+}
 .ld-folder-band:last-child .ld-folder-panel {
   border-radius: 0 0 var(--ld-folder-radius) var(--ld-folder-radius);
 }
