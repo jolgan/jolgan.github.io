@@ -399,12 +399,26 @@ document.addEventListener('DOMContentLoaded', () => {
   let openPanel = null;
   let instant = false;
 
+  /* Pausing is instant. Starting is spread out: the busiest panel holds 20
+     videos, and starting them all in one frame stalls the page for over
+     half a second, which would swallow the opening motion. */
   const setVideos = (panel, play) => {
-    panel.querySelectorAll('video').forEach(v => {
-      if (!play) { v.pause(); return; }
-      const p = v.play();
+    clearTimeout(panel._ldFolderVideoTimer);
+    const videos = Array.from(panel.querySelectorAll('video'));
+    if (!play) { videos.forEach(v => v.pause()); return; }
+    let i = 0;
+    const next = () => {
+      if (!panel.classList.contains('is-open') || i >= videos.length) return;
+      const p = videos[i++].play();
       if (p && p.catch) p.catch(() => {});
-    });
+      panel._ldFolderVideoTimer = setTimeout(next, 40);
+    };
+    next();
+  };
+  /* Start a panel's videos once its motion has finished */
+  const playVideosAfter = (panel, ms) => {
+    clearTimeout(panel._ldFolderVideoTimer);
+    panel._ldFolderVideoTimer = setTimeout(() => setVideos(panel, true), ms);
   };
 
   const animated = () => !instant && !reduceMotion;
@@ -417,10 +431,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Drop every motion class and inline style, back to a resting panel */
   const settle = panel => {
-    panel.classList.remove('ld-folder-panel--moving', 'ld-folder-panel--tilted', 'ld-folder-panel--leaving');
+    panel.classList.remove('ld-folder-panel--swing', 'ld-folder-panel--swing-go', 'ld-folder-panel--leaving');
     panel.style.removeProperty('height');
     panel.style.removeProperty('transition');
   };
+
+  /* Longest delay + duration among the cards' running transitions, in ms,
+     so the swing is cleaned up exactly when the last card lands */
+  const toMs = v => v.trim().endsWith('ms') ? parseFloat(v) : parseFloat(v) * 1000;
+  const swingLength = panel => Array.from(panel.querySelectorAll('.event-card')).reduce((max, card) => {
+    const cs = getComputedStyle(card);
+    const delays = cs.transitionDelay.split(',').map(toMs);
+    const durs = cs.transitionDuration.split(',').map(toMs);
+    return Math.max(max, ...durs.map((d, i) => d + (delays[i] || 0)));
+  }, 0);
 
   const sleepPanel = panel => {
     panel.inert = true;
@@ -430,41 +454,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!panel.classList.contains('is-open')) panel.setAttribute('data-ld-folder-dormant', '');
   };
 
-  /* Fold shut: the height eases closed while the panel tilts back */
+  /* Fold shut: the height eases closed and the content fades at once,
+     with no swing */
   const closePanel = panel => {
     sleepPanel(panel);
     settle(panel);
-    if (!animated()) {
-      panel.classList.remove('is-open');
-      goDormant(panel);
-      return;
-    }
-    panel.classList.add('ld-folder-panel--moving');
-    void panel.offsetHeight;
     panel.classList.remove('is-open');
-    panel.classList.add('ld-folder-panel--tilted');
-    later(panel, durMs + 50, () => { settle(panel); goDormant(panel); });
+    if (!animated()) { goDormant(panel); return; }
+    later(panel, durMs + 50, () => goDormant(panel));
   };
 
-  /* Unfold: start tilted, then ease flat while the height opens */
+  /* Unfold: the panel opens flat while its cards swing in, one by one */
   const openPanelEl = panel => {
     settle(panel);
     panel.removeAttribute('data-ld-folder-dormant');
     panel.inert = false;
     if (animated()) {
-      panel.classList.add('ld-folder-panel--tilted');   /* jumps there, no transition yet */
+      panel.classList.add('ld-folder-panel--swing');   /* cards jump to the start pose */
       void panel.offsetHeight;
-      panel.classList.add('ld-folder-panel--moving', 'is-open');
-      panel.classList.remove('ld-folder-panel--tilted');
-      later(panel, durMs + 50, () => settle(panel));
+      panel.classList.add('is-open', 'ld-folder-panel--swing-go');
+      const length = swingLength(panel);
+      later(panel, length + 50, () => settle(panel));
+      playVideosAfter(panel, length);
     } else {
       void panel.offsetHeight;
       panel.classList.add('is-open');
+      setVideos(panel, true);
     }
-    setVideos(panel, true);
   };
 
-  /* Same band, different year: no tilt. The old panel lifts out of the
+  /* Same band, different year: no swing. The old panel lifts out of the
      flow and fades, the new one takes its place at the old height and
      eases to its own, so the band stays open throughout. */
   const switchWithinBand = (from, to) => {
@@ -498,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
       settle(to);
       band.classList.remove('ld-folder-band--switching');
     });
-    setVideos(to, true);
+    playVideosAfter(to, durMs);
   };
 
   const sync = () => {

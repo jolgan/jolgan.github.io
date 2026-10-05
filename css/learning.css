@@ -1091,12 +1091,16 @@
   --ld-folder-foot: 14px;
   --ld-folder-radius: 14px;
   --ld-folder-gutter: 28px;
-  /* Motion tuning knobs. Duration, curve, tilt and perspective match the
-     reference: 0.65s, easeOutCubic, rotateX(-3deg), 3000px depth. */
+  /* Motion tuning knobs. Panels unfold over --ld-folder-dur on easeOutCubic.
+     Entry cards then swing in like a file dropped onto a desk: a flat
+     rotation pivoting on the top-right corner plus a down-left offset,
+     eased in and out with no overshoot, one card after another. */
   --ld-folder-dur: 650ms;
   --ld-folder-ease: cubic-bezier(0.33, 1, 0.68, 1);
-  --ld-folder-tilt: -3deg;
-  --ld-folder-perspective: 3000px;
+  --ld-folder-swing-angle: -4deg;
+  --ld-folder-swing-offset: 18px;
+  --ld-folder-stagger: 70ms;
+  --ld-folder-swing-ease: cubic-bezier(0.65, 0, 0.35, 1);
   --ld-folder-fade-in: 320ms;
   --ld-folder-fade-out: 150ms;
   /* content waits until the unfold is substantially complete; at 45% of
@@ -1277,7 +1281,6 @@
   display: grid;
   grid-template-rows: 0fr;
   background: var(--ld-folder-c);
-  transform-origin: 50% 0;   /* hinge on the band's bar, like a folder flap */
   transition: grid-template-rows var(--ld-folder-dur) var(--ld-folder-ease);
 }
 .ld-folder-panel.is-open {
@@ -1286,22 +1289,32 @@
   z-index: 1;   /* the opening panel sits above one still folding shut */
 }
 
-/* 3D unfold. main.js adds these classes only while a panel is moving, so
-   at rest every panel and band has transform: none and no will-change. */
-.ld-folder-panel.ld-folder-panel--moving {
-  will-change: transform;
-  transition: grid-template-rows var(--ld-folder-dur) var(--ld-folder-ease),
-              transform var(--ld-folder-dur) var(--ld-folder-ease);
+/* Card swing-in. Bands, bars, tabs and panels are never transformed, so
+   the stack stays seamless; only the cards inside an opening panel move.
+   main.js adds --swing (start pose) then --swing-go (play), and removes
+   both once every card has landed, leaving transform: none at rest. */
+.ld-folder-panel--swing .event-card {
+  opacity: 0;
+  transform: translate(calc(var(--ld-folder-swing-offset) * -1), var(--ld-folder-swing-offset))
+             rotate(var(--ld-folder-swing-angle));
+  transform-origin: 100% 0;
 }
-/* Flat end state carries the same perspective, so it interpolates cleanly
-   with the tilt and matches transform: none once the class is removed */
-.ld-folder-panel.ld-folder-panel--moving.is-open {
-  transform: perspective(var(--ld-folder-perspective)) rotateX(0deg);
+.ld-folder-panel--swing.ld-folder-panel--swing-go .event-card {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+  will-change: transform, opacity;
+  transition: transform var(--ld-folder-dur) var(--ld-folder-swing-ease),
+              opacity calc(var(--ld-folder-dur) * 0.6) var(--ease);
+  transition-delay: calc(var(--ld-folder-fade-delay) + var(--ld-folder-card-i, 0) * var(--ld-folder-stagger));
 }
-.ld-folder-panel.ld-folder-panel--tilted,
-.ld-folder-panel.ld-folder-panel--moving.ld-folder-panel--tilted {
-  transform: perspective(var(--ld-folder-perspective)) rotateX(var(--ld-folder-tilt));
-}
+/* Stagger order, without touching card markup */
+.ld-folder-panel--swing .event-list > :nth-child(2) { --ld-folder-card-i: 1; }
+.ld-folder-panel--swing .event-list > :nth-child(3) { --ld-folder-card-i: 2; }
+.ld-folder-panel--swing .event-list > :nth-child(4) { --ld-folder-card-i: 3; }
+.ld-folder-panel--swing .event-list > :nth-child(5) { --ld-folder-card-i: 4; }
+.ld-folder-panel--swing .event-list > :nth-child(6) { --ld-folder-card-i: 5; }
+.ld-folder-panel--swing .event-list > :nth-child(7) { --ld-folder-card-i: 6; }
+.ld-folder-panel--swing .event-list > :nth-child(n+8) { --ld-folder-card-i: 7; }
 
 /* Same-band switch: the outgoing panel lifts out of the flow and fades
    over the incoming one, which eases from the old height to its own */
@@ -1323,7 +1336,7 @@
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  /* closing: fade out at once, before the tilt can distort the text,
+  /* closing: fade out at once, so nothing lingers while the band folds,
      then hide once the band has folded shut */
   transition: opacity var(--ld-folder-fade-out) var(--ease),
               visibility 0s linear var(--ld-folder-dur);
@@ -1400,6 +1413,9 @@
     --ld-folder-foot: 10px;
     --ld-folder-radius: 10px;
     --ld-folder-gutter: 14px;
+    /* narrow cards read a smaller swing as the same gesture */
+    --ld-folder-swing-angle: -2deg;
+    --ld-folder-swing-offset: 10px;
   }
   .ld-folder-band {
     grid-template-rows: var(--ld-folder-tab-h) 52px auto;
@@ -1431,7 +1447,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ld-folder {
-    --ld-folder-tilt: 0deg;
+    --ld-folder-swing-angle: 0deg;
+    --ld-folder-swing-offset: 0px;
+    --ld-folder-stagger: 0ms;
   }
   .ld-folder *,
   .ld-folder *::before,
