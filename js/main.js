@@ -392,7 +392,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const panels = Array.from(root.querySelectorAll('.ld-folder-panel'));
   const panelFor = btn => document.getElementById(btn.getAttribute('aria-controls'));
   const firstPanelOf = band => panelFor(band.querySelector('.ld-folder-tab'));
-  const durMs = parseFloat(getComputedStyle(root).getPropertyValue('--ld-folder-dur')) || 650;
+  /* Read the CSS knob, in ms or s, so timing changes stay one-line edits */
+  const durRaw = getComputedStyle(root).getPropertyValue('--ld-folder-dur').trim();
+  const durMs = (parseFloat(durRaw) * (/ms$/.test(durRaw) ? 1 : /s$/.test(durRaw) ? 1000 : 1)) || 650;
 
   let openPanel = null;
   let instant = false;
@@ -405,22 +407,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const closePanel = panel => {
-    panel.classList.remove('is-open');
-    panel.inert = true;
-    setVideos(panel, false);
-    /* Go dormant only after the fold has finished, and only if still closed */
-    setTimeout(() => {
-      if (!panel.classList.contains('is-open')) panel.setAttribute('data-ld-folder-dormant', '');
-    }, (instant || reduceMotion) ? 0 : durMs + 50);
+  const animated = () => !instant && !reduceMotion;
+
+  /* Each panel keeps one pending clean-up; a newer change cancels the older */
+  const later = (panel, ms, fn) => {
+    clearTimeout(panel._ldFolderTimer);
+    panel._ldFolderTimer = setTimeout(fn, ms);
   };
 
+  /* Drop every motion class and inline style, back to a resting panel */
+  const settle = panel => {
+    panel.classList.remove('ld-folder-panel--moving', 'ld-folder-panel--tilted', 'ld-folder-panel--leaving');
+    panel.style.removeProperty('height');
+    panel.style.removeProperty('transition');
+  };
+
+  const sleepPanel = panel => {
+    panel.inert = true;
+    setVideos(panel, false);
+  };
+  const goDormant = panel => {
+    if (!panel.classList.contains('is-open')) panel.setAttribute('data-ld-folder-dormant', '');
+  };
+
+  /* Fold shut: the height eases closed while the panel tilts back */
+  const closePanel = panel => {
+    sleepPanel(panel);
+    settle(panel);
+    if (!animated()) {
+      panel.classList.remove('is-open');
+      goDormant(panel);
+      return;
+    }
+    panel.classList.add('ld-folder-panel--moving');
+    void panel.offsetHeight;
+    panel.classList.remove('is-open');
+    panel.classList.add('ld-folder-panel--tilted');
+    later(panel, durMs + 50, () => { settle(panel); goDormant(panel); });
+  };
+
+  /* Unfold: start tilted, then ease flat while the height opens */
   const openPanelEl = panel => {
+    settle(panel);
     panel.removeAttribute('data-ld-folder-dormant');
     panel.inert = false;
-    void panel.offsetHeight;          /* commit the closed size so the open animates */
-    panel.classList.add('is-open');
+    if (animated()) {
+      panel.classList.add('ld-folder-panel--tilted');   /* jumps there, no transition yet */
+      void panel.offsetHeight;
+      panel.classList.add('ld-folder-panel--moving', 'is-open');
+      panel.classList.remove('ld-folder-panel--tilted');
+      later(panel, durMs + 50, () => settle(panel));
+    } else {
+      void panel.offsetHeight;
+      panel.classList.add('is-open');
+    }
     setVideos(panel, true);
+  };
+
+  /* Same band, different year: no tilt. The old panel lifts out of the
+     flow and fades, the new one takes its place at the old height and
+     eases to its own, so the band stays open throughout. */
+  const switchWithinBand = (from, to) => {
+    const band = to.closest('.ld-folder-band');
+    const fromHeight = from.getBoundingClientRect().height;
+
+    sleepPanel(from);
+    settle(from);
+    from.classList.add('ld-folder-panel--leaving');
+    later(from, durMs + 50, () => {
+      /* Collapse instantly: it has already faded out of sight */
+      from.style.transition = 'none';
+      from.classList.remove('is-open');
+      void from.offsetHeight;
+      settle(from);
+      goDormant(from);
+    });
+
+    settle(to);
+    to.removeAttribute('data-ld-folder-dormant');
+    to.inert = false;
+    band.classList.add('ld-folder-band--switching');
+    to.style.transition = 'none';
+    to.classList.add('is-open');
+    const toHeight = to.getBoundingClientRect().height;
+    to.style.height = fromHeight + 'px';
+    void to.offsetHeight;
+    to.style.transition = 'height var(--ld-folder-dur) var(--ld-folder-ease)';
+    to.style.height = toHeight + 'px';
+    later(to, durMs + 50, () => {
+      settle(to);
+      band.classList.remove('ld-folder-band--switching');
+    });
+    setVideos(to, true);
   };
 
   const sync = () => {
@@ -432,11 +510,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  /* Opening a tab in another band closes the old one in the same frame,
+     so the handover reads as one continuous motion */
   const show = panel => {
     if (panel === openPanel) return;
-    if (openPanel) closePanel(openPanel);
+    const prev = openPanel;
     openPanel = panel;
-    if (panel) openPanelEl(panel);
+    if (prev && panel && animated() && prev.closest('.ld-folder-band') === panel.closest('.ld-folder-band')) {
+      switchWithinBand(prev, panel);
+    } else {
+      if (prev) closePanel(prev);
+      if (panel) openPanelEl(panel);
+    }
     sync();
   };
 

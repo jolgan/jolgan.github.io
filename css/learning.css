@@ -1091,10 +1091,17 @@
   --ld-folder-foot: 14px;
   --ld-folder-radius: 14px;
   --ld-folder-gutter: 28px;
-  /* Timing and curve match the reference (0.65s, easeOutCubic) */
+  /* Motion tuning knobs. Duration, curve, tilt and perspective match the
+     reference: 0.65s, easeOutCubic, rotateX(-3deg), 3000px depth. */
   --ld-folder-dur: 650ms;
   --ld-folder-ease: cubic-bezier(0.33, 1, 0.68, 1);
-  --ld-folder-fade: 320ms;
+  --ld-folder-tilt: -3deg;
+  --ld-folder-perspective: 3000px;
+  --ld-folder-fade-in: 320ms;
+  --ld-folder-fade-out: 150ms;
+  /* content waits until the unfold is substantially complete; at 45% of
+     the time, easeOutCubic has covered about 83% of the distance */
+  --ld-folder-fade-delay: calc(var(--ld-folder-dur) * 0.45);
   position: relative;
   isolation: isolate;
   overflow-anchor: none;   /* main.js keeps the clicked tab in place instead */
@@ -1122,6 +1129,13 @@
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: var(--ld-folder-tab-h) var(--ld-folder-tab-h) auto;
   scroll-margin-top: 130px;                   /* clears nav and sticky jump nav */
+  /* The band box includes its transparent tab row, which overlaps the bar
+     above. Let clicks pass through it, and take them only on real surfaces. */
+  pointer-events: none;
+}
+.ld-folder-heading,
+.ld-folder-panel.is-open {
+  pointer-events: auto;
 }
 /* Each band's tab row overlaps the bar of the band above */
 .ld-folder-band + .ld-folder-band {
@@ -1263,12 +1277,43 @@
   display: grid;
   grid-template-rows: 0fr;
   background: var(--ld-folder-c);
+  transform-origin: 50% 0;   /* hinge on the band's bar, like a folder flap */
   transition: grid-template-rows var(--ld-folder-dur) var(--ld-folder-ease);
 }
 .ld-folder-panel.is-open {
   grid-template-rows: 1fr;
   position: relative;
   z-index: 1;   /* the opening panel sits above one still folding shut */
+}
+
+/* 3D unfold. main.js adds these classes only while a panel is moving, so
+   at rest every panel and band has transform: none and no will-change. */
+.ld-folder-panel.ld-folder-panel--moving {
+  will-change: transform;
+  transition: grid-template-rows var(--ld-folder-dur) var(--ld-folder-ease),
+              transform var(--ld-folder-dur) var(--ld-folder-ease);
+}
+/* Flat end state carries the same perspective, so it interpolates cleanly
+   with the tilt and matches transform: none once the class is removed */
+.ld-folder-panel.ld-folder-panel--moving.is-open {
+  transform: perspective(var(--ld-folder-perspective)) rotateX(0deg);
+}
+.ld-folder-panel.ld-folder-panel--tilted,
+.ld-folder-panel.ld-folder-panel--moving.ld-folder-panel--tilted {
+  transform: perspective(var(--ld-folder-perspective)) rotateX(var(--ld-folder-tilt));
+}
+
+/* Same-band switch: the outgoing panel lifts out of the flow and fades
+   over the incoming one, which eases from the old height to its own */
+.ld-folder-panel.ld-folder-panel--leaving {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--ld-folder-fade-out) var(--ease);
 }
 .ld-folder-band:last-child .ld-folder-panel {
   border-radius: 0 0 var(--ld-folder-radius) var(--ld-folder-radius);
@@ -1278,15 +1323,21 @@
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  /* closing: fade out quickly, then hide once the band has folded shut */
-  transition: opacity var(--ld-folder-fade) var(--ease),
+  /* closing: fade out at once, before the tilt can distort the text,
+     then hide once the band has folded shut */
+  transition: opacity var(--ld-folder-fade-out) var(--ease),
               visibility 0s linear var(--ld-folder-dur);
 }
 .ld-folder-panel.is-open .ld-folder-panel-inner {
   opacity: 1;
   visibility: visible;
-  /* opening: content fades in once the band has started to unfold */
-  transition: opacity 480ms var(--ease) 180ms, visibility 0s;
+  /* opening: content fades in once the unfold is substantially complete */
+  transition: opacity var(--ld-folder-fade-in) var(--ease) var(--ld-folder-fade-delay),
+              visibility 0s;
+}
+/* Same-band switch has no unfold to wait for, so the crossfade starts early */
+.ld-folder-band.ld-folder-band--switching .ld-folder-panel.is-open .ld-folder-panel-inner {
+  transition-delay: calc(var(--ld-folder-fade-out) * 0.5), 0s;
 }
 /* Fully closed panels stop rendering, so hidden carousels do no work */
 .ld-folder-panel[data-ld-folder-dormant] .ld-folder-panel-inner {
@@ -1379,6 +1430,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ld-folder {
+    --ld-folder-tilt: 0deg;
+  }
   .ld-folder *,
   .ld-folder *::before,
   .ld-folder *::after {
