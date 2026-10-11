@@ -468,6 +468,13 @@
   display: block;
 }
 
+.project-split-media iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
 .project-skills-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
